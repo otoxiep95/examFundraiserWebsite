@@ -138,11 +138,11 @@ path{
 /* LOGIN */
 
 .cross{
-  width: 70px;
-  height:70px;
+  width: 40px;
+  height:40px;
   position: absolute;
   top:5%;
-  left:5%;
+  left:3%;
 }
 
 label{
@@ -154,7 +154,7 @@ label{
   top: 0;
   left:0;
   z-index: 10;
-  padding: 10vw;
+  padding: 7%;
   margin: 10vw;
   @include rectangle(80vw,80vh);
   background-color: $yellow_green;
@@ -162,15 +162,44 @@ label{
   @include text (1.8rem, white);
   display:grid;
   grid-template-columns: 1fr 1fr;
+  .login-form-modal {
+    grid-column: 1/2;
+    img{
+      width:10%;
+      height:10%;
+    }
+  }
+  .register-form-modal {
+    grid-column: 2/3;
+    img{
+      width:10%;
+      height:10%;
+    }
+  }
+  h2{
+    margin-bottom: 10%;
+  }
+  label{
+    padding:2%;
+    input{
+      margin-left: 10%;
+      width: 50%;
+      border-radius:3%;
+      border:none;
+    padding:0;
+    
+    }
+  }
+
+  .submit{
+    float:right;
+    @include button(200px,50px);
+    @include text (1.8rem, white);
+  }
+  
 }
 
-.login-form-modal {
-  grid-column: 1/2;
-}
 
-.register-form-modal {
-  grid-column: 2/3;
-}
 
 
 /* CONTENT */ 
@@ -420,7 +449,8 @@ a{
 }
 
 /* Hide the browser's default radio button */
-label{
+.planttree-form{
+  label{
   display: block;
   position: relative;
   @include text(1.8rem, white);
@@ -445,6 +475,7 @@ label{
     
     }
   }
+}
 
 .checkmark{
   position: absolute;

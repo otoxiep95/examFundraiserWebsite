@@ -3,3 +3,4 @@
 dist
 .cache/
 dist/*
+package-lock.json
