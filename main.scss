@@ -53,7 +53,7 @@ a{
   height:$height;
   background-color: $orange;
   text-align:center;
-  border-radius: 5%;
+  border-radius: 10px;
   box-shadow: 5px 5px rgba(112,81,28,0.6);
   h2{
   @include text(2.1rem,white);
@@ -65,7 +65,7 @@ a{
   background-color: $white_green;
   width:$width;
   height:$height;
-  border-radius: 3%;
+  border-radius: 20px;
 }
 
 
@@ -144,6 +144,13 @@ path{
 
 /* LOGIN */
 
+input{
+  text-decoration: none;
+  border:none;
+  padding:1%;
+  @include text(1.5rem, $dark_green);
+}
+
 .cross{
   width: 40px;
   height:40px;
@@ -157,56 +164,111 @@ label{
 }
 
 .modal {
-  position:absolute;
+  position:fixed;
   top: 0;
   left:0;
   z-index: 10;
-  padding: 7%;
-  margin: 10vw;
+  padding: 6% 5% 4% 5%;
+  margin: 10vh 10vw;
   @include rectangle(80vw,80vh);
   background-color: $yellow_green;
-  opacity: 0.9;
+  opacity: 0.95;
+  background-blend-mode: multiply;
   @include text (1.8rem, white);
   display:grid;
   grid-template-columns: 1fr 1fr;
-  .login-form-modal {
-    grid-column: 1/2;
-    img{
-      width:10%;
-      height:10%;
-    }
-  }
-  .register-form-modal {
-    grid-column: 2/3;
-    img{
-      width:10%;
-      height:10%;
-    }
-  }
+  grid-gap:5%;
   h2{
+    height:fit-content;
     margin-bottom: 10%;
+    grid-row:1/4;
   }
-  label{
-    padding:2%;
+  a{
+    width:fit-content;
+    height:fit-content; 
+  img{
+    width:25px;
+    height:25px; 
+  }
+  }
+  label{ 
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     input{
-      margin-left: 10%;
-      width: 50%;
-      border-radius:3%;
+      cursor: pointer;
+      float:right;
+      margin-right:10%;
+      width: 70%;
+      border-radius:7px;
       border:none;
-    padding:0;
-    
+      padding:0;
     }
   }
-
+  .login-form {
+    grid-column: 1/2;
+    display:grid;
+    grid-template-rows: repeat(8,10%);
+  }
+  .register-form {
+    grid-column: 2/3;
+    display:grid;
+    grid-template-rows: repeat(12,1fr);
+    .soMe-account{
+      grid-row:10/11;
+      width:100%;
+      height:100%;
+      display:grid;
+      grid-template-columns: 60% 20% 20%;
+      p{
+        grid-column: 1/2;
+        align-self: end;
+      }
+      a{ 
+        align-self: end;
+    } 
+    }
+    .terms{
+      font-size:1.3rem;
+      width:100%;
+      float:left;
+      a{
+        text-decoration: underline white; 
+      }
+    }
+    .submit-row{
+      height:fit-content;
+      grid-row:11/13;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      align-self: end;
+      label{
+        height:fit-content;
+        font-size:1.5rem;
+        grid-column: 1/2;
+        width:100%;
+        align-self: end;
+        input{
+          margin:0;
+          width:10%;
+          margin-right:20%;
+          opacity:0;
+        }
+      }
+      .submit{
+        grid-column: 2/3;
+      }
+    }
+  }
   .submit{
-    float:right;
     @include button(200px,50px);
     @include text (1.8rem, white);
-  }
-  
+    align-self: end;
+    justify-self: end;
+  }  
 }
-
-
 
 
 /* CONTENT */ 
@@ -404,27 +466,27 @@ a{
 
 .tree-number-container{
   grid-column: -1/1;
-  padding: 2% 0%;
+  grid-row:2/3;
+  height:fit-content;
+  // padding: 2% 0%;
   input{
-    text-decoration:none;
-    border:none;
-    padding:0;
-    @include text(1.5rem,white);
-    padding: 3% 7%; /* ATTENTION PAS RESPONSIVE */
     background-color:$dark_green;
     text-align:center;
     width:70px;
-    border-radius:3%;
+    height:50px;
+    border-radius:10px;
+    @include text(1.5rem, white);
+    display:inline;
   }
 
   p{
-    height:40px;
+    height:50px;
     padding: 0% 7%;
     display:inline;
     
   }
   .price{
-    height:40px;
+    height:50px;
     background-color:$dark_green;
     display:inline;
     padding: 3% 7%;
@@ -433,9 +495,11 @@ a{
   }
 
   .minus, .plus{
-    width: 40px;
-    height:40px;
+    margin:7px;
+    width: 30px;
+    height:50px;
     display:inline-block;
+    align-self: end;
   }
 }
 

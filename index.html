@@ -208,47 +208,52 @@
 
         <img class="cross" src="img/icons/cross-19.svg" alt="cross">
 
-        <div class="login-form-modal">
 
-          <form class="login-form">
-            <h2> LOG IN TO MY FOREST:</h2>
-            <label>USERNAME <input type="text" name="username" /></label>
-            <label>PASSWORD <input type="text" name="password" /></label>
-            <input class="submit" type="submit" name="submit" value="LOG IN" />
-          </form>
 
-          <a>I forgot my password</a>
+        <form class="login-form">
+          <h2> LOG IN TO MY FOREST:</h2>
+          <label>USERNAME <input type="text" name="username" /></label>
+          <label>PASSWORD <input type="text" name="password" /></label>
+          <a class="password_forgot">I forgot my password</a>
           <p>LOG IN WITH ANOTHER ACCOUNT:</p>
           <a><img src="img/icons/soMe-17.svg" alt="fb"></a>
           <a><img src="img/icons/soMe-18.svg" alt="google"></a>
-        </div>
+          <input class="submit" type="submit" name="submit" value="LOG IN" />
+        </form>
 
 
-        <div class="register-form-modal">
+        <form class="register-form">
           <h2> YOU DON'T HAVE AN ACCOUNT ? <br> GET STARTED & PLANT YOUR FIRST TREE!</h2>
-          <form class="register-form">
-            <label> FIRST NAME: <input type="text" name="ifirstname" /> </label>
-            <label for="">
-              LAST NAME: <input type="text" name="ilastname" />
-            </label>
-            <label for=""> USERNAME: <input type="text" name="iusername" /> </label>
-            <label for="">EMAIL: <input type="email" name="iemail" /></label>
-            <label for="">PASSWORD: <input type="text" name="ipassword" /></label>
-            <label for="">Sign up to the newsletter: <input type="checkbox" name="newsletter" /> </label>
-            <input class="submit" type="submit" name="submit" value="REGISTER" />
+          <label> FIRST NAME: <input type="text" name="ifirstname" /> </label>
+          <label for="">
+            LAST NAME: <input type="text" name="ilastname" />
+          </label>
+          <label for=""> USERNAME: <input type="text" name="iusername" /> </label>
+          <label for="">EMAIL: <input type="email" name="iemail" /></label>
+          <label for="">PASSWORD: <input type="text" name="ipassword" /></label>
 
+
+          <div class="soMe-account">
             <p>OR USE ANOTHER ACCOUNT:</p>
+
             <a><img src="img/icons/soMe-17.svg" alt="fb"></a>
             <a><img src="img/icons/soMe-18.svg"></a>
-            <p>This page is protected by reCAPTCHA, and subject to Google’s Privacy Policy & <a>Terms of Service.</a>
-              By
-              signing up you agree to Treat a tree's <a>Terms of Service.</a></p>
+          </div>
 
-          </form>
+          <div class="submit-row">
+            <label for="">Sign up to the newsletter: <input type="checkbox" name="newsletter" />
+              <span class="checkbox"></span> </label>
 
+            <input class="submit" type="submit" name="submit" value="REGISTER" />
+          </div>
 
+          <p class="terms">This page is protected by reCAPTCHA, and subject to Google’s Privacy Policy and <br> <a>Terms
+              of
+              Service.</a>
+            By
+            signing up you agree to Treat a tree's <a>Terms of Service.</a></p>
 
-        </div>
+        </form>
 
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
           width="70px" height="70px" viewBox="0 0 400 400" enable-background="new 0 0 400 400" xml:space="preserve">
