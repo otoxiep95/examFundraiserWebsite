@@ -225,103 +225,104 @@
         <form id="main-register-form">
           <div class="register-form">
             <h2> YOU DON'T HAVE AN ACCOUNT ? <br> GET STARTED & PLANT YOUR FIRST TREE!</h2>
-          <label> FIRST NAME: <input type="text" name="ifirstname" /> </label>
-          <label for="">
-            LAST NAME: <input type="text" name="ilastname" />
-          </label>
-          <label for=""> USERNAME: <input type="text" name="iusername" /> </label>
-          <label for="">EMAIL: <input type="email" name="iemail" /></label>
-          <label for="">PASSWORD: <input type="text" name="ipassword" /></label>
+            <label> FIRST NAME: <input type="text" name="ifirstname" /> </label>
+            <label for="">
+              LAST NAME: <input type="text" name="ilastname" />
+            </label>
+            <label for=""> USERNAME: <input type="text" name="iusername" /> </label>
+            <label for="">EMAIL: <input type="email" name="iemail" /></label>
+            <label for="">PASSWORD: <input type="text" name="ipassword" /></label>
 
 
-          <div class="soMe-account">
-            <p>OR USE ANOTHER ACCOUNT:</p>
+            <div class="soMe-account">
+              <p>OR USE ANOTHER ACCOUNT:</p>
 
-            <a><img src="img/icons/soMe-17.svg" alt="fb"></a>
-            <a><img src="img/icons/soMe-18.svg"></a>
-          </div>
+              <a><img src="img/icons/soMe-17.svg" alt="fb"></a>
+              <a><img src="img/icons/soMe-18.svg"></a>
+            </div>
 
-          <div class="submit-row">
-            <label for="">Sign up to the newsletter: <input type="checkbox" name="newsletter" />
-              <span class="checkbox"></span> </label>
-
-            <div class="submit next-step-button" value="NEXT"></div>
-          </div>
-
-          <p class="terms">This page is protected by reCAPTCHA, and subject to Google’s Privacy Policy and <br> <a>Terms
-              of
-              Service.</a>
-            By
-            signing up you agree to Treat a tree's <a>Terms of Service.</a></p>
-</div>
-          
-            <div class="first-donation-modal planttree-form hidden">
-              <label class="recurrent">
-                One time:
-                <input type="radio" name="recurrent" value="oneTime" checked>
-                <span class="checkbox"></span>
-              </label>
-    
-              <label class="recurrent">
-                Recurrent:
-                <input type="radio" name="recurrent" value="recurrent">
-                <span class="checkbox"></span>
-              </label>
-    
-              <div class="tree-number-container">
-                <img class="icons minus" src="img/icons/plus_minus-20.svg">
-                <input class="tree-number" type="number" name="treenumber" value="1">
-                <img class="icons plus" src="img/icons/plus_minus-21.svg">
-                <p>Trees to plant:</p>
-                <div class="price">10kr</div>
-              </div>
-    
-              <h3 class="location">Location:</h3>
-    
-              <label class="countries">
-                <h3>BRAZIL</h3>
-                <input type="radio" name="location" value="Brazil" checked>
-                <span class="checkmark"></span>
-              </label>
-    
-              <label class="countries">
-                <h3>TANZANIA</h3>
-                <input type="radio" name="location" value="Tanzania">
-                <span class="checkmark"></span>
-              </label>
-    
-              <label class="countries2">
-                <h3>USA</h3>
-                <input type="radio" name="location" value="Usa">
-                <span class="checkmark"></span>
-              </label>
-    
-              <label class="countries2">
-                <h3>VIETNAM</h3>
-                <input type="radio" name="location" value="Vietnam">
-                <span class="checkmark"></span>
-              </label>
-    
+            <div class="submit-row">
               <label class="newsletter">
                 Sign up to the newsletter:
                 <input type="checkbox" name="newsletter" checked>
                 <span class="checkbox"></span>
               </label>
 
-              
+              <div class="submit next-step-button" value="NEXT">REGISTER</div>
             </div>
-            <div class="credit-card-details hidden">
-              <label>Card number:<input type="text" pattern="[0-9]*" inputmode="numeric" length="16"></label>
-              <label>Expiration date:<input type="text" pattern="[0-9]*" inputmode="numeric"></label>
-              <label>CVC<input type="text" pattern="[0-9]*" inputmode="numeric"></label>
-              <label>Name:<input type="text"></label>
 
-              <input type="submit" class="submit" name="submit" value="REGISTER" />
+            <p class="terms">This page is protected by reCAPTCHA, and subject to Google’s Privacy Policy and <br> <a>Terms
+                of
+                Service.</a>
+              By
+              signing up you agree to Treat a tree's <a>Terms of Service.</a></p>
+          </div>
+
+          <div class="first-donation-modal planttree-form hidden">
+            <h2> MY FIRST DONATION: 10kr = 1 TREE</h2>
+            <label class="recurrent">
+              One time:
+              <input type="radio" name="recurrent" value="oneTime" checked>
+              <span class="checkbox"></span>
+            </label>
+
+            <label class="recurrent">
+              Recurrent:
+              <input type="radio" name="recurrent" value="recurrent">
+              <span class="checkbox"></span>
+            </label>
+
+            <div class="tree-number-container">
+              <img class="icons minus" src="img/icons/plus_minus-20.svg">
+              <input class="tree-number" type="number" name="treenumber" value="1">
+              <img class="icons plus" src="img/icons/plus_minus-21.svg">
+              <p>Trees to plant:</p>
+              <div class="price">
+                <p>10kr</p>
+              </div>
             </div>
+
+            <h3 class="location">Location:</h3>
+
+            <label class="countries">
+              <h3>BRAZIL</h3>
+              <input type="radio" name="location" value="Brazil" checked>
+              <span class="checkmark"></span>
+            </label>
+
+            <label class="countries">
+              <h3>TANZANIA</h3>
+              <input type="radio" name="location" value="Tanzania">
+              <span class="checkmark"></span>
+            </label>
+
+            <label class="countries2">
+              <h3>USA</h3>
+              <input type="radio" name="location" value="Usa">
+              <span class="checkmark"></span>
+            </label>
+
+            <label class="countries2">
+              <h3>VIETNAM</h3>
+              <input type="radio" name="location" value="Vietnam">
+              <span class="checkmark"></span>
+            </label>
+
+
+          </div>
+          <div class="credit-card-details hidden">
+            <h2>MY PAYMENT INFORMATIONS:</h2>
+            <label>Card number:<input type="text" pattern="[0-9]*" inputmode="numeric" length="16"></label>
+            <label>Expiration date:<input type="text" pattern="[0-9]*" inputmode="numeric"></label>
+            <label>CVC<input type="text" pattern="[0-9]*" inputmode="numeric"></label>
+            <label>Name:<input type="text"></label>
+
+            <input type="submit" class="submit" name="submit" value="REGISTER" />
+          </div>
 
         </form>
 
-        
+
       </div>
 
   </main>
