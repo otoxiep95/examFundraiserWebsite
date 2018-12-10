@@ -30,6 +30,10 @@ a:hover{
   cursor: pointer;
 }
 
+a{
+  text-decoration: none;
+}
+
 @mixin title($size, $color){
   font-size:$size;
   font-family: 'Amatic Sc';
@@ -92,6 +96,9 @@ header{
   .menu_link_right{
     float:right;
   }
+  }
+  a:hover{
+    color:$orange;
   }
 }
 
