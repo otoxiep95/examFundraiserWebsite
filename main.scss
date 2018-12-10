@@ -1,504 +1,504 @@
-/* colors: */ 
+/* colors: */
 
-$beige:#e0e4bd;
-$dark_green:#11514f;
+$beige: #e0e4bd;
+$dark_green: #11514f;
 $black_green: #062720;
 $white_green: #b7decd;
-$yellow_green:#cdcd55;
-$orange:#e1ac4a;
-$brown:#70511c;
+$yellow_green: #cdcd55;
+$orange: #e1ac4a;
+$brown: #70511c;
 
-*{
+* {
   box-sizing: border-box;
-  margin:0;
+  margin: 0;
 }
 
 body {
   width: 100%;
   height: 100%;
   margin: 0;
-  padding:0;
+  padding: 0;
   background-color: $beige;
 }
 
 /* 1 rem = 10 px */
 :root {
-  font-size: 62.5%; 
+  font-size: 62.5%;
 }
 
-a:hover{
+a:hover {
   cursor: pointer;
 }
 
-a{
+a {
   text-decoration: none;
 }
 
-@mixin title($size, $color){
-  font-size:$size;
-  font-family: 'Amatic Sc';
+@mixin title($size, $color) {
+  font-size: $size;
+  font-family: "Amatic Sc";
   font-weight: 700;
-  color:$color;
+  color: $color;
 }
 
-@mixin text($size, $color){
-  font-size:$size;
-  font-family: 'Oswald';
+@mixin text($size, $color) {
+  font-size: $size;
+  font-family: "Oswald";
   font-weight: 400;
-  color:$color;
+  color: $color;
 }
 
-@mixin button($width, $height){
-  width:$width;
-  height:$height;
+@mixin button($width, $height) {
+  width: $width;
+  height: $height;
   background-color: $orange;
-  text-align:center;
+  text-align: center;
   border-radius: 10px;
-  box-shadow: 5px 5px rgba(112,81,28,0.6);
-  h2{
-  @include text(2.1rem,white);
-  padding: 2%;
+  box-shadow: 5px 5px rgba(112, 81, 28, 0.6);
+  h2 {
+    @include text(2.1rem, white);
+    padding: 2%;
   }
 }
 
-@mixin rectangle($width, $height){
+@mixin rectangle($width, $height) {
   background-color: $white_green;
-  width:$width;
-  height:$height;
+  width: $width;
+  height: $height;
   border-radius: 20px;
 }
 
-
 /* MENU HEADER */
 
-header{
-  width:100vw;
-  height:100vh;
-  padding:1% 3%;
-  background-image: url(landscape-16.svg); 
+header {
+  width: 100vw;
+  height: 100vh;
+  padding: 1% 3%;
+  background-image: url(landscape-16.svg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-.menu{
+.menu {
   width: 90%;
-  height:10%;
-  float:right;
+  height: 10%;
+  float: right;
   padding: 2%;
-  li{
-  display: inline;
-  .menu_link, .menu_link_right{
-    @include text (1.5rem, $dark_green);
-    width:fit-content;
-    padding-left:5%;
+  li {
+    display: inline;
+    .menu_link,
+    .menu_link_right {
+      @include text(1.5rem, $dark_green);
+      width: fit-content;
+      padding-left: 5%;
+    }
+    .menu_link_right {
+      float: right;
+    }
   }
-  .menu_link_right{
-    float:right;
-  }
-  }
-  a:hover{
-    color:$orange;
+  a:hover {
+    color: $orange;
   }
 }
 
-svg{ 
-  #logo{
-path{
-  fill:#126864;
-}
+svg {
+  #logo {
+    path {
+      fill: #126864;
+    }
   }
 }
 
 /* PROCESS EXPLANATIONS */
 
-.process_infos{
+.process_infos {
   margin: 15% 10% 7% 10%;
-  width:80%;
-  height:30%;
-  display:grid;
+  width: 80%;
+  height: 30%;
+  display: grid;
   grid-template-columns: 1fr 1fr 1fr;
- 
-.cercle{
-  margin:15% calc(50% - 100px);
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background-color: $yellow_green;
-  box-shadow: 3px 3px rgba(30,62,30,0.4);
-  
- h2{
-  @include title (2.8rem, white);
-  width:100%;
-  height:100%;
-  padding: 25% 15%;
-  text-align: center;
- } 
-}
+
+  .cercle {
+    margin: 15% calc(50% - 100px);
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: $yellow_green;
+    box-shadow: 3px 3px rgba(30, 62, 30, 0.4);
+
+    h2 {
+      @include title(2.8rem, white);
+      width: 100%;
+      height: 100%;
+      padding: 25% 15%;
+      text-align: center;
+    }
+  }
 }
 
-.getstarted{
+.getstarted {
   @include button(300px, 45px);
   margin-left: calc(50% - 150px);
 }
 
 /* LOGIN */
 
-input{
+input {
   text-decoration: none;
-  border:none;
-  padding:1%;
+  border: none;
+  padding: 1%;
   @include text(1.5rem, $dark_green);
 }
 
-.cross{
+.cross {
   width: 40px;
-  height:40px;
+  height: 40px;
   position: absolute;
-  top:5%;
-  left:3%;
+  top: 5%;
+  left: 3%;
 }
 
-label{
-  display:block;
+label {
+  display: block;
 }
 
 .modal {
-  position:fixed;
+  position: fixed;
   top: 0;
-  left:0;
+  left: 0;
   z-index: 10;
   padding: 6% 5% 4% 5%;
   margin: 10vh 10vw;
-  @include rectangle(80vw,80vh);
+  @include rectangle(80vw, 80vh);
   background-color: $yellow_green;
   opacity: 0.95;
   background-blend-mode: multiply;
-  @include text (1.8rem, white);
-  display:grid;
+  @include text(1.8rem, white);
+  display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap:5%;
-  h2{
-    height:fit-content;
+  grid-gap: 5%;
+  h2 {
+    height: fit-content;
     margin-bottom: 10%;
-    grid-row:1/4;
+    grid-row: 1/4;
   }
-  a{
-    width:fit-content;
-    height:fit-content; 
-  img{
-    width:25px;
-    height:25px; 
+  a {
+    width: fit-content;
+    height: fit-content;
+    img {
+      width: 25px;
+      height: 25px;
+    }
   }
-  }
-  label{ 
+  label {
     cursor: pointer;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    input{
+    input {
       cursor: pointer;
-      float:right;
-      margin-right:10%;
+      float: right;
+      margin-right: 10%;
       width: 70%;
-      border-radius:7px;
-      border:none;
-      padding:0;
+      border-radius: 7px;
+      border: none;
+      padding: 0;
     }
   }
   .login-form {
     grid-column: 1/2;
-    display:grid;
-    grid-template-rows: repeat(8,10%);
+    display: grid;
+    grid-template-rows: repeat(8, 10%);
+  }
+  .credit-card-details {
+    grid-column: 2/-1;
   }
   .register-form {
     grid-column: 2/3;
-    display:grid;
-    grid-template-rows: repeat(12,1fr);
-    .soMe-account{
-      grid-row:10/11;
-      width:100%;
-      height:100%;
-      display:grid;
+    display: grid;
+    grid-template-rows: repeat(12, 1fr);
+    .soMe-account {
+      grid-row: 10/11;
+      width: 100%;
+      height: 100%;
+      display: grid;
       grid-template-columns: 60% 20% 20%;
-      p{
+      p {
         grid-column: 1/2;
         align-self: end;
       }
-      a{ 
+      a {
         align-self: end;
-    } 
-    }
-    .terms{
-      font-size:1.3rem;
-      width:100%;
-      float:left;
-      a{
-        text-decoration: underline white; 
       }
     }
-    .submit-row{
-      height:fit-content;
-      grid-row:11/13;
-      display:grid;
+    .terms {
+      font-size: 1.3rem;
+      width: 100%;
+      float: left;
+      a {
+        text-decoration: underline white;
+      }
+    }
+    .submit-row {
+      height: fit-content;
+      grid-row: 11/13;
+      display: grid;
       grid-template-columns: 1fr 1fr;
       align-self: end;
-      label{
-        height:fit-content;
-        font-size:1.5rem;
+      label {
+        height: fit-content;
+        font-size: 1.5rem;
         grid-column: 1/2;
-        width:100%;
+        width: 100%;
         align-self: end;
-        input{
-          margin:0;
-          width:10%;
-          margin-right:20%;
-          opacity:0;
+        input {
+          margin: 0;
+          width: 10%;
+          margin-right: 20%;
+          opacity: 0;
         }
       }
-      .submit{
+      .submit {
         grid-column: 2/3;
       }
     }
   }
-  .submit{
-    @include button(200px,50px);
-    @include text (1.8rem, white);
+  .submit {
+    @include button(200px, 50px);
+    @include text(1.8rem, white);
     align-self: end;
     justify-self: end;
-  }  
+  }
 }
 
+/* CONTENT */
 
-/* CONTENT */ 
+main {
+  background-color: $black_green;
+  width: 100vw;
+  height: auto;
+  padding: 1% 3% 10% 3%;
+  h2 {
+    @include title(2.8rem, white);
+    grid-column: -1/1;
+  }
 
-main{
-background-color: $black_green;
-width: 100vw;
-height:auto;
-padding:1% 3% 10% 3%;
-h2{
-  @include title (2.8rem, white);
-  grid-column: -1/1;
+  h3 {
+    @include text(2.1rem, white);
+    grid-column: -1/1;
+  }
+
+  p {
+    @include text(1.8rem, white);
+  }
 }
 
-h3{
-  @include text (2.1rem, white);
-  grid-column: -1/1;
-}
-
-p{
-  @include text (1.8rem, white);
-}
-
-}
-
-.content{
+.content {
   margin-top: 15%;
-  margin-left:10%;
-  margin-right:10%;
-  width:80%;
-  height:30%;
-  display:grid;
-  
-  .forest-button, .forest-image{
-   @include rectangle(100%,500px);   
-  a{
-    @include title (2.5rem, white);
-  }
+  margin-left: 10%;
+  margin-right: 10%;
+  width: 80%;
+  height: 30%;
+  display: grid;
+
+  .forest-button,
+  .forest-image {
+    @include rectangle(100%, 500px);
+    a {
+      @include title(2.5rem, white);
+    }
   }
 }
 
-.forest-menu{
+.forest-menu {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 2%;
 }
 
-.why-info, .forest-content{
+.why-info,
+.forest-content {
   grid-template-columns: 1fr 1fr;
-  grid-gap:5%;
+  grid-gap: 5%;
 }
-
 
 /* /////////// PROFILE PAGE ////////////*/
 
-#myForestsHeader{
-  height:10vh;
-  background:none;
+#myForestsHeader {
+  height: 10vh;
+  background: none;
   background-color: $dark_green;
-  svg{ 
-    #logo{
-  path{
-    fill:white;
+  svg {
+    #logo {
+      path {
+        fill: white;
+      }
+    }
   }
-}}
-.menu{
-  a{
-    color:white;
+  .menu {
+    a {
+      color: white;
+    }
   }
-}
 }
 
-.myForestsMain{
+.myForestsMain {
   width: 100vw;
   height: 90vh;
   padding: 5% 10%;
-  background-color:$dark_green;
-  display:grid;
+  background-color: $dark_green;
+  display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap:2%;
-  position:fixed;
+  grid-gap: 2%;
+  position: fixed;
   top: 10vh;
   left: 0;
   z-index: 10;
-  nav{
-    width:100%;
-    height:10%;
-    display:grid;
+  nav {
+    width: 100%;
+    height: 10%;
+    display: grid;
   }
-  a:hover{
-    color:$dark_green;
+  a:hover {
+    color: $dark_green;
   }
-  a:active{
-    color:$orange;
+  a:active {
+    color: $orange;
   }
 }
 
-.myForests{
-  @include rectangle(100%,100%);
-  box-shadow: 5px 10px 5px rgba( $black_green,0.6);
-  nav{
+.myForests {
+  @include rectangle(100%, 100%);
+  box-shadow: 5px 10px 5px rgba($black_green, 0.6);
+  nav {
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    height:fit-content;
-  
-    a{
+    height: fit-content;
+
+    a {
       @include title(2.5rem, white);
       padding: 30px 0% 7px 0;
-      text-align:center;
-      
+      text-align: center;
     }
-   
   }
 }
 
-.my-forests-options{
-@include rectangle(100%,100%);
-box-shadow: 5px 10px 5px rgba( $black_green,0.6);
-padding:0% 5%; 
-nav{
-  grid-template-columns: 1fr 1fr 1fr;
-  height:fit-content;
-  border-bottom: 2px solid white;
-  
-a{
-  @include text(1.5rem, white);
-  padding: 30px 0% 7px 0;
-  text-align:center;
-}
-}
+.my-forests-options {
+  @include rectangle(100%, 100%);
+  box-shadow: 5px 10px 5px rgba($black_green, 0.6);
+  padding: 0% 5%;
+  nav {
+    grid-template-columns: 1fr 1fr 1fr;
+    height: fit-content;
+    border-bottom: 2px solid white;
+
+    a {
+      @include text(1.5rem, white);
+      padding: 30px 0% 7px 0;
+      text-align: center;
+    }
+  }
 }
 
-.options, .game{
-  width:100%;
-  height:85%;
-  margin-top:5%;
+.options,
+.game {
+  width: 100%;
+  height: 85%;
+  margin-top: 5%;
 }
 
-.game{
+.game {
   background: url("baby_sprout-22.svg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   border-radius: 3%;
-  display:grid;
+  display: grid;
   grid-template-rows: 1fr 130px;
 }
 
-.infos-game{
+.infos-game {
   grid-row: 2/3;
   margin: 0 10%;
-  width:80%;
-  height:100%;
+  width: 80%;
+  height: 100%;
 }
 
-.level-container{
-  position:relative;
+.level-container {
+  position: relative;
   width: 100%;
-  height:15px;
+  height: 15px;
   margin-top: 20px;
   border: solid 2px white;
   border-radius: 3%;
-  background-color:none;
- 
+  background-color: none;
 }
-.level{
-  position:absolute;
-  left:0;
-  top:0;
+.level {
+  position: absolute;
+  left: 0;
+  top: 0;
   width: 10%;
-  height:100%;
+  height: 100%;
   background-color: white;
 }
 
-.my-infos, .the-community{
-  display:none;
+.my-infos,
+.the-community {
+  display: none;
 }
-
 
 /* PLANT A TREE PROFILE */
 
 .planttree-form {
-  form{
-  width:100%;
-  height:100%;
-  padding:5%;
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(8,10%);
-  grid-gap:2%;
-  grid-row-gap: 2%;
+  form {
+    width: 100%;
+    height: 100%;
+    padding: 5%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(8, 10%);
+    grid-gap: 2%;
+    grid-row-gap: 2%;
   }
 }
 
-
 /* TREE NUMBER */
 
-.tree-number-container{
+.tree-number-container {
   grid-column: -1/1;
-  grid-row:2/3;
-  height:fit-content;
+  grid-row: 2/3;
+  height: fit-content;
   // padding: 2% 0%;
-  input{
-    background-color:$dark_green;
-    text-align:center;
-    width:70px;
-    height:50px;
-    border-radius:10px;
+  input {
+    background-color: $dark_green;
+    text-align: center;
+    width: 70px;
+    height: 50px;
+    border-radius: 10px;
     @include text(1.5rem, white);
-    display:inline;
+    display: inline;
   }
 
-  p{
-    height:50px;
+  p {
+    height: 50px;
     padding: 0% 7%;
-    display:inline;
-    
+    display: inline;
   }
-  .price{
-    height:50px;
-    background-color:$dark_green;
-    display:inline;
+  .price {
+    height: 50px;
+    background-color: $dark_green;
+    display: inline;
     padding: 3% 7%;
-    border-radius:3%;
-    @include text(1.5rem,white);
+    border-radius: 3%;
+    @include text(1.5rem, white);
   }
 
-  .minus, .plus{
-    margin:7px;
+  .minus,
+  .plus {
+    margin: 7px;
     width: 30px;
-    height:50px;
-    display:inline-block;
+    height: 50px;
+    display: inline-block;
     align-self: end;
   }
 }
@@ -507,72 +507,70 @@ a{
 
 .location {
   align-self: end;
-  font-size:1.8rem;
- grid-row: 4/5;
-
+  font-size: 1.8rem;
+  grid-row: 4/5;
 }
 
-.countries{
+.countries {
   grid-row-start: 5;
 }
-.countries2{
+.countries2 {
   grid-row-start: 6;
 }
 
 /* Hide the browser's default radio button */
-.planttree-form{
-  label{
-  display: block;
-  position: relative;
-  @include text(1.8rem, white);
-  
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-    input {
-    position: absolute;
-    opacity: 0;
+.planttree-form {
+  label {
+    display: block;
+    position: relative;
+    @include text(1.8rem, white);
+
     cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
     }
-    h3{
-    position:absolute;
-    z-index:10;
-    width:100%;
-    padding:8%;
-    text-align:center;
-    font-size:1.8rem;
-    
+    h3 {
+      position: absolute;
+      z-index: 10;
+      width: 100%;
+      padding: 8%;
+      text-align: center;
+      font-size: 1.8rem;
     }
   }
 }
 
-.checkmark{
+.checkmark {
   position: absolute;
   top: 0;
   left: 0;
-  width:90%;
-  height:90%;
+  width: 90%;
+  height: 90%;
   margin: 5%;
-  background-color:$dark_green;
+  background-color: $dark_green;
   // box-shadow: 5px 5px rgba($black_green,0.6);
-  border-radius:3%;
+  border-radius: 3%;
 }
 
 /* On mouse-over, add a grey background color */
 label:hover input ~ .checkmark {
-  background-color:rgba($black_green,0.3);
+  background-color: rgba($black_green, 0.3);
 }
 
 /* When the radio button is checked, add a orange background */
 label input:checked ~ .checkmark {
-  @include button(90%,90%)
+  @include button(90%, 90%);
 }
 
 /* CHECKBOX STYLE */
 
-.recurrent{
+.recurrent {
   align-self: end;
 }
 
@@ -582,17 +580,17 @@ label input:checked ~ .checkmark {
   right: 5%;
   height: 25px;
   width: 25px;
-  background-color:$dark_green;
+  background-color: $dark_green;
 }
 
 /* On mouse-over, add a background color */
 label:hover input ~ .checkbox {
-  background-color:rgba($black_green,0.3);
+  background-color: rgba($black_green, 0.3);
 }
 
 /* When the checkbox is checked, add a background */
 label input:checked ~ .checkbox {
-  @include button(25px,25px)
+  @include button(25px, 25px);
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
@@ -620,23 +618,22 @@ label .checkbox:after {
   transform: rotate(45deg);
 }
 
-
 /* SUBMIT BUTTON */
 
-.plant-submit{
-  text-align:center;
-  @include button(90%, 90% ); 
-  @include text (1.8rem,white);
+.plant-submit {
+  text-align: center;
+  @include button(90%, 90%);
+  @include text(1.8rem, white);
 }
 
-.plant-submit, .newsletter{
-  grid-row:8/9;
-  margin:5%;
+.plant-submit,
+.newsletter {
+  grid-row: 8/9;
+  margin: 5%;
   align-self: end;
 }
 
-
-
-
-
-
+.hidden {
+  display: none !important;
+  visibility: hidden;
+}

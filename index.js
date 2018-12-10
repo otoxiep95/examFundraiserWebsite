@@ -3,8 +3,16 @@
 let user_endpoint = "https://5bfd357c827c3800139ae907.mockapi.io/treefund/user";
 
 let main = document.querySelector("main");
-let registerForm = document.querySelector(".register-form");
-
+let registerForm = document.querySelector("#main-register-form");
+document
+  .querySelector(".next-step-button")
+  .addEventListener("click", function() {
+    console.log("toggle");
+    document.querySelector(".register-form").classList.add("hidden");
+    document.querySelector(".login-form").classList.add("hidden");
+    document.querySelector(".planttree-form").classList.remove("hidden");
+    document.querySelector(".credit-card-details").classList.remove("hidden");
+  });
 registerForm.addEventListener("submit", e => {
   e.preventDefault();
   console.log(e);
@@ -33,7 +41,9 @@ registerForm.addEventListener("submit", e => {
       });
 
     if (!userTaken) {
-      createUser(newUserData);
+      //createUser(newUserData);
+      //go to first donation
+      //document.querySelector(".planttree-form").classList.toggle("hidden");
     } else {
       console.log("username taken please choose another one");
     }
@@ -88,5 +98,5 @@ function createUser(newUserData) {
     }
   })
     .then(res => res.json())
-    .then(d => { });
+    .then(d => {});
 }
