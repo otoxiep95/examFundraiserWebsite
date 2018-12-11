@@ -3,7 +3,15 @@
 let user_endpoint = "https://5bfd357c827c3800139ae907.mockapi.io/treefund/user";
 
 let main = document.querySelector("main");
+let loginModal = document.querySelector(".modal");
 let registerForm = document.querySelector("#main-register-form");
+document.querySelector("#log-in-link").addEventListener("click", function() {
+  //open modal
+  loginModal.classList.remove("hidden");
+});
+document.querySelector(".modal .cross").addEventListener("click", function() {
+  loginModal.classList.add("hidden");
+});
 document
   .querySelector(".next-step-button")
   .addEventListener("click", function() {
