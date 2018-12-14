@@ -3,6 +3,8 @@
 let user_endpoint = "https://5bfd357c827c3800139ae907.mockapi.io/treefund/user";
 
 let main = document.querySelector("main");
+let recentDonationTemplate = document.querySelector(".recentDonations-template")
+  .content;
 let loginModal = document.querySelector(".modal");
 let registerForm = document.querySelector("#main-register-form");
 document.querySelector(".getstarted").addEventListener("click", function() {
@@ -25,6 +27,13 @@ document
     document.querySelector(".planttree-form").classList.remove("hidden");
     document.querySelector(".credit-card-details").classList.remove("hidden");
   });
+registerForm.elements.treenumber.addEventListener("input", e => {
+  console.log(e);
+  console.log("change");
+  let treeNum = registerForm.elements.treenumber.value;
+  console.log(treeNum);
+  document.querySelector(".price p").textContent = treeNum * 10 + "kr";
+});
 registerForm.addEventListener("submit", e => {
   e.preventDefault();
   console.log(e);
@@ -112,3 +121,70 @@ function createUser(newUserData) {
     .then(res => res.json())
     .then(d => {});
 }
+
+function init() {
+  fetch(user_endpoint)
+    .then(res => res.json())
+    .then(data => {
+      let userdonations = data.map((user, index) => {
+        return user.donations;
+      });
+
+      let donations = [].concat.apply([], userdonations);
+      console.log(donations);
+      //total amount of trees planted
+      let totalDonations = donations
+        .map(d => {
+          return d.trees;
+        })
+        .reduce(add, 0);
+
+      function add(a, b) {
+        return a + b;
+      }
+      printTotalDonations(totalDonations);
+
+      //last 5 donations
+      let lastFiveDonations = [];
+      lastFiveDonations = donations
+        .sort(function(a, b) {
+          return b.id - a.id;
+        })
+        .slice(0, 5);
+      console.log(lastFiveDonations);
+      console.log(totalDonations);
+      printLastDonations(lastFiveDonations);
+    });
+}
+
+function printTotalDonations(totalTrees) {
+  document.querySelector(".total-planted span").textContent = totalTrees;
+}
+
+function printLastDonations(lastFiveDonations) {
+  lastFiveDonations.forEach(donation => {
+    const clone = recentDonationTemplate.cloneNode(true);
+    const id = donation.userId;
+    // let usernameHERE = "";
+    // console.log(id);
+    // fetch(user_endpoint)
+    //   .then(res => res.json())
+    //   .then(data => {
+    //     data.forEach(user => {
+    //       if (user.id === id) {
+    //         console.log(user.username);
+    //         usernameHERE = user.username;
+    //       }
+    //     });
+    //   });
+
+    // console.log(usernameHERE);
+    // clone.querySelector("h2").textContent = usernameHERE;
+    clone.querySelector(".recentDonation-date").textContent = new Date(
+      donation.date
+    ).toDateString();
+    document.querySelector(".recentDonations").appendChild(clone);
+  });
+}
+
+init();

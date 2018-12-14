@@ -354,11 +354,26 @@ main {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 2%;
 }
-
+.who-info {
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 5%;
+  .plantingtree-img {
+    border-radius: 20px;
+    background-image: url(./img/desktop/resize/planting1.jpg);
+    background-size: cover;
+  }
+}
 .why-info,
 .forest-content {
   grid-template-columns: 1fr 1fr;
   grid-gap: 5%;
+  button {
+    @include button(200px, 50px);
+    @include text(1.8rem, white);
+    border: none;
+    margin: 10%;
+    margin-top: 25%;
+  }
 }
 
 #brazil-small {
@@ -394,6 +409,85 @@ main {
   background-image: url(./img/desktop/resize/vietnam.jpg);
   background-position: center;
 }
+
+footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  align-items: center;
+
+  svg {
+    width: 80%;
+  }
+  #logo {
+    width: 100%;
+  }
+  .soMe-icons {
+    text-align: center;
+    grid-column: 2/4;
+    .soMe-links {
+      display: inline-block;
+      width: 15%;
+
+      img {
+        width: 60%;
+        padding: 10%;
+      }
+    }
+  }
+
+  .contact {
+    text-align: right;
+    padding: 3%;
+    margin-left: 20px;
+    grid-column: 4;
+    h3 {
+      @include title(2.5rem, $black_green);
+    }
+    p {
+      @include text(1.5rem, $dark_green);
+    }
+  }
+}
+
+.total-planted {
+  position: fixed;
+  width: fit-content;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  padding: 15px;
+  right: 0;
+  top: 12vh;
+  text-align: center;
+  border-radius: 20px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  background-color: $dark_green;
+  opacity: 0.9;
+  h2 {
+    @include text(2rem, white);
+    display: inline;
+    align-self: center;
+  }
+  img {
+    display: inline-block;
+    margin-left: 20%;
+    height: 5vh;
+  }
+}
+
+.recentDonations {
+  height: 30vh;
+  width: 100%;
+  margin-top: 10%;
+  padding: 0 10%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 10px;
+
+  p {
+  }
+}
+
 /* /////////// PROFILE PAGE ////////////*/
 
 #myForestsHeader {
@@ -524,12 +618,37 @@ main {
   form {
     width: 100%;
     height: 100%;
+  }
+  .planttree-part {
+    width: 100%;
+    height: 100%;
     padding: 5%;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: repeat(8, 10%);
     grid-gap: 2%;
     grid-row-gap: 2%;
+  }
+
+  .cc-part {
+    display: grid;
+    grid-template-rows: repeat(6, 1fr);
+    p {
+      @include text(1.5rem, $dark_green);
+      span {
+        color: white;
+        font-weight: bold;
+      }
+    }
+    input {
+      opacity: 1;
+      right: 20%;
+      background: white;
+    }
+    .go-back-plant {
+      @include button(40%, 100%);
+      @include text(2rem, white);
+    }
   }
 }
 
