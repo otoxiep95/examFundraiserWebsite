@@ -74,7 +74,7 @@ a {
 /* MENU HEADER */
 
 header {
-  position:relative;
+  position: relative;
   width: 100vw;
   height: 100vh;
   // padding: 1% 3% 3% 3%;
@@ -85,12 +85,12 @@ header {
   background-size: cover;
 }
 
-#leaves{
-  position:absolute;
-  bottom:0;
-  left:0;
+#leaves {
+  position: absolute;
+  bottom: 0;
+  left: 0;
   width: 100vw;
-  height:100vh;
+  height: 100vh;
   z-index: 25;
 }
 
@@ -99,33 +99,32 @@ header {
   width: 100%;
   height: 10%;
   padding: 1% 3%;
-  display:grid;
+  display: grid;
   grid-template-columns: 110px 110px 160px 110px auto 110px 110px;
- background-color: $beige;
- z-index:20;
-    .menu_link {
-      @include text(1.5rem, $dark_green);
-      width: fit-content;
-      justify-self: center;
-      align-self: center;
-    }
+  background-color: $beige;
+  z-index: 20;
+  .menu_link {
+    @include text(1.5rem, $dark_green);
+    width: fit-content;
+    justify-self: center;
+    align-self: center;
+  }
 
-    a:hover {
+  a:hover {
     color: $orange;
-    }
+  }
 
-    #log-in-link{
-      grid-column:6/7;
-    }
+  #log-in-link {
+    grid-column: 6/7;
+  }
 }
 
-
 svg {
-  width:auto;
-  height:100%;
+  width: auto;
+  height: 100%;
   grid-column: 1/2;
   justify-items: center;
-    align-items: center;
+  align-items: center;
   #logo {
     path {
       fill: #126864;
@@ -138,10 +137,10 @@ svg {
 .process_infos {
   position: absolute;
   margin: auto;
-  top:10%;
-  left:0;
-  right:0;
-  bottom:0;
+  top: 10%;
+  left: 0;
+  right: 0;
+  bottom: 0;
   width: 80%;
   height: 35%;
   display: grid;
@@ -151,9 +150,9 @@ svg {
   grid-row-gap: 20%;
 
   .cercle {
-   align-self: center;
-   justify-self: center;
-    width: 230px; /* TO CHANGE FOR OTHER VALUE */ 
+    align-self: center;
+    justify-self: center;
+    width: 230px; /* TO CHANGE FOR OTHER VALUE */
     height: 230px;
     border-radius: 50%;
     background-color: $yellow_green;
@@ -161,7 +160,7 @@ svg {
     // box-shadow: -7px -7px $yellow_green;
 
     h2 {
-      @include title(3.7rem,white);
+      @include title(3.7rem, white);
       // font-weight: 500;
       width: 100%;
       height: 100%;
@@ -171,14 +170,12 @@ svg {
   }
 
   .getstarted {
-  @include button(300px, 45px);
-  grid-column:  2/3;
-  grid-row: 2/-1;
-  place-self: center;
+    @include button(300px, 45px);
+    grid-column: 2/3;
+    grid-row: 2/-1;
+    place-self: center;
   }
 }
-
-
 
 /* LOGIN */
 
@@ -200,7 +197,7 @@ input {
 
 label {
   display: block;
-  position:relative;
+  position: relative;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -213,9 +210,9 @@ label {
   position: fixed;
   top: 0;
   left: 0;
-  bottom:0;
-  right:0;
-  margin:auto;
+  bottom: 0;
+  right: 0;
+  margin: auto;
   @include rectangle(90vw, 90vh);
   z-index: 30;
   padding: 10% 7% 6% 7%;
@@ -226,7 +223,7 @@ label {
   @include text(1.8rem, white);
 
   h2 {
-    font-size:3.5rem;
+    font-size: 3.5rem;
     height: fit-content;
     grid-row: 1/3;
     align-self: end;
@@ -234,7 +231,7 @@ label {
   }
 
   label {
-    display:grid;
+    display: grid;
     grid-template-columns: 90px 7px auto;
     input {
       grid-column: 3/-1;
@@ -254,11 +251,11 @@ label {
     }
   }
 
-  a:hover{
-    color:$dark_green;
+  a:hover {
+    color: $dark_green;
   }
 
-  .submit{
+  .submit {
     @include button(100%, 45px);
     @include text(1.8rem, white);
   }
@@ -278,31 +275,29 @@ label {
     }
   }
 
-  .login-form{
-    padding-right:5%;
-    .submit{
-      width:50%;
+  .login-form {
+    padding-right: 5%;
+    .submit {
+      width: 50%;
       grid-row: 11/-1;
       align-self: end;
       justify-self: end;
     }
-    a{
-      justify-self:end;
+    a {
+      justify-self: end;
       text-decoration: underline;
     }
   }
 
-
- 
-
-  .register-form, .login-form {
+  .register-form,
+  .login-form {
     width: 50%;
-    height:100%;
+    height: 100%;
     float: left;
     display: grid;
     grid-template-rows: 70px auto 25px 25px 25px 25px 25px 55px auto 35px 55px;
     grid-row-gap: 2%;
-    
+
     .terms {
       font-size: 1.3rem;
       width: 100%;
@@ -315,16 +310,16 @@ label {
       grid-row: 11/-1;
       display: grid;
       grid-template-columns: 200px auto;
-    
+
       align-self: end;
       label {
-        margin:0;
+        margin: 0;
         height: fit-content;
         font-size: 1.5rem;
         grid-column: 1/2;
         width: 100%;
         align-self: end;
-        justify-self:start;
+        justify-self: start;
         input {
           margin: 0;
           width: 10%;
@@ -335,24 +330,21 @@ label {
         grid-column: 2/3;
         align-self: center;
         justify-self: end;
-       width: 70%;
-        p{
-          padding:3%;
-          height:100%;
+        width: 70%;
+        p {
+          padding: 3%;
+          height: 100%;
         }
-
       }
-      .newsletter{
-        display:block;
+      .newsletter {
+        display: block;
         grid-row: 1/-1;
-        grid-column:1/2;
-        place-self:center;
+        grid-column: 1/2;
+        place-self: center;
       }
     }
   }
 }
-
-
 
 /* SECOND PHASE REGISTERING AND PAYMENT */
 .modal {
@@ -364,7 +356,7 @@ label {
       height: 100%;
       float: left;
       display: grid;
-      grid-template-columns: 1fr 1fr;    
+      grid-template-columns: 1fr 1fr;
       grid-gap: 2%;
       grid-row-gap: 2%;
       h2 {
@@ -372,7 +364,7 @@ label {
       }
     }
     .credit-card-details {
-      label{
+      label {
         grid-template-columns: 120px 7px auto;
       }
       width: 48%;
@@ -381,13 +373,12 @@ label {
       display: grid;
       grid-template-rows: 70px auto 25px 25px 25px 25px 25px 55px auto 35px 55px;
       grid-row-gap: 2%;
-    
-      
-      .submit{
-        width:50%;
+
+      .submit {
+        width: 50%;
         grid-row: 9/10;
         justify-self: end;
-        align-self:center;
+        align-self: center;
       }
     }
   }
@@ -400,6 +391,7 @@ main {
   width: 100vw;
   height: auto;
   padding: 1% 3% 10% 3%;
+
   h2 {
     @include title(2.8rem, white);
     grid-column: -1/1;
@@ -416,7 +408,7 @@ main {
 }
 
 .content {
-  margin-top: 15%;
+  padding-top: 15%;
   margin-left: 10%;
   margin-right: 10%;
   width: 80%;
@@ -425,10 +417,13 @@ main {
 
   .forest-button,
   .forest-image {
-    @include rectangle(100%, 500px);
-
+    @include rectangle(100%, 350px);
+    position: relative;
     a {
-      @include title(2.5rem, white);
+      @include title(3.5rem, white);
+      position: absolute;
+      right: 5%;
+      bottom: 5%;
     }
   }
 }
@@ -444,6 +439,7 @@ main {
     border-radius: 20px;
     background-image: url(./img/desktop/resize/planting1.jpg);
     background-size: cover;
+    height: 300px;
   }
 }
 .why-info,
@@ -454,8 +450,7 @@ main {
     @include button(200px, 50px);
     @include text(1.8rem, white);
     border: none;
-    margin: 10%;
-    margin-top: 25%;
+    margin-top: 10%;
   }
 }
 
@@ -477,7 +472,7 @@ main {
 }
 
 #brazil-main {
-  background-image: url(./img/desktop/resize/tropical.jpg);
+  background: url(./img/desktop/resize/jungle.jpg);
   background-position: center;
 }
 #tanzania-main {

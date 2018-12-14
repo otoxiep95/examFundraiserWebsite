@@ -10,13 +10,25 @@ let registerForm = document.querySelector("#main-register-form");
 document.querySelector(".getstarted").addEventListener("click", function() {
   //open modal
   loginModal.classList.remove("hidden");
+  document.querySelector(".register-form").classList.remove("hidden");
+  document.querySelector(".login-form").classList.remove("hidden");
+  document.querySelector(".planttree-form").classList.add("hidden");
+  document.querySelector(".credit-card-details").classList.add("hidden");
 });
 document.querySelector("#log-in-link").addEventListener("click", function() {
   //open modal
   loginModal.classList.remove("hidden");
+  document.querySelector(".register-form").classList.remove("hidden");
+  document.querySelector(".login-form").classList.remove("hidden");
+  document.querySelector(".planttree-form").classList.add("hidden");
+  document.querySelector(".credit-card-details").classList.add("hidden");
 });
 document.querySelector(".modal .cross").addEventListener("click", function() {
   loginModal.classList.add("hidden");
+  document.querySelector(".register-form").classList.remove("hidden");
+  document.querySelector(".login-form").classList.remove("hidden");
+  document.querySelector(".planttree-form").classList.add("hidden");
+  document.querySelector(".credit-card-details").classList.add("hidden");
 });
 document
   .querySelector(".next-step-button")
