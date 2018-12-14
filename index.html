@@ -125,17 +125,18 @@
 
 
       </div>
-
-      <div>
-        <h2>Who are we?</h2>
-        <p>Treat a tree is a non-profit organization that is dedicated to fight deforestation by planting trees and
-          educate about the environment therefore trying to make a better future for the planet and humanity.</p>
-      </div>
-      <div>
+      
+      <div class="content who-info"> 
+        <div class="plantingtree-img"></div>
+        <div><h2>Who are we?</h2>
+        <p>Treat a tree is a non-profit organization that is dedicated to fight deforestation by planting trees and educate about the environment therefore trying to make a better future for the planet and humanity.</p>
+        <br>
         <h2>Our mission and Values</h2>
         <p>Our values are to make a more sustainable life and protect the environment. These are critical times for the
           environment as we know more about the consequences of our past actions, so we must act and do what we can to
           heal the planet.</p>
+      </div>
+       
       </div>
 
       <div class="content why-info">
@@ -174,12 +175,14 @@
 
       <div id="forest1" class="content forest-content">
         <h2>Brazil</h2>
-        <p>The Atlantic Forest, also known as Mata Atlantica, once covered 130 million hectares across Brazil. Now,
+        <div><p>The Atlantic Forest, also known as Mata Atlantica, once covered 130 million hectares across Brazil. Now,
           this tropical rainforest ecosystem is home to 70% of the country’s population. Centuries of deforestation for
           timber, sugar cane, coffee, cattle ranching, and urban sprawl have reduced the size of the forest by over
           90%. Although the water supply for Brazil’s two most populous cities (Rio de Janeiro and São Paulo) comes
           from this forest, there is a lack of public policies and resources to protect it.
         </p>
+        <button>Donate</button></div>
+        
         <div id="brazil-main" class="forest-image brazil">
           <a href="#forest1">Brazil</a>
         </div>
@@ -187,13 +190,15 @@
 
       <div id="forest2" class="content forest-content">
         <h2>Tanzania</h2>
-        <p>Mount Kilimanjaro – the “rooftop of Africa” – is the highest freestanding mountain in the world. The
+        <div> <p>Mount Kilimanjaro – the “rooftop of Africa” – is the highest freestanding mountain in the world. The
           mountain’s forests are a vital source of water for the surrounding region, feeding into one of Tanzania’s
           major rivers, the Pangani. These forests are declining at a rapid rate, as millions of trees are cut for
           firewood, charcoal, and agriculture each year. Recent studies show that this has a direct effect on
           Kilimanjaro’s glaciers and rainfall patterns in the region. Planting trees here will help restore balance to
           the climate and combat poverty in rural communities through the use of a brand new tree-tracking mobile app.
         </p>
+        <button>Donate</button></div>
+       
         <div id="tanzania-main" class="forest-image tanzania">
           <a href="#forest2">Tanzania</a>
         </div>
@@ -202,11 +207,13 @@
 
       <div id="forest3" class="content forest-content">
         <h2>USA</h2>
-        <p>California's forests provide innumerable benefits, including clean water and air, recreation, timber,
+        <div><p>California's forests provide innumerable benefits, including clean water and air, recreation, timber,
           habitat, and beautiful scenery. Healthy forests also play an important role in addressing climate change.
           Five years of drought and a large-scale bark beetle infestation have seriously damaged California’s forests.
           2017’s record-breaking wildfire season burned more than 1.3 million acres – an area the size of Delaware.
           Now, a record 129 million trees need to be restored in California.</p>
+          <button>Donate</button></div>
+        
         <div id="usa-main" class="forest-image usa">
           <a href="#forest3">USA</a>
         </div>
@@ -215,12 +222,14 @@
 
       <div id="forest4" class="content forest-content">
         <h2>Vietnam</h2>
-        <p>Vietnam’s tropical forests support rich biodiversity and a precious, sensitive ecosystem. 25 million people
+        <div><p>Vietnam’s tropical forests support rich biodiversity and a precious, sensitive ecosystem. 25 million people
           depend on forest products for subsistence. Over-exploitation of the land has endangered many native species
           of plants and animals, and increased the impact of natural disasters. Planting trees here will help conserve
           threatened species, regulate climate, provide economic stability for local villagers, and protect watershed
           areas that serve the community on a daily basis.
         </p>
+        <button>Donate</button></div>
+        
         <div id="vietnam-main" class="forest-image vietnam">
           <a href="#forest4">Vietnam</a>
         </div>
@@ -351,12 +360,20 @@
 
 
       </div>
-
+      <div class="recentDonations">
+        
+      </div>
+      <template class="recentDonations-template">
+        <article class="recentDonation-post">
+          <h2></h2>
+          <p class="recentDonation-date">Date</p>
+        </article>
+      </template>
   </main>
 
   <footer>
     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-      width="70px" height="70px" viewBox="0 0 400 400" enable-background="new 0 0 400 400" xml:space="preserve">
+      width="100px" height="100px" viewBox="0 0 400 400" enable-background="new 0 0 400 400" xml:space="preserve">
 
       <g id="logo">
         <g>
@@ -399,7 +416,24 @@
         </g>
       </g>
     </svg>
+
+    <div class="soMe-icons">
+      <a class="soMe-links" id="facebook-link" href="#"><img src="img/icons/soMe-17.svg" alt=""></a>
+      <a class="soMe-links" id="twiter-link" href="#"><img src="img/icons/twitter.svg" alt=""></a>
+      <a class="soMe-links" id="insta-link" href="#"><img src="img/icons/insta.svg" alt=""></a>
+    </div>
+
+    <div class="contact">
+      <h3>Contact us</h3>
+      <p>Email: <span>treatatree@fake.com</span></p>
+      <p>Phone: <span>5050505050</span></p>
+      <p>Adress: <span>Fake stree nº 900, Wonderland</span></p>
+    </div>
+
   </footer>
+  <div class="total-planted">
+    <h2>We have planted <span>number</span> trees</h2><img src="img/icons/tree.svg" alt="">
+  </div>
 
   <script src="index.js"></script>
 </body>
