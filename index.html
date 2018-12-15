@@ -112,6 +112,9 @@
         <a href="#footer" class="menu_link">CONTACT</a>
 
         <!-- <div class="menu_link_right"> -->
+        <a href="index.html" class="menu_link hidden" id="log-out-link"
+          >LOG OUT</a
+        >
         <a href="#modal" id="log-in-link" class="menu_link">LOG IN/REGISTER</a>
         <a class="menu_link" id="myforest-link" href="myforest.html"
           >MY FORESTS</a
@@ -304,7 +307,7 @@
               >Oups! Wrong username or password.</span
             >
             <label>USERNAME <input type="text" name="username"/></label>
-            <label>PASSWORD <input type="text" name="password"/></label>
+            <label>PASSWORD <input type="password" name="password"/></label>
             <a class="password_forgot">I forgot my password</a>
 
             <div class="soMe-account">
@@ -329,18 +332,18 @@
                 LAST NAME: <input type="text" name="ilastname" required />
                 <span class="hidden">X</span><span class="validated"></span>
               </label>
-              <label for="">
+              <label id="username-lable" for="">
                 USERNAME: <input type="text" name="iusername" required />
                 <span class=""></span>
               </label>
               <label for=""
                 >EMAIL: <input type="email" name="iemail" required/><span
-                  class="hidden"
-                  >X</span
-                ><span class="validated"></span
+                  class=""
+                ></span
               ></label>
               <label for=""
-                >PASSWORD: <input type="text" name="ipassword" required/><span
+                >PASSWORD:
+                <input type="password" name="ipassword" required/><span
                   class="hidden"
                   >X</span
                 ><span class="validated"></span
@@ -461,6 +464,13 @@
               />
             </div>
           </form>
+
+          <div class="congrats-part hidden">
+            <h1>CONGRATULATIONS</h1>
+            <div class="first-badge"></div>
+            <div></div>
+            <a id="myForest-button" class="button">GO TO MY FOREST</a>
+          </div>
         </div>
         <div class="recentDonations"></div>
         <template class="recentDonations-template">

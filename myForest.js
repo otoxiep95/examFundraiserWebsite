@@ -11,12 +11,27 @@ let endpoint =
 let donationForm = document.querySelector(".donation-form");
 let goBackButton = document.querySelector(".go-back-plant");
 
-donationForm.elements.treenumber.addEventListener("input", e => {
+donationForm.elements.treenumber.addEventListener("change", e => {
   console.log(e);
   console.log("change");
   let treeNum = donationForm.elements.treenumber.value;
   console.log(treeNum);
   document.querySelector(".price p").textContent = treeNum * 10 + "kr";
+});
+document.querySelector(".plus").addEventListener("click", e => {
+  console.log(donationForm.elements.treenumber);
+  donationForm.elements.treenumber.stepUp(1);
+  let treeNum = donationForm.elements.treenumber.value;
+  console.log(treeNum);
+  document.querySelector(".price p").textContent = treeNum * 10 + "kr";
+});
+document.querySelector(".minus").addEventListener("click", e => {
+  if (donationForm.elements.treenumber.value > 1) {
+    donationForm.elements.treenumber.stepUp(-1);
+    let treeNum = donationForm.elements.treenumber.value;
+    console.log(treeNum);
+    document.querySelector(".price p").textContent = treeNum * 10 + "kr";
+  }
 });
 goBackButton.addEventListener("click", e => {
   document.querySelector(".cc-part").classList.add("hidden");
@@ -30,7 +45,7 @@ donationForm.addEventListener("submit", e => {
   /* create a Donation Object */
   const donationObject = {
     category: donationForm.elements.location.value,
-    trees: donationForm.elements.treenumber.value,
+    trees: Number(donationForm.elements.treenumber.value),
     date: new Date().toDateString()
   };
   document.querySelector(".purchase-trees").textContent =

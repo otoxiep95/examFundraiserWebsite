@@ -251,13 +251,13 @@ label {
     input:valid ~ .validated::after {
       position: absolute;
       bottom: 0;
-      right: 0;
-      width: 30px;
-      height: 30px;
-      color: white;
-      background-color: lightgreen;
-      border-radius: 50%;
+      right: 3%;
+      width: auto;
+      height: auto;
+      color: $light_green;
+
       text-align: center;
+
       content: "✓";
     }
     .wrong::after {
@@ -269,7 +269,7 @@ label {
       top: 0;
       z-index: 30;
       text-align: center;
-      content: "username taken ✗";
+      content: " ✗";
     }
   }
 
