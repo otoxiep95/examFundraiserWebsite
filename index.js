@@ -1,5 +1,9 @@
 "use strict";
 
+// let urlParams = new URLSearchParams(window.location.search);
+
+// let userIdurl = urlParams.get("id");
+
 let user_endpoint = "https://5bfd357c827c3800139ae907.mockapi.io/treefund/user";
 
 let main = document.querySelector("main");
@@ -7,11 +11,12 @@ let recentDonationTemplate = document.querySelector(".recentDonations-template")
   .content;
 let loginModal = document.querySelector(".modal");
 let registerForm = document.querySelector("#main-register-form");
+let loginForm = document.querySelector(".login-form");
 document.querySelector(".getstarted").addEventListener("click", function() {
   //open modal
   loginModal.classList.remove("hidden");
   document.querySelector(".register-form").classList.remove("hidden");
-  document.querySelector(".login-form").classList.remove("hidden");
+  loginForm.classList.remove("hidden");
   document.querySelector(".planttree-form").classList.add("hidden");
   document.querySelector(".credit-card-details").classList.add("hidden");
 });
@@ -19,14 +24,14 @@ document.querySelector("#log-in-link").addEventListener("click", function() {
   //open modal
   loginModal.classList.remove("hidden");
   document.querySelector(".register-form").classList.remove("hidden");
-  document.querySelector(".login-form").classList.remove("hidden");
+  loginForm.classList.remove("hidden");
   document.querySelector(".planttree-form").classList.add("hidden");
   document.querySelector(".credit-card-details").classList.add("hidden");
 });
 document.querySelector(".modal .cross").addEventListener("click", function() {
   loginModal.classList.add("hidden");
   document.querySelector(".register-form").classList.remove("hidden");
-  document.querySelector(".login-form").classList.remove("hidden");
+  loginForm.classList.remove("hidden");
   document.querySelector(".planttree-form").classList.add("hidden");
   document.querySelector(".credit-card-details").classList.add("hidden");
 });
@@ -39,6 +44,36 @@ document
     document.querySelector(".planttree-form").classList.remove("hidden");
     document.querySelector(".credit-card-details").classList.remove("hidden");
   });
+console.log(registerForm.elements.iusername);
+registerForm.elements.iusername.addEventListener("blur", e => {
+  let username = registerForm.elements.iusername.value;
+  let warningSigng = registerForm.elements.iusername.parentElement.querySelector(
+    "span"
+  );
+  fetch(user_endpoint)
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+      let userTaken = false;
+      data.forEach(user => {
+        if (user.username === username) {
+          console.log("found");
+          userTaken = true;
+        }
+      });
+      if (userTaken) {
+        console.log("user taken");
+        console.log(registerForm.elements.iusername.parentElement);
+        warningSigng.classList.add("wrong");
+        warningSigng.classList.remove("validated");
+      } else {
+        console.log("free");
+        warningSigng.classList.remove("wrong");
+        warningSigng.classList.add("validated");
+      }
+    });
+});
+
 registerForm.elements.treenumber.addEventListener("input", e => {
   console.log(e);
   console.log("change");
@@ -83,7 +118,6 @@ registerForm.addEventListener("submit", e => {
   }
 });
 
-let loginForm = document.querySelector(".login-form");
 loginForm.addEventListener("submit", e => {
   e.preventDefault();
 
@@ -113,6 +147,11 @@ function verifyUser(username, password) {
             userValid = true;
             console.log("go to user profile id:" + user.id);
             window.location = "myforest.html?id=" + user.id;
+          } else {
+            //Show error message: Username or password incorrect
+            document
+              .querySelector(".login-errormsg")
+              .classList.remove("hidden");
           }
         }
       });

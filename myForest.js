@@ -1,6 +1,7 @@
 "use strict";
-
+let urlParams = new URLSearchParams(window.location.search);
 let userId = 1;
+let userIdurl = urlParams.get("id");
 
 let endpoint =
   "http://5bfd357c827c3800139ae907.mockapi.io/treefund/user/" +

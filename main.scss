@@ -231,6 +231,7 @@ label {
   }
 
   label {
+    position: relative;
     display: grid;
     grid-template-columns: 90px 7px auto;
     input {
@@ -239,6 +240,29 @@ label {
       border-radius: 7px;
       border: none;
       padding: 0;
+    }
+    input:valid ~ .validated::after {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 30px;
+      height: 30px;
+      color: white;
+      background-color: lightgreen;
+      border-radius: 50%;
+      text-align: center;
+      content: "✓";
+    }
+    .wrong::after {
+      position: absolute;
+      color: red;
+      width: auto;
+      height: 30px;
+      right: 0;
+      top: 0;
+      z-index: 30;
+      text-align: center;
+      content: "username taken ✗";
     }
   }
 
@@ -277,6 +301,9 @@ label {
 
   .login-form {
     padding-right: 5%;
+    span {
+      color: red;
+    }
     .submit {
       width: 50%;
       grid-row: 11/-1;
@@ -393,7 +420,7 @@ main {
   padding: 1% 3% 10% 3%;
 
   h2 {
-    @include title(2.8rem, white);
+    @include title(3.8rem, white);
     grid-column: -1/1;
   }
 
@@ -408,7 +435,8 @@ main {
 }
 
 .content {
-  padding-top: 15%;
+  padding-top: 10%;
+  margin-top: 10%;
   margin-left: 10%;
   margin-right: 10%;
   width: 80%;
@@ -417,7 +445,7 @@ main {
 
   .forest-button,
   .forest-image {
-    @include rectangle(100%, 350px);
+    @include rectangle(100%, 380px);
     position: relative;
     a {
       @include title(3.5rem, white);
@@ -446,6 +474,13 @@ main {
 .forest-content {
   grid-template-columns: 1fr 1fr;
   grid-gap: 5%;
+  .forest-image {
+    grid-column: 2/-1;
+    grid-row: 1/3;
+  }
+  h2 {
+    grid-column: 1/2;
+  }
   button {
     @include button(200px, 50px);
     @include text(1.8rem, white);
@@ -515,7 +550,7 @@ footer {
 
   .contact {
     text-align: right;
-    padding: 3%;
+    padding: 10%;
     margin-left: 20px;
     grid-column: 4;
     h3 {
@@ -580,6 +615,11 @@ footer {
     }
   }
   .menu {
+    background-color: $dark_green;
+    grid-template-columns: 110px 110px 160px 110px auto 110px;
+    #log-out-link {
+      grid-column: 6/-1;
+    }
     a {
       color: white;
     }

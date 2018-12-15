@@ -112,7 +112,7 @@
         <a href="#footer" class="menu_link">CONTACT</a>
 
         <!-- <div class="menu_link_right"> -->
-        <a href="#modal" id="log-in-link" class="menu_link">LOG IN/OUT</a>
+        <a href="#modal" id="log-in-link" class="menu_link">LOG IN/REGISTER</a>
         <a class="menu_link" id="myforest-link" href="myforest.html"
           >MY FORESTS</a
         >
@@ -130,7 +130,7 @@
 
     <main>
       <div class="forests-info">
-        <div class="content forest-menu">
+        <div id="forest-menu" class="content forest-menu">
           <h2>OUR FORESTS:</h2>
 
           <div id="brazil-small" class="forest-button">
@@ -150,7 +150,7 @@
           </div>
         </div>
 
-        <div class="content who-info">
+        <div id="who-info" class="content who-info">
           <div class="plantingtree-img"></div>
           <div>
             <h2>Who are we?</h2>
@@ -171,7 +171,7 @@
           </div>
         </div>
 
-        <div class="content why-info">
+        <div id="why-info" class="content why-info">
           <h2>WHY PLANTING A TREE ?:</h2>
 
           <h3>TODAY, 80% OF THE WORLD'S FORESTS ARE ALREADY DESTROYED.</h3>
@@ -300,6 +300,9 @@
               LOG IN TO MY FOREST: <br />
               <br />
             </h2>
+            <span class="login-errormsg hidden"
+              >Oups! Wrong username or password.</span
+            >
             <label>USERNAME <input type="text" name="username"/></label>
             <label>PASSWORD <input type="text" name="password"/></label>
             <a class="password_forgot">I forgot my password</a>
@@ -319,18 +322,29 @@
                 GET STARTED & PLANT YOUR FIRST TREE!
               </h2>
               <label>
-                FIRST NAME: <input type="text" name="ifirstname" />
+                FIRST NAME: <input type="text" name="ifirstname" required />
+                <span class="hidden">X</span> <span class="validated"></span>
               </label>
               <label for="">
-                LAST NAME: <input type="text" name="ilastname" />
+                LAST NAME: <input type="text" name="ilastname" required />
+                <span class="hidden">X</span><span class="validated"></span>
               </label>
               <label for="">
-                USERNAME: <input type="text" name="iusername" />
+                USERNAME: <input type="text" name="iusername" required />
+                <span class=""></span>
               </label>
-              <label for="">EMAIL: <input type="email" name="iemail"/></label>
               <label for=""
-                >PASSWORD: <input type="text" name="ipassword"
-              /></label>
+                >EMAIL: <input type="email" name="iemail" required/><span
+                  class="hidden"
+                  >X</span
+                ><span class="validated"></span
+              ></label>
+              <label for=""
+                >PASSWORD: <input type="text" name="ipassword" required/><span
+                  class="hidden"
+                  >X</span
+                ><span class="validated"></span
+              ></label>
 
               <div class="soMe-account">
                 <p>OR USE ANOTHER ACCOUNT:</p>
@@ -379,6 +393,7 @@
                   type="number"
                   name="treenumber"
                   value="1"
+                  required
                 />
                 <img class="icons plus" src="img/icons/plus_minus-21.svg" />
                 <p>Trees to plant:</p>
@@ -389,7 +404,13 @@
 
               <label class="countries">
                 <h3>BRAZIL</h3>
-                <input type="radio" name="location" value="Brazil" checked />
+                <input
+                  type="radio"
+                  name="location"
+                  value="Brazil"
+                  checked
+                  required
+                />
                 <span class="checkmark"></span>
               </label>
 
@@ -413,6 +434,7 @@
             </div>
             <div class="credit-card-details hidden">
               <h2>MY PAYMENT INFORMATIONS:</h2>
+
               <label class="card-number"
                 >Card number:<input
                   type="text"
@@ -450,7 +472,7 @@
       </div>
     </main>
 
-    <footer>
+    <footer id="footer">
       <svg
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
