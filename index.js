@@ -138,10 +138,16 @@ registerForm.elements.iemail.addEventListener("blur", e => {
         console.log(registerForm.elements.iemail.parentElement);
         warningSigng.classList.add("wrong");
         warningSigng.classList.remove("validated");
+        registerForm.elements.iemail.parentElement.querySelector(
+          "span"
+        ).textContent = "email already taken";
       } else {
         console.log("free");
         warningSigng.classList.remove("wrong");
         warningSigng.classList.add("validated");
+        registerForm.elements.iemail.parentElement.querySelector(
+          "span"
+        ).textContent = "";
       }
     });
 });
