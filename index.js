@@ -69,11 +69,11 @@ document
       document.querySelector(".planttree-form").classList.remove("hidden");
       document.querySelector(".credit-card-details").classList.remove("hidden");
       document.querySelector(".plus").addEventListener("click", e => {
-        registerForm.elements.treenumber.value++;
+        registerForm.elements.treenumber.stepUp(1);
       });
       document.querySelector(".minus").addEventListener("click", e => {
         if (registerForm.elements.treenumber.value > 1) {
-          Number(registerForm.elements.treenumber.value--);
+          registerForm.elements.treenumber.stepUp(-1);
         }
       });
     }
@@ -102,11 +102,16 @@ registerForm.elements.iusername.addEventListener("blur", e => {
         console.log(registerForm.elements.iusername.parentElement);
         warningSigng.classList.add("wrong");
         warningSigng.classList.remove("validated");
+        registerForm.elements.iusername.parentElement.querySelector(
+          "span"
+        ).textContent = "username already taken";
       } else {
         console.log("free");
         warningSigng.classList.remove("wrong");
         warningSigng.classList.add("validated");
-        warningSigng.textContent = "username already exists";
+        registerForm.elements.iusername.parentElement.querySelector(
+          "span"
+        ).textContent = "";
       }
     });
 });

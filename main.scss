@@ -248,10 +248,16 @@ label {
       border: none;
       padding: 0;
     }
+    span {
+      color: red;
+      position: absolute;
+      right: 5%;
+      bottom: 0;
+    }
     input:valid ~ .validated::after {
       position: absolute;
       bottom: 0;
-      right: 3%;
+      right: -10%;
       width: auto;
       height: auto;
       color: $light_green;
@@ -265,7 +271,7 @@ label {
       color: red;
       width: auto;
       height: 30px;
-      right: 0;
+      right: -10%;
       top: 0;
       z-index: 30;
       text-align: center;
