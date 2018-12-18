@@ -38,7 +38,7 @@ a {
   cursor: pointer;
 }
 
-.getstarted{
+.getstarted {
   cursor: pointer;
 }
 
@@ -106,7 +106,7 @@ header {
   background-size: cover;
 }
 
-/* MENU */ 
+/* MENU */
 
 .menu {
   position: fixed;
@@ -130,6 +130,12 @@ header {
 
   #log-in-link {
     grid-column: 6/7;
+  }
+  #log-out-link {
+    grid-column: 6/7;
+  }
+  .mobile-cross {
+    display: none;
   }
 }
 
@@ -185,8 +191,6 @@ header {
     place-self: center;
   }
 }
-
-
 
 /* CONTENT */
 
@@ -507,9 +511,7 @@ footer {
   display: none;
 }
 
-
-
-/* CLASSES FOR JAVASCRIPT */ 
+/* CLASSES FOR JAVASCRIPT */
 
 .hidden {
   display: none !important;

@@ -10,343 +10,340 @@ $orange: #e1ac4a;
 $brown: #70511c;
 
 @mixin title($size, $color) {
-    font-size: $size;
-    font-family: "Amatic sc";
-    font-weight: 700;
-    // line-height: 3.1rem;
-    // font-style:italic;
-    color: $color;
+  font-size: $size;
+  font-family: "Amatic sc";
+  font-weight: 700;
+  // line-height: 3.1rem;
+  // font-style:italic;
+  color: $color;
+}
+
+@mixin text($size, $color) {
+  font-size: $size;
+  font-family: "Oswald";
+  font-weight: 400;
+  color: $color;
+}
+
+@mixin button($width, $height) {
+  width: $width;
+  height: $height;
+  background-color: $orange;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 5px 5px rgba(112, 81, 28, 0.6);
+  h2 {
+    @include text(2.1rem, white);
+    padding: 2%;
   }
-  
-  @mixin text($size, $color) {
-    font-size: $size;
-    font-family: "Oswald";
-    font-weight: 400;
-    color: $color;
-  }
-  
-  @mixin button($width, $height) {
-    width: $width;
-    height: $height;
-    background-color: $orange;
-    text-align: center;
-    border-radius: 10px;
-    box-shadow: 5px 5px rgba(112, 81, 28, 0.6);
-    h2 {
-      @include text(2.1rem, white);
-      padding: 2%;
-    }
-  }
-  
-  @mixin rectangle($width, $height) {
-    background-color: $white_green;
-    width: $width;
-    height: $height;
-    border-radius: 20px;
-  }
+}
+
+@mixin rectangle($width, $height) {
+  background-color: $white_green;
+  width: $width;
+  height: $height;
+  border-radius: 20px;
+}
 
 /* LOGIN */
 
 input {
-    cursor: pointer;
-    text-decoration: none;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  padding: 1%;
+  @include text(1.5rem, $dark_green);
+}
+
+.cross {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 5%;
+  left: 3%;
+}
+
+label {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* LABEL GENERAL STYLING AND VALIDATION */
+
+label {
+  position: relative;
+  display: grid;
+  grid-template-columns: 90px 7px auto;
+  @include text(1.8rem, white);
+  input {
+    grid-column: 3/-1;
+    width: 100%;
+    border-radius: 7px;
     border: none;
-    padding: 1%;
-    @include text(1.5rem, $dark_green);
+    padding: 0;
   }
-  
-  .cross {
-    width: 40px;
-    height: 40px;
+  span {
+    color: red;
     position: absolute;
-    top: 5%;
-    left: 3%;
+    right: 5%;
+    bottom: 0;
   }
-  
-  label {
-    display: block;
-    position: relative;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  input:valid ~ .validated::after {
+    position: absolute;
+    bottom: 0;
+    right: -10%;
+    width: auto;
+    height: auto;
+    color: $light_green;
+
+    text-align: center;
+
+    content: "✓";
+  }
+  .wrong::after {
+    position: absolute;
+    color: red;
+    width: auto;
+    height: 30px;
+    right: -10%;
+    top: 0;
+    z-index: 30;
+    text-align: center;
+  }
+}
+
+/* MODAL GENERAL STYLE */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  @include rectangle(90vw, 90vh);
+  z-index: 30;
+  padding: 10% 7% 6% 7%;
+  background-color: $yellow_green;
+  opacity: 0.95;
+  background-blend-mode: multiply;
+
+  @include text(1.8rem, white);
+
+  h2 {
+    font-size: 3.5rem;
+    height: fit-content;
+    grid-row: 1/3;
+    align-self: end;
+    margin-bottom: 10%;
   }
 
-  /* LABEL GENERAL STYLING AND VALIDATION */
-
-  label {
-    position: relative;
-    display: grid;
-    grid-template-columns: 90px 7px auto;
-    @include text(1.8rem, white);
-    input {
-      grid-column: 3/-1;
-      width: 100%;
-      border-radius: 7px;
-      border: none;
-      padding: 0;
+  a {
+    width: fit-content;
+    height: fit-content;
+    img {
+      width: 25px;
+      height: 25px;
     }
+  }
+
+  a:hover {
+    color: $dark_green;
+  }
+
+  .submit {
+    @include button(100%, 45px);
+    @include text(1.8rem, white);
+  }
+
+  .soMe-account {
+    grid-row: 10/11;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 200px 50px 50px auto;
+    p {
+      grid-column: 1/2;
+      align-self: center;
+    }
+    a {
+      align-self: end;
+    }
+  }
+
+  .login-form {
+    padding-right: 5%;
     span {
       color: red;
-      position: absolute;
-      right: 5%;
-      bottom: 0;
     }
-    input:valid ~ .validated::after {
-      position: absolute;
-      bottom: 0;
-      right: -10%;
-      width: auto;
-      height: auto;
-      color: $light_green;
-
-      text-align: center;
-
-      content: "✓";
+    .submit {
+      width: 50%;
+      grid-row: 11/-1;
+      align-self: end;
+      justify-self: end;
     }
-    .wrong::after {
-      position: absolute;
-      color: red;
-      width: auto;
-      height: 30px;
-      right: -10%;
-      top: 0;
-      z-index: 30;
-      text-align: center;
-      content: " ✗";
+    a {
+      justify-self: end;
+      text-decoration: underline;
     }
   }
-  
-  /* MODAL GENERAL STYLE */
-  .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    margin: auto;
-    @include rectangle(90vw, 90vh);
-    z-index: 30;
-    padding: 10% 7% 6% 7%;
-    background-color: $yellow_green;
-    opacity: 0.95;
-    background-blend-mode: multiply;
-  
-    @include text(1.8rem, white);
-  
-    h2 {
-      font-size: 3.5rem;
-      height: fit-content;
-      grid-row: 1/3;
-      align-self: end;
-      margin-bottom: 10%;
-    }
-  
-    
-  
-    a {
-      width: fit-content;
-      height: fit-content;
-      img {
-        width: 25px;
-        height: 25px;
-      }
-    }
-  
-    a:hover {
-      color: $dark_green;
-    }
-  
-    .submit {
-      @include button(100%, 45px);
-      @include text(1.8rem, white);
-    }
-  
-    .soMe-account {
-      grid-row: 10/11;
+
+  .register-form,
+  .login-form {
+    width: 50%;
+    height: 100%;
+    float: left;
+    display: grid;
+    grid-template-rows: 70px auto 25px 25px 25px 25px 25px 55px auto 35px 55px;
+    grid-row-gap: 2%;
+
+    .terms {
+      font-size: 1.3rem;
       width: 100%;
-      height: 100%;
-      display: grid;
-      grid-template-columns: 200px 50px 50px auto;
-      p {
-        grid-column: 1/2;
-        align-self: center;
-      }
+      align-self: end;
       a {
-        align-self: end;
+        text-decoration: underline white;
       }
     }
-  
-    .login-form {
-      padding-right: 5%;
-      span {
-        color: red;
+    .submit-row {
+      grid-row: 11/-1;
+      display: grid;
+      grid-template-columns: 200px auto;
+
+      align-self: end;
+      label {
+        margin: 0;
+        height: fit-content;
+        font-size: 1.5rem;
+        grid-column: 1/2;
+        width: 100%;
+        align-self: end;
+        justify-self: start;
+        input {
+          margin: 0;
+          width: 10%;
+          opacity: 0;
+        }
       }
       .submit {
-        width: 50%;
-        grid-row: 11/-1;
-        align-self: end;
+        grid-column: 2/3;
+        align-self: center;
         justify-self: end;
+        width: 70%;
+        p {
+          padding: 3%;
+          height: 100%;
+        }
       }
-      a {
-        justify-self: end;
-        text-decoration: underline;
+      .newsletter {
+        display: block;
+        grid-row: 1/-1;
+        grid-column: 1/2;
+        place-self: center;
       }
     }
-  
-    .register-form,
-    .login-form {
-      width: 50%;
+  }
+}
+
+/* SECOND PHASE REGISTERING AND PAYMENT */
+.modal {
+  #main-register-form {
+    width: 100%;
+    height: 100%;
+    .first-donation-modal {
+      width: 48%;
       height: 100%;
       float: left;
       display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 2%;
+      grid-row-gap: 2%;
+      h2 {
+        grid-row: 1/2;
+      }
+    }
+    .credit-card-details {
+      label {
+        grid-template-columns: 120px 7px auto;
+      }
+      width: 48%;
+      height: 100%;
+      float: right;
+      display: grid;
       grid-template-rows: 70px auto 25px 25px 25px 25px 25px 55px auto 35px 55px;
       grid-row-gap: 2%;
-  
-      .terms {
-        font-size: 1.3rem;
-        width: 100%;
-        align-self: end;
-        a {
-          text-decoration: underline white;
-        }
-      }
-      .submit-row {
-        grid-row: 11/-1;
-        display: grid;
-        grid-template-columns: 200px auto;
-  
-        align-self: end;
-        label {
-          margin: 0;
-          height: fit-content;
-          font-size: 1.5rem;
-          grid-column: 1/2;
-          width: 100%;
-          align-self: end;
-          justify-self: start;
-          input {
-            margin: 0;
-            width: 10%;
-            opacity: 0;
-          }
-        }
-        .submit {
-          grid-column: 2/3;
-          align-self: center;
-          justify-self: end;
-          width: 70%;
-          p {
-            padding: 3%;
-            height: 100%;
-          }
-        }
-        .newsletter {
-          display: block;
-          grid-row: 1/-1;
-          grid-column: 1/2;
-          place-self: center;
-        }
-      }
-    }
-  }
-  
-  /* SECOND PHASE REGISTERING AND PAYMENT */
-  .modal {
-    #main-register-form {
-      width: 100%;
-      height: 100%;
-      .first-donation-modal {
-        width: 48%;
-        height: 100%;
-        float: left;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-gap: 2%;
-        grid-row-gap: 2%;
-        h2 {
-          grid-row: 1/2;
-        }
-      }
-      .credit-card-details {
-        label {
-          grid-template-columns: 120px 7px auto;
-        }
-        width: 48%;
-        height: 100%;
-        float: right;
-        display: grid;
-        grid-template-rows: 70px auto 25px 25px 25px 25px 25px 55px auto 35px 55px;
-        grid-row-gap: 2%;
-  
-        .submit {
-          width: 50%;
-          grid-row: 9/10;
-          justify-self: end;
-          align-self: center;
-        }
-      }
-    }
-  }
 
-  /* PLANT A TREE PROFILE */
+      .submit {
+        width: 50%;
+        grid-row: 9/10;
+        justify-self: end;
+        align-self: center;
+      }
+    }
+  }
+}
+
+/* PLANT A TREE PROFILE */
 
 .planttree-form {
-    form {
-      width: 100%;
-      height: 100%;
-    }
+  form {
+    width: 100%;
+    height: 100%;
+  }
 
-    .planttree-part {
-      width: 100%;
-      height: 100%;
-      padding: 15% 5% 5% 5%;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 25px 50px auto 25px 50px 50px auto 50px;
-      grid-gap: 5%;
-      grid-row-gap: 5%;
-      label{
-        position: relative;
-          /* Hide the browser's default radio button */
+  .planttree-part {
+    width: 100%;
+    height: 100%;
+    padding: 15% 5% 5% 5%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 25px 50px auto 25px 50px 50px auto 50px;
+    grid-gap: 5%;
+    grid-row-gap: 5%;
+    label {
+      position: relative;
+      /* Hide the browser's default radio button */
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      input {
+        position: absolute;
+        opacity: 0;
         cursor: pointer;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        input {
-            position: absolute;
-            opacity: 0;
-            cursor: pointer;
-          }
-        h3 {
-            position: absolute;
-            z-index: 10;
-            width: 100%;
-            padding: 4%;
-            text-align: center;
-            font-size: 1.8rem;
-        }
+      }
+      h3 {
+        position: absolute;
+        z-index: 10;
+        width: 100%;
+        padding: 4%;
+        text-align: center;
+        font-size: 1.8rem;
       }
     }
-    
-    /* RADIO BUTTON STYLE */
-  
-    .location {
+  }
+
+  /* RADIO BUTTON STYLE */
+
+  .location {
     align-self: end;
     font-size: 1.8rem;
     grid-row: 4/5;
-    }
-  
-    .countries {
-    grid-row-start: 5;
-    }
-    .countries2 {
-    grid-row-start: 6;
-    }
+  }
 
-    .checkmark {
+  .countries {
+    grid-row-start: 5;
+  }
+  .countries2 {
+    grid-row-start: 6;
+  }
+
+  .checkmark {
     position: absolute;
     top: 0;
     left: 0;
@@ -354,174 +351,165 @@ input {
     height: 100%;
     background-color: #11514f;
     border-radius: 10px;
-    place-self:center;
-    }
+    place-self: center;
+  }
 
-/* CHECKBOX STYLE */
-  
+  /* CHECKBOX STYLE */
+
   .recurrent {
     align-self: end;
     grid-row: 1/2;
-    display:grid;
+    display: grid;
     grid-template-columns: 100px 60px auto;
   }
-  
+
   .checkbox {
-    position:relative;
+    position: relative;
     height: 25px;
     width: 25px;
     border-radius: 10px;
     background-color: $dark_green;
-    place-self:center;
+    place-self: center;
   }
 
-  .newsletter{
+  .newsletter {
     font-size: 1.5rem;
-    display:grid;
-    grid-template-columns: 150px 30px auto;    
+    display: grid;
+    grid-template-columns: 150px 30px auto;
   }
 }
 /* END OF PLANTTREE FORM NESTING */
 
- /* TREE NUMBER */
-  
- .tree-number-container {
-    grid-column: -1/1;
-    grid-row: 2/3;
-    height: fit-content;
-    display: grid;
-    grid-template-columns: 14% 20% 14% 30% 20%;
-    input {
-      background-color: $dark_green;
-      text-align: center;
-      width: 90%;
-      height: 90%;
-      border-radius: 10px;
-      @include text(1.5rem, white);
-      justify-self: center;
-      align-self: center;
-    }
-  
-    p {
-      align-self: center;
-      justify-self: center;
-      height: fit-content;
-    }
-    .price {
-      width: 90%;
-      height: 90%;
-      background-color: $dark_green;
-      padding: 3% 7%;
-      border-radius: 3%;
-      @include text(1.5rem, white);
-      align-self: center;
-      justify-self: center;
-      text-align: center;
-      p {
-        height: 100%;
-        padding: 10%;
-      }
-    }
-  
-    .minus,
-    .plus {
-      margin: 7%;
-      width: 30px;
-      height: 50px;
-      display: inline-block;
-      align-self: center;
-      justify-self: center;
-    }
-  }
+/* TREE NUMBER */
 
-
- /* SUBMIT BUTTON */
-  
- .plant-submit {
+.tree-number-container {
+  grid-column: -1/1;
+  grid-row: 2/3;
+  height: fit-content;
+  display: grid;
+  grid-template-columns: 14% 20% 14% 30% 20%;
+  input {
+    background-color: $dark_green;
     text-align: center;
-    @include button(90%, 90%);
-    @include text(1.8rem, white);
-  }
-  
-  .plant-submit,
-  .newsletter {
-    // grid-row: 8/9;
-    margin: 5%;
-    align-self: end;
+    width: 90%;
+    height: 90%;
+    border-radius: 10px;
+    @include text(1.5rem, white);
+    justify-self: center;
+    align-self: center;
   }
 
-
-  
-  /* On mouse-over, add a grey background color */
-  label:hover input ~ .checkmark {
-    background-color: rgba($black_green, 0.3);
+  p {
+    align-self: center;
+    justify-self: center;
+    height: fit-content;
   }
-  
-  /* When the radio button is checked, add a orange background */
-  label input:checked ~ .checkmark {
-    @include button(100%, 100%);
-  }
-  
-  /* On mouse-over, add a background color */
-  label:hover input ~ .checkbox {
-    background-color: rgba($black_green, 0.3);
-  }
-  
-  /* When the checkbox is checked, add a background */
-  label input:checked ~ .checkbox {
-    @include button(25px, 25px);
-  }
-  
-  /* Create the checkmark/indicator (hidden when not checked) */
-  .checkbox:after {
-    content: "";
-    position: absolute;
-    display: none;
-  }
-  
-  /* Show the checkmark when checked */
-  label input:checked ~ .checkbox:after {
-    display: block;
-  }
-  
-  /* Style the checkmark/indicator */
-  label .checkbox:after {
-    left: 9px;
-    top: 5px;
-    width: 5px;
-    height: 10px;
-    border: solid white;
-    border-width: 0 3px 3px 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-  }
-
-
-
-
-  /* /////////CB PART/////////// */
-
-  .cc-part {
-    display: grid;
-    grid-template-rows: repeat(6, 1fr);
+  .price {
+    width: 90%;
+    height: 90%;
+    background-color: $dark_green;
+    padding: 3% 7%;
+    border-radius: 3%;
+    @include text(1.5rem, white);
+    align-self: center;
+    justify-self: center;
+    text-align: center;
     p {
-      @include text(1.5rem, $dark_green);
-      span {
-        color: white;
-        font-weight: bold;
-      }
-    }
-    input {
-      opacity: 1;
-      right: 20%;
-      background: white;
-    }
-    .go-back-plant {
-      @include button(40%, 100%);
-      @include text(2rem, white);
+      height: 100%;
+      padding: 10%;
     }
   }
-  
- 
-  
+
+  .minus,
+  .plus {
+    margin: 7%;
+    width: 30px;
+    height: 50px;
+    display: inline-block;
+    align-self: center;
+    justify-self: center;
+  }
+}
+
+/* SUBMIT BUTTON */
+
+.plant-submit {
+  text-align: center;
+  @include button(90%, 90%);
+  @include text(1.8rem, white);
+}
+
+.plant-submit,
+.newsletter {
+  // grid-row: 8/9;
+  margin: 5%;
+  align-self: end;
+}
+
+/* On mouse-over, add a grey background color */
+label:hover input ~ .checkmark {
+  background-color: rgba($black_green, 0.3);
+}
+
+/* When the radio button is checked, add a orange background */
+label input:checked ~ .checkmark {
+  @include button(100%, 100%);
+}
+
+/* On mouse-over, add a background color */
+label:hover input ~ .checkbox {
+  background-color: rgba($black_green, 0.3);
+}
+
+/* When the checkbox is checked, add a background */
+label input:checked ~ .checkbox {
+  @include button(25px, 25px);
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkbox:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+label input:checked ~ .checkbox:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+label .checkbox:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+/* /////////CB PART/////////// */
+
+.cc-part {
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  p {
+    @include text(1.5rem, $dark_green);
+    span {
+      color: white;
+      font-weight: bold;
+    }
+  }
+  input {
+    opacity: 1;
+    right: 20%;
+    background: white;
+  }
+  .go-back-plant {
+    @include button(40%, 100%);
+    @include text(2rem, white);
+  }
+}

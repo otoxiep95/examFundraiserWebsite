@@ -18,9 +18,11 @@ if (userIdurl) {
     "myforest.html?id=" + userIdurl;
   document.querySelector("#log-in-link").classList.add("hidden");
   document.querySelector("#log-out-link").classList.remove("hidden");
+  document.querySelector("#myforest-link").classList.remove("hidden");
 } else {
+  document.querySelector("#myforest-link").classList.add("hidden");
   //OPENING AND CLOSING OF MODAL FOR LOGIN AND REGISTER
-  document.querySelector(".getstarted").addEventListener("click", function () {
+  document.querySelector(".getstarted").addEventListener("click", function() {
     //open modal
     loginModal.classList.remove("hidden");
     document.querySelector(".register-form").classList.remove("hidden");
@@ -28,7 +30,7 @@ if (userIdurl) {
     document.querySelector(".planttree-form").classList.add("hidden");
     document.querySelector(".credit-card-details").classList.add("hidden");
   });
-  document.querySelector("#log-in-link").addEventListener("click", function () {
+  document.querySelector("#log-in-link").addEventListener("click", function() {
     //open modal
     loginModal.classList.remove("hidden");
     document.querySelector(".register-form").classList.remove("hidden");
@@ -36,7 +38,7 @@ if (userIdurl) {
     document.querySelector(".planttree-form").classList.add("hidden");
     document.querySelector(".credit-card-details").classList.add("hidden");
   });
-  document.querySelector(".modal .cross").addEventListener("click", function () {
+  document.querySelector(".modal .cross").addEventListener("click", function() {
     loginModal.classList.add("hidden");
     document.querySelector(".register-form").classList.remove("hidden");
     loginForm.classList.remove("hidden");
@@ -50,7 +52,10 @@ function userInfoValid() {
   let validity = registerForm.checkValidity();
   if (validity) {
     if (
-      document.querySelector("#username-lable span").classList.contains("wrong")
+      document
+        .querySelector("#username-lable span")
+        .classList.contains("wrong") ||
+      document.querySelector("#email-lable span").classList.contains("wrong")
     ) {
       return false;
     } else {
@@ -61,22 +66,22 @@ function userInfoValid() {
 
 document
   .querySelector(".next-step-button")
-  .addEventListener("click", function () {
+  .addEventListener("click", function() {
     // CHECK INFO TO BEFORE GOING TO DONATION FORM
-    // if (userInfoValid()) {
-    document.querySelector(".register-form").classList.add("hidden");
-    document.querySelector(".login-form").classList.add("hidden");
-    document.querySelector(".planttree-form").classList.remove("hidden");
-    document.querySelector(".credit-card-details").classList.remove("hidden");
-    document.querySelector(".plus").addEventListener("click", e => {
-      registerForm.elements.treenumber.stepUp(1);
-    });
-    document.querySelector(".minus").addEventListener("click", e => {
-      if (registerForm.elements.treenumber.value > 1) {
-        registerForm.elements.treenumber.stepUp(-1);
-      }
-    });
-    // }
+    if (userInfoValid()) {
+      document.querySelector(".register-form").classList.add("hidden");
+      document.querySelector(".login-form").classList.add("hidden");
+      document.querySelector(".planttree-form").classList.remove("hidden");
+      document.querySelector(".credit-card-details").classList.remove("hidden");
+      document.querySelector(".plus").addEventListener("click", e => {
+        registerForm.elements.treenumber.stepUp(1);
+      });
+      document.querySelector(".minus").addEventListener("click", e => {
+        if (registerForm.elements.treenumber.value > 1) {
+          registerForm.elements.treenumber.stepUp(-1);
+        }
+      });
+    }
     console.log("toggle");
   });
 
@@ -89,24 +94,19 @@ registerForm.elements.iusername.addEventListener("blur", e => {
   fetch(user_endpoint)
     .then(res => res.json())
     .then(data => {
-      console.log(data);
       let userTaken = false;
       data.forEach(user => {
         if (user.username === username) {
-          console.log("found");
           userTaken = true;
         }
       });
       if (userTaken) {
-        console.log("user taken");
-        console.log(registerForm.elements.iusername.parentElement);
         warningSigng.classList.add("wrong");
         warningSigng.classList.remove("validated");
         registerForm.elements.iusername.parentElement.querySelector(
           "span"
         ).textContent = "username already taken";
       } else {
-        console.log("free");
         warningSigng.classList.remove("wrong");
         warningSigng.classList.add("validated");
         registerForm.elements.iusername.parentElement.querySelector(
@@ -115,7 +115,7 @@ registerForm.elements.iusername.addEventListener("blur", e => {
       }
     });
 });
-//SHOW ERROR MESSAGE IF EMAIL TAKEN
+//SHOW ERROR MESSAGE IF EMAIL TAKEN OR INVALID
 registerForm.elements.iemail.addEventListener("blur", e => {
   let email = registerForm.elements.iemail.value;
   let warningSigng = registerForm.elements.iemail.parentElement.querySelector(
@@ -133,23 +133,44 @@ registerForm.elements.iemail.addEventListener("blur", e => {
           emailTaken = true;
         }
       });
-      if (emailTaken) {
-        console.log("user taken");
-        console.log(registerForm.elements.iemail.parentElement);
+      if (registerForm.elements.iemail.checkValidity()) {
+        if (emailTaken) {
+          console.log("user taken");
+          console.log(registerForm.elements.iemail.parentElement);
+          warningSigng.classList.add("wrong");
+          warningSigng.classList.remove("validated");
+          registerForm.elements.iemail.parentElement.querySelector(
+            "span"
+          ).textContent = "email already taken";
+        } else {
+          console.log("free");
+          warningSigng.classList.remove("wrong");
+          warningSigng.classList.add("validated");
+          registerForm.elements.iemail.parentElement.querySelector(
+            "span"
+          ).textContent = "";
+        }
+      } else {
         warningSigng.classList.add("wrong");
         warningSigng.classList.remove("validated");
         registerForm.elements.iemail.parentElement.querySelector(
           "span"
-        ).textContent = "email already taken";
-      } else {
-        console.log("free");
-        warningSigng.classList.remove("wrong");
-        warningSigng.classList.add("validated");
-        registerForm.elements.iemail.parentElement.querySelector(
-          "span"
-        ).textContent = "";
+        ).textContent = "please type a valid semail";
       }
     });
+});
+
+registerForm.elements.ipassword.addEventListener("blur", e => {
+  let warningSigng = registerForm.elements.iemail.parentElement.querySelector(
+    "span"
+  );
+  if (!registerForm.elements.ipassword.checkValidity()) {
+    warningSigng.classList.add("wrong");
+    warningSigng.classList.remove("validated");
+    registerForm.elements.ipassword.parentElement.querySelector(
+      "span"
+    ).textContent = "password not valid";
+  }
 });
 
 //CHANGE PRICE REGARDING NNUMBER OF TREES
@@ -179,32 +200,7 @@ registerForm.addEventListener("submit", e => {
     trees: Number(registerForm.elements.treenumber.value),
     date: new Date().toDateString()
   };
-  checkUsername(registerForm.elements.iusername.value);
-  function checkUsername(username) {
-    let userTaken = false;
-    fetch(user_endpoint)
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-        data.forEach(user => {
-          if (user.username === username) {
-            console.log("found");
-            userTaken = true;
-          }
-        });
-        if (!userTaken) {
-          console.log("good to go");
-
-          createUser(newUserData, firstDonationData);
-          console.log(registerForm.elements);
-          registerForm.classList.add("hidden");
-          document.querySelector(".congrats-part").classList.remove("hidden");
-          //document.querySelector(".planttree-form").classList.toggle("hidden");
-        } else {
-          console.log("username taken please choose another one");
-        }
-      });
-  }
+  createUser(newUserData, firstDonationData);
 });
 
 loginForm.addEventListener("submit", e => {
@@ -219,22 +215,14 @@ loginForm.addEventListener("submit", e => {
 });
 
 function verifyUser(username, password) {
-  let userValid = false;
   fetch(user_endpoint)
     .then(res => res.json())
     .then(data => {
-      console.log(username, password);
-      console.log(data);
-
       data.forEach(user => {
         //verify if there is usernamer
         if (user.username === username) {
-          console.log("found");
-          console.log(user.password);
           //within this verify if the password matches
           if (user.password === password) {
-            userValid = true;
-            console.log("go to user profile id:" + user.id);
             window.location = "myforest.html?id=" + user.id;
           } else {
             //Show error message: Username or password incorrect
@@ -244,8 +232,6 @@ function verifyUser(username, password) {
           }
         }
       });
-      console.log(userValid);
-      //return userValid;
     });
 }
 
@@ -279,6 +265,13 @@ function createUser(newUserData, firstDonationData) {
     });
 }
 
+document.querySelector(".burguerMenu").addEventListener("click", function() {
+  document.querySelector(".menu").classList.remove("hidden");
+});
+document.querySelector(".mobile-cross").addEventListener("click", function() {
+  document.querySelector(".menu").classList.add("hidden");
+});
+
 function init() {
   fetch(user_endpoint)
     .then(res => res.json())
@@ -304,7 +297,7 @@ function init() {
       //last 5 donations
       let lastFiveDonations = [];
       lastFiveDonations = donations
-        .sort(function (a, b) {
+        .sort(function(a, b) {
           return b.id - a.id;
         })
         .slice(0, 5);
@@ -324,23 +317,23 @@ function printLastDonations(lastFiveDonations) {
     const id = donation.userId;
 
     console.log(id);
-    function getUsername(id) {
+    function getUsername(id, elem) {
       fetch(user_endpoint)
         .then(res => res.json())
         .then(data => {
           data.forEach(user => {
             if (user.id === id) {
-              console.log(user.username);
-              return user.username;
+              console.log(elem);
+              elem.textContent = user.username;
             }
           });
         });
     }
+    getUsername(id, clone.querySelector("h2"));
+    //clone.querySelector("h2").textContent = getUsername(id);
     clone.querySelector(".recentDonation-date").textContent = new Date(
       donation.date
     ).toDateString();
-
-    clone.querySelector("h2").textContent = getUsername(id);
     document.querySelector(".recentDonations").appendChild(clone);
   });
 }
