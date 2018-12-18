@@ -138,9 +138,9 @@ input {
     h2 {
       font-size: 3.5rem;
       height: fit-content;
-      grid-row: 1/3;
-      align-self: end;
-      margin-bottom: 10%;
+      grid-row: 1/2;
+    //   align-self: end;
+    //   margin-bottom: 10%;
     }
   
     
@@ -164,7 +164,7 @@ input {
     }
   
     .soMe-account {
-      grid-row: 10/11;
+      grid-row: 8/9;
       width: 100%;
       height: 100%;
       display: grid;
@@ -174,7 +174,7 @@ input {
         align-self: center;
       }
       a {
-        align-self: end;
+        place-self:center;
       }
     }
   
@@ -185,7 +185,7 @@ input {
       }
       .submit {
         width: 50%;
-        grid-row: 11/-1;
+        grid-row: 9/-1;
         align-self: end;
         justify-self: end;
       }
@@ -201,7 +201,7 @@ input {
       height: 100%;
       float: left;
       display: grid;
-      grid-template-rows: 70px auto 25px 25px 25px 25px 25px 55px auto 35px 55px;
+      grid-template-rows: auto 25px 25px 25px 25px 25px 55px 35px 55px;
       grid-row-gap: 2%;
   
       .terms {
@@ -213,7 +213,7 @@ input {
         }
       }
       .submit-row {
-        grid-row: 11/-1;
+        grid-row: 9/-1;
         display: grid;
         grid-template-columns: 200px auto;
   
@@ -234,6 +234,7 @@ input {
         }
         .submit {
           grid-column: 2/3;
+          
           align-self: center;
           justify-self: end;
           width: 70%;
@@ -263,34 +264,78 @@ input {
         float: left;
         display: grid;
         grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto 25px 50px auto 25px 50px 50px auto;
+   
         grid-gap: 2%;
         grid-row-gap: 2%;
-        h2 {
-          grid-row: 1/2;
+        label{
+            position: relative;
+              /* Hide the browser's default radio button */
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            input {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+              }
+            }
+        .recurrent{
+            grid-row: 2/3;
         }
-      }
-      .credit-card-details {
-        label {
-          grid-template-columns: 120px 7px auto;
+        .tree-number-container{
+            grid-row:3/4;
         }
-        width: 48%;
-        height: 100%;
-        float: right;
-        display: grid;
-        grid-template-rows: 70px auto 25px 25px 25px 25px 25px 55px auto 35px 55px;
-        grid-row-gap: 2%;
-  
-        .submit {
-          width: 50%;
-          grid-row: 9/10;
-          justify-self: end;
-          align-self: center;
+        .location{
+            grid-row:5/6;
+        }
+        .countries{
+            grid-row:6/7;
+        }
+        .countries2{
+            grid-row:7/8;
         }
       }
     }
+    .credit-card-details{
+        grid-template-rows: auto 25px 25px 25px 25px auto 50px auto;
+        width: 48%;
+        height: 100%;
+        float: right;
+        .submit {
+            width: 50%;
+            grid-row: 7/8;
+            justify-self: end;
+            align-self: center;
+          }
+    }
+  }
+
+  .credit-card-details {
+    label {
+      grid-template-columns: 120px 7px auto;
+    }
+    display: grid;
+    
+    grid-template-rows: 70px auto 25px 25px 25px 25px 25px 55px auto 35px 50px;
+    grid-row-gap: 2%;
+  
   }
 
   /* PLANT A TREE PROFILE */
+
+  .countries, .countries2{
+    h3 {
+        position: absolute;
+        z-index: 10;
+        width: 100%;
+        padding: 4%;
+        text-align: center;
+        font-size: 1.8rem;
+    }
+  }
 
 .planttree-form {
     form {
@@ -320,14 +365,7 @@ input {
             opacity: 0;
             cursor: pointer;
           }
-        h3 {
-            position: absolute;
-            z-index: 10;
-            width: 100%;
-            padding: 4%;
-            text-align: center;
-            font-size: 1.8rem;
-        }
+        
       }
     }
     
@@ -376,9 +414,10 @@ input {
   }
 
   .newsletter{
+    width:100%;
     font-size: 1.5rem;
     display:grid;
-    grid-template-columns: 150px 30px auto;    
+    grid-template-columns: 160px 30px auto;    
   }
 }
 /* END OF PLANTTREE FORM NESTING */
@@ -437,17 +476,16 @@ input {
 
  /* SUBMIT BUTTON */
   
- .plant-submit {
+ .plant-submit, .submit {
     text-align: center;
-    @include button(90%, 90%);
+    @include button(100%, 100%);
     @include text(1.8rem, white);
   }
   
   .plant-submit,
   .newsletter {
-    // grid-row: 8/9;
-    margin: 5%;
-    align-self: end;
+    grid-row: 8/9;
+    place-self: center;
   }
 
 
@@ -502,24 +540,31 @@ input {
 
   /* /////////CB PART/////////// */
 
-  .cc-part {
-    display: grid;
-    grid-template-rows: repeat(6, 1fr);
+  .myforestCC {
+    width: 100%;
+    height: 100%;
+    grid-gap: 5%;
+    padding: 5% 5% 5% 5%;
     p {
-      @include text(1.5rem, $dark_green);
+      @include text(1.8rem, $dark_green);
       span {
         color: white;
         font-weight: bold;
       }
     }
-    input {
-      opacity: 1;
-      right: 20%;
-      background: white;
-    }
-    .go-back-plant {
-      @include button(40%, 100%);
-      @include text(2rem, white);
+    .button-row{
+        grid-row:8/9;
+        display:grid;
+        grid-gap: 5%;
+        grid-template-columns: 1fr 1fr;
+        .go-back-plant {
+            @include button(100%, 100%);
+            @include text(1.8rem, white);
+        }
+          .go-back-plant, .submit{
+            place-self: center;
+            padding:6%;
+          }
     }
   }
   

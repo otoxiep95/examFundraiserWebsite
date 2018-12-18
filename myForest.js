@@ -34,7 +34,7 @@ document.querySelector(".minus").addEventListener("click", e => {
   }
 });
 goBackButton.addEventListener("click", e => {
-  document.querySelector(".cc-part").classList.add("hidden");
+  document.querySelector(".myforestCC").classList.add("hidden");
   document.querySelector(".planttree-part").classList.remove("hidden");
 });
 
@@ -59,7 +59,7 @@ donationForm.addEventListener("submit", e => {
 });
 
 function goToPayment() {
-  document.querySelector(".cc-part").classList.remove("hidden");
+  document.querySelector(".myforestCC").classList.remove("hidden");
   document.querySelector(".planttree-part").classList.add("hidden");
 }
 
@@ -77,5 +77,5 @@ function postDonation(newDonation) {
     }
   })
     .then(res => res.json())
-    .then(d => {});
+    .then(d => { });
 }
