@@ -3,20 +3,18 @@
     font-size: $size;
     font-family: "Amatic sc";
     font-weight: 700;
-    // line-height: 3.1rem;
-    // font-style:italic;
     color: $color;
   }
 
   header {
-    background-image: none;
-    height: 10%;
+    // background-image: none;
+    // height: 100%;
     .burguerMenu {
       width: 35px;
       height: 30px;
       margin: 30px 30px;
+      right: 0;
       position: fixed;
-
       cursor: pointer;
       display: inline-block;
       span {
@@ -49,7 +47,6 @@
     }
     .menu {
       position: fixed;
-
       padding: 0;
       display: block;
       width: 100%;
@@ -87,7 +84,16 @@
       }
     }
     .process_infos {
-      display: none;
+      grid-template-columns:none;
+      grid-template-rows: 30% 30% 30% 10%;
+      grid-row-gap: 5%;
+      grid-gap: 0%;
+      width: 70vw;
+      height:70vh;
+      .getstarted{
+        width:100%;
+        height:100%;
+      }
     }
   }
   .modal {
