@@ -119,7 +119,7 @@ header {
   height: 10%;
   padding: 1% 3%;
   display: grid;
-  grid-template-columns: 110px 110px 160px 110px auto 110px 110px;
+  grid-template-columns: 110px 110px 110px 160px 110px auto 110px 110px;
   background-color: $beige;
   z-index: 20;
   .menu_link {
@@ -134,10 +134,10 @@ header {
   }
 
   #log-in-link {
-    grid-column: 6/7;
+    grid-column: 7/8;
   }
   #log-out-link {
-    grid-column: 6/7;
+    grid-column: 7/8;
   }
   .mobile-cross {
     display: none;
@@ -233,11 +233,11 @@ main {
   .forest-image {
     @include rectangle(100%, 380px);
     position: relative;
-    a {
-      @include title(3.5rem, white);
+    p {
       position: absolute;
-      right: 5%;
       bottom: 5%;
+      right: 5%;
+      @include title(3.5rem, white);
     }
   }
 }
@@ -402,9 +402,9 @@ footer {
   }
   .menu {
     background-color: $dark_green;
-    grid-template-columns: 110px 110px 160px 110px auto 110px;
+    grid-template-columns: 110px 110px 110px 160px 110px auto 110px;
     #log-out-link {
-      grid-column: 6/-1;
+      grid-column: 7/-1;
     }
     a {
       color: white;
