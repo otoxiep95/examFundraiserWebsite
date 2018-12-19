@@ -1,7 +1,7 @@
 "use strict";
 let urlParams = new URLSearchParams(window.location.search);
-let userId = 1;
-let userIdurl = urlParams.get("id");
+
+let userId = urlParams.get("id");
 
 let endpoint =
   "http://5bfd357c827c3800139ae907.mockapi.io/treefund/user/" +
@@ -10,6 +10,18 @@ let endpoint =
 
 let donationForm = document.querySelector(".donation-form");
 let goBackButton = document.querySelector(".go-back-plant");
+
+//LINKS
+document.querySelector("#logo-menu-link").href =
+  "index.html?id=" + userId + "#header";
+document.querySelector("#forest-menu-link").href =
+  "index.html?id=" + userId + "#forest-menu";
+document.querySelector("#who-menu-link").href =
+  "index.html?id=" + userId + "#who-info";
+document.querySelector("#why-menu-link").href =
+  "index.html?id=" + userId + "#why-info";
+document.querySelector("#contact-menu-link").href =
+  "index.html?id=" + userId + "#footer";
 
 donationForm.elements.treenumber.addEventListener("change", e => {
   console.log(e);
@@ -96,3 +108,30 @@ document.querySelector("#options-bottom").addEventListener("click", function() {
   document.querySelector(".myForests").style.display = "none";
   document.querySelector(".my-forests-options").style.display = "block";
 });
+
+function init() {
+  fetchDonatios();
+}
+
+function fetchDonatios() {
+  fetch(endpoint)
+    .then(res => res.json())
+    .then(data => {
+      let output = [];
+      data.forEach(function(donation) {
+        let existing = output.filter(function(v, i) {
+          return v.category == donation.category;
+        });
+        if (existing.length) {
+          let existingIndex = output.indexOf(existing[0]);
+
+          output[existingIndex].trees += donation.trees;
+        } else {
+          if (typeof donation.value === "string") donation.value = [item.value];
+          output.push(donation);
+        }
+      });
+      console.log(output);
+    });
+}
+init();
