@@ -475,11 +475,16 @@ footer {
   height: 85%;
   margin-top: 5%;
 }
-
+.myForests {
+  position: relative;
+}
 .game {
+  position: absolute;
+  bottom: 0;
   background: url("baby_sprout-22.svg");
-  background-size: contain;
-  background-position: bottom;
+  background-size: unset;
+  background-position: bottom 0 center;
+  background-attachment: local;
   background-repeat: no-repeat;
   border-radius: 3%;
   display: grid;
