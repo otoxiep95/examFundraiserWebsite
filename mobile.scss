@@ -1,4 +1,13 @@
 @media only screen and (max-width: 450px) {
+  @mixin title($size, $color) {
+    font-size: $size;
+    font-family: "Amatic sc";
+    font-weight: 700;
+    // line-height: 3.1rem;
+    // font-style:italic;
+    color: $color;
+  }
+
   header {
     background-image: none;
     height: 10%;
@@ -81,6 +90,55 @@
       display: none;
     }
   }
+  .modal {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: scroll;
+    .login-form {
+      width: 100%;
+      padding-top: 20%;
+
+      float: none;
+    }
+    .register-form {
+      width: 100%;
+      padding-top: 20%;
+      float: none;
+    }
+    #main-register-form {
+      display: none;
+      .planttree-form {
+        width: 100%;
+        float: none;
+      }
+      .credit-card-details {
+        width: 100%;
+        float: none;
+      }
+    }
+    .congrats-part {
+      .congrats-part-title {
+        margin-bottom: 10%;
+      }
+      .first-badge {
+        margin-bottom: 5%;
+      }
+      .congrats-info {
+        margin-bottom: 10%;
+      }
+      #myForest-button {
+        padding: 2.5% 20%;
+      }
+    }
+    .mobile-bottom-modalMenu {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      h2 {
+        text-align: center;
+      }
+    }
+  }
 
   main {
     .content {
@@ -101,9 +159,11 @@
       }
     }
   }
+
   .recentDonations {
     display: block;
     text-align: center;
+    height: auto;
   }
   footer {
     grid-template-columns: 1fr 1fr 1fr;
@@ -132,5 +192,34 @@
   }
   .total-planted {
     display: none;
+  }
+
+  ///MY FOREST PAGE
+
+  .myForestsMain {
+    position: unset;
+    display: block;
+    height: 80vh;
+    padding: 5% 5%;
+    .myForest {
+      display: block;
+      height: 80vh;
+    }
+    .my-forests-options {
+      display: none;
+      height: 80vh;
+    }
+  }
+  .mobile-bottom-menu {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    height: 10vh;
+    background-color: #11514f;
+    h2 {
+      @include title(2rem, white);
+      text-align: center;
+      padding: 10%;
+    }
   }
 }

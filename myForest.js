@@ -79,3 +79,20 @@ function postDonation(newDonation) {
     .then(res => res.json())
     .then(d => {});
 }
+
+document.querySelector(".burguerMenu").addEventListener("click", function() {
+  document.querySelector(".menu").classList.remove("hidden");
+});
+document.querySelector(".mobile-cross").addEventListener("click", function() {
+  document.querySelector(".menu").classList.add("hidden");
+});
+document
+  .querySelector("#myForest-botttom")
+  .addEventListener("click", function() {
+    document.querySelector(".myForests").style.display = "block";
+    document.querySelector(".my-forests-options").style.display = "none";
+  });
+document.querySelector("#options-bottom").addEventListener("click", function() {
+  document.querySelector(".myForests").style.display = "none";
+  document.querySelector(".my-forests-options").style.display = "block";
+});

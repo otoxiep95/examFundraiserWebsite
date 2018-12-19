@@ -68,20 +68,20 @@ document
   .querySelector(".next-step-button")
   .addEventListener("click", function() {
     // CHECK INFO TO BEFORE GOING TO DONATION FORM
-    if (userInfoValid()) {
-      document.querySelector(".register-form").classList.add("hidden");
-      document.querySelector(".login-form").classList.add("hidden");
-      document.querySelector(".planttree-form").classList.remove("hidden");
-      document.querySelector(".credit-card-details").classList.remove("hidden");
-      document.querySelector(".plus").addEventListener("click", e => {
-        registerForm.elements.treenumber.stepUp(1);
-      });
-      document.querySelector(".minus").addEventListener("click", e => {
-        if (registerForm.elements.treenumber.value > 1) {
-          registerForm.elements.treenumber.stepUp(-1);
-        }
-      });
-    }
+    // if (userInfoValid()) {
+    document.querySelector(".register-form").classList.add("hidden");
+    document.querySelector(".login-form").classList.add("hidden");
+    document.querySelector(".planttree-form").classList.remove("hidden");
+    document.querySelector(".credit-card-details").classList.remove("hidden");
+    document.querySelector(".plus").addEventListener("click", e => {
+      registerForm.elements.treenumber.stepUp(1);
+    });
+    document.querySelector(".minus").addEventListener("click", e => {
+      if (registerForm.elements.treenumber.value > 1) {
+        registerForm.elements.treenumber.stepUp(-1);
+      }
+    });
+    // }
     console.log("toggle");
   });
 
@@ -271,6 +271,18 @@ document.querySelector(".burguerMenu").addEventListener("click", function() {
 document.querySelector(".mobile-cross").addEventListener("click", function() {
   document.querySelector(".menu").classList.add("hidden");
 });
+document
+  .querySelector("#bottom-modal-login")
+  .addEventListener("click", function() {
+    document.querySelector(".login-form").style.display = "grid";
+    document.querySelector("#main-register-form").style.display = "none";
+  });
+document
+  .querySelector("#bottom-modal-register")
+  .addEventListener("click", function() {
+    document.querySelector(".login-form").style.display = "none";
+    document.querySelector("#main-register-form").style.display = "block";
+  });
 
 function init() {
   fetch(user_endpoint)

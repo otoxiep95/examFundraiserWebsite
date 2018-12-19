@@ -286,6 +286,40 @@ label {
     }
   }
 }
+/*CONGRATULATION SCREEN*/
+.modal {
+  .congrats-part {
+    h1 {
+      @include title(3.5rem, white);
+    }
+    .congrats-part-title {
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      h1,
+      p {
+        grid-column: 1/2;
+      }
+      img {
+        grid-column: 2/-1;
+
+        height: 100%;
+      }
+    }
+    .first-badge {
+      display: grid;
+      grid-template-columns: 1fr 3fr;
+      div {
+        align-self: center;
+        p {
+          margin-left: 5%;
+        }
+      }
+    }
+    #myForest-button {
+      @include button(100%, 100%);
+    }
+  }
+}
 
 /* PLANT A TREE PROFILE */
 
