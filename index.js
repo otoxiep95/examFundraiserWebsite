@@ -22,7 +22,7 @@ if (userIdurl) {
 } else {
   document.querySelector("#myforest-link").classList.add("hidden");
   //OPENING AND CLOSING OF MODAL FOR LOGIN AND REGISTER
-  document.querySelector(".getstarted").addEventListener("click", function () {
+  document.querySelector(".getstarted").addEventListener("click", function() {
     //open modal
     loginModal.classList.remove("hidden");
     document.querySelector(".register-form").classList.remove("hidden");
@@ -30,7 +30,7 @@ if (userIdurl) {
     document.querySelector(".planttree-form").classList.add("hidden");
     document.querySelector(".credit-card-details").classList.add("hidden");
   });
-  document.querySelector("#log-in-link").addEventListener("click", function () {
+  document.querySelector("#log-in-link").addEventListener("click", function() {
     //open modal
     loginModal.classList.remove("hidden");
     document.querySelector(".register-form").classList.remove("hidden");
@@ -38,7 +38,7 @@ if (userIdurl) {
     document.querySelector(".planttree-form").classList.add("hidden");
     document.querySelector(".credit-card-details").classList.add("hidden");
   });
-  document.querySelector(".modal .cross").addEventListener("click", function () {
+  document.querySelector(".modal .cross").addEventListener("click", function() {
     loginModal.classList.add("hidden");
     document.querySelector(".register-form").classList.remove("hidden");
     loginForm.classList.remove("hidden");
@@ -66,7 +66,7 @@ function userInfoValid() {
 
 document
   .querySelector(".next-step-button")
-  .addEventListener("click", function () {
+  .addEventListener("click", function() {
     // CHECK INFO TO BEFORE GOING TO DONATION FORM
     // if (userInfoValid()) {
     document.querySelector(".mobile-bottom-modalMenu").classList.add("hidden");
@@ -268,21 +268,21 @@ function createUser(newUserData, firstDonationData) {
     });
 }
 
-document.querySelector(".burguerMenu").addEventListener("click", function () {
+document.querySelector(".burguerMenu").addEventListener("click", function() {
   document.querySelector(".menu").classList.remove("hidden");
 });
-document.querySelector(".mobile-cross").addEventListener("click", function () {
+document.querySelector(".mobile-cross").addEventListener("click", function() {
   document.querySelector(".menu").classList.add("hidden");
 });
 document
   .querySelector("#bottom-modal-login")
-  .addEventListener("click", function () {
+  .addEventListener("click", function() {
     document.querySelector(".login-form").style.display = "grid";
     document.querySelector("#main-register-form").style.display = "none";
   });
 document
   .querySelector("#bottom-modal-register")
-  .addEventListener("click", function () {
+  .addEventListener("click", function() {
     document.querySelector(".login-form").style.display = "none";
     document.querySelector("#main-register-form").style.display = "block";
   });
@@ -312,7 +312,7 @@ function init() {
       //last 5 donations
       let lastFiveDonations = [];
       lastFiveDonations = donations
-        .sort(function (a, b) {
+        .sort(function(a, b) {
           return b.id - a.id;
         })
         .slice(0, 5);
