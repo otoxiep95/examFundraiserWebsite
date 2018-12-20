@@ -123,7 +123,7 @@ function postDonation(newDonation) {
     .then(res => res.json())
     .then(d => {
       console.log(d);
-      fetchDonatios();
+      //fetchDonatios();
     });
 }
 

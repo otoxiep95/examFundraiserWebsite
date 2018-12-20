@@ -315,19 +315,25 @@ main {
 }
 
 footer {
+  padding: 2% 5%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   align-items: center;
+  background-color: $black_green;
 
   svg {
     width: 80%;
   }
   #logo {
     width: 100%;
+    path {
+      fill: white;
+    }
   }
   .soMe-icons {
     text-align: center;
     grid-column: 2/4;
+
     .soMe-links {
       display: inline-block;
       width: 15%;
@@ -345,10 +351,10 @@ footer {
     margin-left: 20px;
     grid-column: 4;
     h3 {
-      @include title(2.5rem, $black_green);
+      @include title(2.5rem, white);
     }
     p {
-      @include text(1.5rem, $dark_green);
+      @include text(1.5rem, white);
     }
   }
 }
