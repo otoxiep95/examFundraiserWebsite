@@ -221,12 +221,11 @@ function fetchDonatios() {
 
 function getGame(forest) {
   let forestClicked = forest;
-  console.log(forestClicked);
+
   donationsPerCat.forEach(forestDonations => {
     if (
       forestDonations.category.toUpperCase() === forestClicked.toUpperCase()
     ) {
-      console.log(forestDonations.category);
       document.querySelector(".current-trees").textContent =
         forestDonations.trees + " TREES PLANTED !";
       if (forestDonations.trees >= 20) {
