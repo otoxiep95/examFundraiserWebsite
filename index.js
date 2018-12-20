@@ -346,6 +346,11 @@ function printLastDonations(lastFiveDonations) {
     clone.querySelector(".recentDonation-date").textContent = new Date(
       donation.date
     ).toDateString();
+
+    clone.querySelector(".donation-value .trees").textContent =
+      donation.trees + " trees";
+    clone.querySelector(".donation-value .forest").textContent =
+      donation.category;
     document.querySelector(".recentDonations").appendChild(clone);
   });
 }

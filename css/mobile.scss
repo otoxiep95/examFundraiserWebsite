@@ -84,15 +84,15 @@
       }
     }
     .process_infos {
-      grid-template-columns:none;
+      grid-template-columns: none;
       grid-template-rows: 30% 30% 30% 10%;
       grid-row-gap: 5%;
       grid-gap: 0%;
       width: 70vw;
-      height:70vh;
-      .getstarted{
-        width:100%;
-        height:100%;
+      height: 70vh;
+      .getstarted {
+        width: 100%;
+        height: 100%;
       }
     }
   }
@@ -170,6 +170,21 @@
     display: block;
     text-align: center;
     height: auto;
+    h2 {
+      margin-bottom: 10%;
+    }
+    .recentDonation-post {
+      height: 20vh;
+      margin-bottom: 10%;
+      h2 {
+        margin: 0;
+        text-align: left;
+      }
+      .donation-value {
+        text-align: left;
+        padding-top: 0;
+      }
+    }
   }
   footer {
     grid-template-columns: 1fr 1fr 1fr;
