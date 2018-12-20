@@ -358,6 +358,21 @@
     display: block;
     text-align: center;
     height: auto;
+    h2 {
+      margin-bottom: 10%;
+    }
+    .recentDonation-post {
+      height: 20vh;
+      margin-bottom: 10%;
+      h2 {
+        margin: 0;
+        text-align: left;
+      }
+      .donation-value {
+        text-align: left;
+        padding-top: 0;
+      }
+    }
   }
   footer {
     grid-template-columns: 1fr 1fr 1fr;

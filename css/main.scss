@@ -40,6 +40,13 @@ a {
 
 .getstarted {
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+button:hover,
+.getstarted:hover,
+.submit:hover {
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.1);
 }
 
 svg {
@@ -249,7 +256,7 @@ main {
   grid-gap: 5%;
   .plantingtree-img {
     border-radius: 20px;
-    background-image: url(./img/desktop/resize/planting1.jpg);
+    background-image: url(./img/resize/planting1.jpg);
     background-size: cover;
     height: 300px;
   }
@@ -274,36 +281,36 @@ main {
 }
 
 #brazil-small {
-  background-image: url(./img/desktop/resize/amazonia.jpg);
+  background-image: url(./img/resize/amazonia.jpg);
   background-position: center;
 }
 #tanzania-small {
-  background-image: url(./img/desktop/resize/kilimanjaro.jpg);
+  background-image: url(./img/resize/kilimanjaro.jpg);
   background-position: center;
 }
 #usa-small {
-  background-image: url(./img/desktop/resize/californiaforest.jpg);
+  background-image: url(./img/resize/californiaforest.jpg);
   background-position: center;
 }
 #vietnam-small {
-  background-image: url(./img/desktop/resize/rainforest.jpg);
+  background-image: url(./img/resize/rainforest.jpg);
   background-position: center;
 }
 
 #brazil-main {
-  background: url(./img/desktop/resize/jungle.jpg);
+  background: url(./img/resize/jungle.jpg);
   background-position: center;
 }
 #tanzania-main {
-  background-image: url(./img/desktop/resize/kilimanjaro2.jpg);
+  background-image: url(./img/resize/kilimanjaro2.jpg);
   background-position: center;
 }
 #usa-main {
-  background-image: url(./img/desktop/resize/americaforest.jpg);
+  background-image: url(./img/resize/americaforest.jpg);
   background-position: center;
 }
 #vietnam-main {
-  background-image: url(./img/desktop/resize/vietnam.jpg);
+  background-image: url(./img/resize/vietnam.jpg);
   background-position: center;
 }
 
@@ -373,15 +380,28 @@ footer {
 }
 
 .recentDonations {
-  height: 30vh;
+  height: 40vh;
   width: 100%;
   margin-top: 10%;
   padding: 0 10%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-gap: 10px;
-
-  p {
+  .recentDonation-post {
+    position: relative;
+    background-color: $dark_green;
+    border-radius: 20px;
+    h2 {
+      padding: 5%;
+    }
+    p {
+      padding: 5%;
+    }
+    .recentDonation-date {
+      position: absolute;
+      bottom: 2%;
+      right: 2%;
+    }
   }
 }
 
@@ -466,7 +486,9 @@ footer {
     }
   }
 }
-
+.forest-selected {
+  color: $dark_green !important;
+}
 .options,
 .game {
   width: 100%;
@@ -479,14 +501,40 @@ footer {
 .game {
   position: absolute;
   bottom: 0;
-  background: url("baby_sprout-22.svg");
-  background-size: unset;
+
+  background-size: cover;
   background-position: bottom 0 center;
   background-attachment: local;
   background-repeat: no-repeat;
   border-radius: 3%;
   display: grid;
   grid-template-rows: 1fr 130px;
+  .badge {
+    position: absolute;
+    background-size: cover;
+    background-position: bottom 0 center;
+    background-attachment: local;
+    background-repeat: no-repeat;
+    width: 20%;
+    height: 20%;
+    right: 5%;
+    top: 10%;
+  }
+}
+.badge-level1 {
+  background-image: url("img/badges/badge1.svg");
+}
+.badge-level2 {
+  background-image: url("img/badges/infantSeedlingBadge.svg");
+}
+.level0 {
+  background-image: url("level0.svg");
+}
+.level1 {
+  background-image: url("babySproutbg.svg");
+}
+.level2 {
+  background-image: url("infantSeedlingbg.svg");
 }
 
 .infos-game {
@@ -502,7 +550,7 @@ footer {
   height: 15px;
   margin-top: 20px;
   border: solid 2px white;
-  border-radius: 3%;
+  border-radius: 10px;
   background-color: none;
 }
 .level {
@@ -512,11 +560,6 @@ footer {
   width: 10%;
   height: 100%;
   background-color: white;
-}
-
-.my-infos,
-.the-community {
-  display: none;
 }
 
 /* CLASSES FOR JAVASCRIPT */

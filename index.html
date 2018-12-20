@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="main.scss" />
-    <link rel="stylesheet" href="forms.scss" />
-    <link rel="stylesheet" href="mobile.scss" />
+    <link rel="stylesheet" href="css/main.scss" />
+    <link rel="stylesheet" href="css/forms.scss" />
+    <link rel="stylesheet" href="css/mobile.scss" />
     <link
       href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700"
       rel="stylesheet"
@@ -418,7 +418,7 @@
                 ></span
               ></label>
               <label for=""
-                >PASSWORD:
+                >PASSWORD*:
                 <input
                   type="password"
                   name="ipassword"
@@ -426,6 +426,10 @@
                   title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
                   required/><span class="validated"></span
               ></label>
+              <span class="terms"
+                >* Must contain at least 1 number, one uppercase, 1 lowercase, 8
+                characters</span
+              >
 
               <div class="soMe-account">
                 <p>OR USE ANOTHER ACCOUNT:</p>
@@ -577,10 +581,14 @@
             <div id="bottom-modal-register"><h2>Register</h2></div>
           </div>
         </div>
-        <div class="recentDonations"></div>
+        <div class="recentDonations"><h2>RECENT DONATIONS</h2></div>
         <template class="recentDonations-template">
           <article class="recentDonation-post">
             <h2></h2>
+            <p class="donation-value">
+              Planted <span class="trees"></span> <br />
+              in <span class="forest"></span>
+            </p>
             <p class="recentDonation-date">Date</p>
           </article>
         </template>
