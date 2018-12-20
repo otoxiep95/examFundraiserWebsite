@@ -10,6 +10,12 @@ let endpoint =
 
 let donationForm = document.querySelector(".donation-form");
 let goBackButton = document.querySelector(".go-back-plant");
+//HIDE NAV IN MOBILE
+if (window.matchMedia("(min-width: 720px)").matches) {
+  document.querySelector(".menu").classList.remove("hidden");
+} else {
+  document.querySelector(".menu").classList.add("hidden");
+}
 
 //LINKS
 document.querySelector("#logo-menu-link").href =
@@ -54,25 +60,17 @@ document.querySelector("#community-link").addEventListener("click", e => {
   document.querySelector(".the-community").classList.remove("hidden");
 });
 
-donationForm.elements.treenumber.addEventListener("change", e => {
-  console.log(e);
-  console.log("change");
-  let treeNum = donationForm.elements.treenumber.value;
-  console.log(treeNum);
-  document.querySelector(".price p").textContent = treeNum * 10 + "kr";
-});
 document.querySelector(".plus").addEventListener("click", e => {
-  console.log(donationForm.elements.treenumber);
   donationForm.elements.treenumber.stepUp(1);
   let treeNum = donationForm.elements.treenumber.value;
-  console.log(treeNum);
+
   document.querySelector(".price p").textContent = treeNum * 10 + "kr";
 });
 document.querySelector(".minus").addEventListener("click", e => {
   if (donationForm.elements.treenumber.value > 1) {
     donationForm.elements.treenumber.stepUp(-1);
     let treeNum = donationForm.elements.treenumber.value;
-    console.log(treeNum);
+
     document.querySelector(".price p").textContent = treeNum * 10 + "kr";
   }
 });
@@ -80,6 +78,12 @@ goBackButton.addEventListener("click", e => {
   document.querySelector(".myforestCC").classList.add("hidden");
   document.querySelector(".planttree-part").classList.remove("hidden");
 });
+document
+  .querySelector(".myforestCC .submit")
+  .addEventListener("click", function() {
+    document.querySelector(".myforestCC").classList.add("hidden");
+    document.querySelector(".planttree-part").classList.remove("hidden");
+  });
 
 donationForm.addEventListener("submit", e => {
   /* DONT REFRESH PAGE */
@@ -109,9 +113,6 @@ function goToPayment() {
 
 /* POST THE DONATION TO THE DATABASE */
 function postDonation(newDonation) {
-  console.log(newDonation);
-  console.log(endpoint);
-
   fetch(endpoint, {
     method: "post",
     body: JSON.stringify(newDonation),
@@ -121,10 +122,7 @@ function postDonation(newDonation) {
     }
   })
     .then(res => res.json())
-    .then(d => {
-      console.log(d);
-      //fetchDonatios();
-    });
+    .then(d => {});
 }
 
 document.querySelector(".burguerMenu").addEventListener("click", function() {
@@ -213,7 +211,7 @@ function fetchDonatios() {
           ] += donation.trees;
         }
       });
-      console.log(donationsPerCat);
+
       let defaultForest = "brazil";
       getGame(defaultForest);
     });
@@ -229,21 +227,23 @@ function getGame(forest) {
       document.querySelector(".current-trees").textContent =
         forestDonations.trees + " TREES PLANTED !";
       if (forestDonations.trees >= 20) {
-        //next level
-        console.log(forestDonations.trees);
+        //second level
+
         document.querySelector(".game").classList.remove("level1");
         document.querySelector(".game").classList.add("level2");
         document.querySelector(".game").classList.remove("level0");
         document.querySelector(".badge").classList.remove("hidden");
-        document.querySelector(".badge img").src =
-          "img/badges/infantSeedlingBadge.svg";
+        // document.querySelector(".badge img").src =
+        // "img/badges/infantSeedlingBadge.svg";
       } else if (forestDonations.trees > 0 && forestDonations.trees < 20) {
+        //first level
         document.querySelector(".game").classList.add("level1");
         document.querySelector(".game").classList.remove("level2");
         document.querySelector(".game").classList.remove("level0");
         document.querySelector(".badge").classList.remove("hidden");
-        document.querySelector(".badge img").src = "img/badges/badge1.svg";
+        // document.querySelector(".badge img").src = "img/badges/badge1.svg";
       } else if (forestDonations.trees == 0) {
+        //no trees planted
         document.querySelector(".game").classList.remove("level1");
         document.querySelector(".game").classList.remove("level2");
         document.querySelector(".game").classList.add("level0");

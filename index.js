@@ -12,16 +12,46 @@ let recentDonationTemplate = document.querySelector(".recentDonations-template")
 let loginModal = document.querySelector(".modal");
 let registerForm = document.querySelector("#main-register-form");
 let loginForm = document.querySelector(".login-form");
+let donateButtonsContent = document.querySelectorAll(".content button");
+//HIDE NAV IN MOBILE
+if (window.matchMedia("(min-width: 720px)").matches) {
+  document.querySelector(".menu").classList.remove("hidden");
+} else {
+  /* The viewport is less than 400 pixels wide */
+  document.querySelector(".menu").classList.add("hidden");
+  document.querySelectorAll(".menu a").forEach(a => {
+    a.addEventListener("click", e => {
+      document.querySelector(".menu").classList.add("hidden");
+    });
+  });
+}
+
 //IF USER LOGED IN DONT SHOW LOG IN LINK IN NAV
 if (userIdurl) {
   document.querySelector("#myforest-link").href =
     "myforest.html?id=" + userIdurl;
+  donateButtonsContent.forEach(but => {
+    but.addEventListener("click", function() {
+      window.location = "myforest.html?id=" + userIdurl;
+    });
+  });
   document.querySelector("#log-in-link").classList.add("hidden");
   document.querySelector("#log-out-link").classList.remove("hidden");
   document.querySelector("#myforest-link").classList.remove("hidden");
 } else {
   document.querySelector("#myforest-link").classList.add("hidden");
+
   //OPENING AND CLOSING OF MODAL FOR LOGIN AND REGISTER
+  donateButtonsContent.forEach(but => {
+    but.addEventListener("click", function() {
+      loginModal.classList.remove("hidden");
+      document.querySelector(".register-form").classList.remove("hidden");
+      loginForm.classList.remove("hidden");
+      document.querySelector(".planttree-form").classList.add("hidden");
+      document.querySelector(".credit-card-details").classList.add("hidden");
+    });
+  });
+
   document.querySelector(".getstarted").addEventListener("click", function() {
     //open modal
     loginModal.classList.remove("hidden");
@@ -39,6 +69,13 @@ if (userIdurl) {
     document.querySelector(".credit-card-details").classList.add("hidden");
   });
   document.querySelector(".modal .cross").addEventListener("click", function() {
+    if (window.matchMedia("(min-width: 720px)").matches) {
+      /* The viewport is at least 400 pixels wide */
+    } else {
+      document
+        .querySelector(".mobile-bottom-modalMenu")
+        .classList.remove("hidden");
+    }
     loginModal.classList.add("hidden");
     document.querySelector(".register-form").classList.remove("hidden");
     loginForm.classList.remove("hidden");
@@ -68,22 +105,15 @@ document
   .querySelector(".next-step-button")
   .addEventListener("click", function() {
     // CHECK INFO TO BEFORE GOING TO DONATION FORM
-    // if (userInfoValid()) {
-    document.querySelector(".mobile-bottom-modalMenu").classList.add("hidden");
-    document.querySelector(".register-form").classList.add("hidden");
-    document.querySelector(".login-form").classList.add("hidden");
-    document.querySelector(".planttree-form").classList.remove("hidden");
-    document.querySelector(".credit-card-details").classList.remove("hidden");
-    document.querySelector(".plus").addEventListener("click", e => {
-      registerForm.elements.treenumber.stepUp(1);
-    });
-    document.querySelector(".minus").addEventListener("click", e => {
-      if (registerForm.elements.treenumber.value > 1) {
-        registerForm.elements.treenumber.stepUp(-1);
-      }
-    });
-    // }
-    console.log("toggle");
+    if (userInfoValid()) {
+      document
+        .querySelector(".mobile-bottom-modalMenu")
+        .classList.add("hidden");
+      document.querySelector(".register-form").classList.add("hidden");
+      document.querySelector(".login-form").classList.add("hidden");
+      document.querySelector(".planttree-form").classList.remove("hidden");
+      document.querySelector(".credit-card-details").classList.remove("hidden");
+    }
   });
 
 //SHOW ERROE MESSAGE IF USERNAME IS TAKEN
@@ -122,29 +152,24 @@ registerForm.elements.iemail.addEventListener("blur", e => {
   let warningSigng = registerForm.elements.iemail.parentElement.querySelector(
     "span"
   );
-  console.log(warningSigng);
+
   fetch(user_endpoint)
     .then(res => res.json())
     .then(data => {
-      console.log(data);
       let emailTaken = false;
       data.forEach(user => {
         if (user.email === email) {
-          console.log("found");
           emailTaken = true;
         }
       });
       if (registerForm.elements.iemail.checkValidity()) {
         if (emailTaken) {
-          console.log("user taken");
-          console.log(registerForm.elements.iemail.parentElement);
           warningSigng.classList.add("wrong");
           warningSigng.classList.remove("validated");
           registerForm.elements.iemail.parentElement.querySelector(
             "span"
           ).textContent = "email already taken";
         } else {
-          console.log("free");
           warningSigng.classList.remove("wrong");
           warningSigng.classList.add("validated");
           registerForm.elements.iemail.parentElement.querySelector(
@@ -175,19 +200,25 @@ registerForm.elements.ipassword.addEventListener("blur", e => {
 });
 
 //CHANGE PRICE REGARDING NNUMBER OF TREES
-registerForm.elements.treenumber.addEventListener("change", e => {
-  console.log(e);
-  console.log("change");
+document.querySelector(".plus").addEventListener("click", e => {
+  registerForm.elements.treenumber.stepUp(1);
   let treeNum = registerForm.elements.treenumber.value;
-  console.log(treeNum);
+
   document.querySelector(".price p").textContent = treeNum * 10 + "kr";
+});
+document.querySelector(".minus").addEventListener("click", e => {
+  if (registerForm.elements.treenumber.value > 1) {
+    registerForm.elements.treenumber.stepUp(-1);
+    let treeNum = registerForm.elements.treenumber.value;
+
+    document.querySelector(".price p").textContent = treeNum * 10 + "kr";
+  }
 });
 
 //SUBMIT REGISTER FORM
 registerForm.addEventListener("submit", e => {
   e.preventDefault();
-  console.log(e);
-  console.log(registerForm.elements);
+
   const newUserData = {
     firstname: registerForm.elements.ifirstname.value,
     lastname: registerForm.elements.ilastname.value,
@@ -208,8 +239,6 @@ registerForm.addEventListener("submit", e => {
 
 loginForm.addEventListener("submit", e => {
   e.preventDefault();
-
-  console.log(loginForm.elements);
 
   verifyUser(
     loginForm.elements.username.value,
@@ -249,7 +278,6 @@ function createUser(newUserData, firstDonationData) {
   })
     .then(res => res.json())
     .then(d => {
-      console.log(d);
       let userId = d.id;
       fetch(user_endpoint + d.id + "/donations", {
         method: "post",
@@ -261,7 +289,6 @@ function createUser(newUserData, firstDonationData) {
       })
         .then(res => res.json())
         .then(d => {
-          console.log(d);
           document.querySelector("#myForest-button").href =
             "myforest.html?id=" + userId;
         });
@@ -296,7 +323,7 @@ function init() {
       });
 
       let donations = [].concat.apply([], userdonations);
-      console.log(donations);
+
       //total amount of trees planted
       let totalDonations = donations
         .map(d => {
@@ -316,8 +343,7 @@ function init() {
           return b.id - a.id;
         })
         .slice(0, 5);
-      console.log(lastFiveDonations);
-      console.log(totalDonations);
+
       printLastDonations(lastFiveDonations);
     });
 }
@@ -331,14 +357,12 @@ function printLastDonations(lastFiveDonations) {
     const clone = recentDonationTemplate.cloneNode(true);
     const id = donation.userId;
 
-    console.log(id);
     function getUsername(id, elem) {
       fetch(user_endpoint)
         .then(res => res.json())
         .then(data => {
           data.forEach(user => {
             if (user.id === id) {
-              console.log(elem);
               elem.textContent = user.username;
             }
           });

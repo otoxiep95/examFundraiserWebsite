@@ -60,40 +60,56 @@
   /* HEADER */
 
   header {
-    .burguerMenu {
-      width: 35px;
-      height: 30px;
-      margin: 30px 30px;
-      right: 0;
+    .burguerMenu-container {
       position: fixed;
-      cursor: pointer;
-      display: inline-block;
-      span {
-        background-color: #fff;
-        position: absolute;
-        border-radius: 2px;
-        transition: 0.3s cubic-bezier(0.8, 0.5, 0.2, 1.4);
+      height: 10vh;
+      width: 100%;
+      background-color: $beige;
+      z-index: 15;
+      a {
+        width: 5vw;
+        height: 100%;
       }
-      span:nth-child(1) {
-        width: 100%;
-        height: 4px;
-        display: block;
-        top: 0px;
-        left: 0px;
+      svg {
+        width: auto;
+        height: 100%;
+        margin: 0;
+        margin-left: 5%;
       }
-      span:nth-child(2) {
-        width: 100%;
-        height: 4px;
-        display: block;
-        top: 13px;
-        left: 0px;
-      }
-      span:nth-child(3) {
-        width: 100%;
-        height: 4px;
-        display: block;
-        bottom: 0px;
-        left: 0px;
+      .burguerMenu {
+        width: 35px;
+        height: 30px;
+        margin: 15px 20px;
+        right: 0;
+        position: fixed;
+        cursor: pointer;
+        display: inline-block;
+        span {
+          background-color: #fff;
+          position: absolute;
+          border-radius: 2px;
+        }
+        span:nth-child(1) {
+          width: 100%;
+          height: 4px;
+          display: block;
+          top: 0px;
+          left: 0px;
+        }
+        span:nth-child(2) {
+          width: 100%;
+          height: 4px;
+          display: block;
+          top: 13px;
+          left: 0px;
+        }
+        span:nth-child(3) {
+          width: 100%;
+          height: 4px;
+          display: block;
+          bottom: 0px;
+          left: 0px;
+        }
       }
     }
 
@@ -332,7 +348,8 @@
       bottom: 0;
       width: 100%;
       height: 12%;
-      background-color: $light_green;
+      background-color: $yellow_green;
+      border-top: white 1px solid;
       display: grid;
       grid-template-columns: 1fr 1fr;
       h2 {
@@ -358,7 +375,7 @@
     .forest-menu {
       display: grid;
       grid-template-columns: none;
-      grid-template-rows: 1fr 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
       h2 {
         margin: 10% 0;
       }
@@ -499,6 +516,13 @@
         .go-back-plant,
         .submit {
           padding: 1.5rem;
+        }
+      }
+    }
+    .game {
+      .infos-game {
+        p {
+          font-size: 1.2rem;
         }
       }
     }
