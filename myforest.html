@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="main.scss" />
-    <link rel="stylesheet" href="forms.scss" />
-    <link rel="stylesheet" href="mobile.scss" />
+    <link rel="stylesheet" href="css/main.scss" />
+    <link rel="stylesheet" href="css/forms.scss" />
+    <link rel="stylesheet" href="css/mobile.scss" />
     <link
       href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700"
       rel="stylesheet"
@@ -28,7 +28,7 @@
         <div class="mobile-cross">
           <img src="img/icons/cross-19.svg" alt="" />
         </div>
-        <a href="index.html#header">
+        <a id="logo-menu-link">
           <svg
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
@@ -111,12 +111,10 @@
           </svg>
         </a>
 
-        <a class="menu_link" href="index.html?id=1#forest-menu">OUR FORESTS</a>
-        <a class="menu_link" href="index.html?id=1#who-info">WHO ARE WE?</a>
-        <a class="menu_link" href="index.html??id=1#why-info"
-          >WHY PLANTING A TREE ?</a
-        >
-        <a class="menu_link" href="index.html?id=1#footer">CONTACT</a>
+        <a id="forest-menu-link" class="menu_link">OUR FORESTS</a>
+        <a id="who-menu-link" class="menu_link">WHO ARE WE?</a>
+        <a id="why-menu-link" class="menu_link">WHY PLANTING A TREE ?</a>
+        <a id="contact-menu-link" class="menu_link">CONTACT</a>
 
         <a href="index.html" class="menu_link" id="log-out-link">LOG OUT</a>
       </nav>
@@ -126,12 +124,18 @@
     <main class="myForestsMain">
       <!-- ///////////// GAME /////////////////// -->
       <div class="myForests">
-        <nav><a>BRAZIL</a> <a>TANZANIA</a> <a>USA</a> <a>VIETNAM</a></nav>
+        <nav>
+          <a id="brazil">BRAZIL</a> <a id="tanzania">TANZANIA</a>
+          <a id="usa">USA</a> <a id="vietnam">VIETNAM</a>
+        </nav>
 
         <div class="game">
+          <div class="badge"><img src="img/badges/badge1.svg" alt="" /></div>
           <div class="infos-game">
-            <p>5 TREES PLANTED !</p>
-            <p>20 TREES LEFT TO BECOME AN INFANT SEEDLING !</p>
+            <p class="current-trees">5 TREES PLANTED !</p>
+            <p class="trees-left-level-up">
+              20 TREES LEFT TO BECOME AN INFANT SEEDLING !
+            </p>
 
             <div class="level-container"><div class="level"></div></div>
           </div>
@@ -142,7 +146,9 @@
 
       <div class="my-forests-options">
         <nav>
-          <a>PLANT A TREE</a> <a>MY INFORMATIONS</a> <a>THE COMMUNITY</a>
+          <a id="plant-tree-link">PLANT A TREE</a>
+          <a id="my-info-link">MY INFORMATIONS</a>
+          <a id="community-link">THE COMMUNITY</a>
         </nav>
 
         <!-- ///////////// FORM /////////////////// -->
@@ -192,7 +198,7 @@
 
               <label class="countries2">
                 <h3>USA</h3>
-                <input type="radio" name="location" value="Usa" />
+                <input type="radio" name="location" value="USA" />
                 <span class="checkmark"></span>
               </label>
 
@@ -253,10 +259,22 @@
         </div>
 
         <!-- ///////////// INFOS OPTIONS /////////////////// -->
-        <div class="my-infos options"></div>
+        <div class="my-infos options hidden">
+          <h2>Sorry...</h2>
+          <h2>
+            This feature is not implemented yet <br />
+            :(
+          </h2>
+        </div>
 
         <!-- ///////////// COMMUNITY OPTIONS /////////////////// -->
-        <div class="the-community options"></div>
+        <div class="the-community options hidden">
+          <h2>Sorry...</h2>
+          <h2>
+            This feature is not implemented yet <br />
+            :(
+          </h2>
+        </div>
       </div>
     </main>
     <div class="mobile-bottom-menu">
