@@ -1,4 +1,16 @@
-@media only screen and (max-width: 450px) {
+
+@media only screen and (max-width: 768px) {
+/* colors: */
+
+$beige: #e0e4bd;
+$dark_green: #11514f;
+$black_green: #062720;
+$white_green: #b7decd;
+$yellow_green: #cdcd55;
+$light_green: #a5c159;
+$orange: #e1ac4a;
+$brown: #70511c;
+
   @mixin title($size, $color) {
     font-size: $size;
     font-family: "Amatic sc";
@@ -6,9 +18,37 @@
     color: $color;
   }
 
+  @mixin text($size, $color) {
+    font-size: $size;
+    font-family: "Oswald";
+    font-weight: 400;
+    color: $color;
+  }
+
+  main{ 
+  h2{
+    @include title (2.3rem, white);
+  }
+  p {
+    @include text(1.5rem, white);
+  }
+  .content{
+  a{
+    .forest-button{
+    p{
+      @include title (2.3rem, white);
+    }
+  }
+  }
+  }
+  }
+
+
+
+/* HEADER */
+
   header {
-    // background-image: none;
-    // height: 100%;
+
     .burguerMenu {
       width: 35px;
       height: 30px;
@@ -44,111 +84,262 @@
         bottom: 0px;
         left: 0px;
       }
-    }
+      }
+   
+      svg{
+        width: 60px;
+        height:60px;
+        margin: 15px;
+        #logo_mobile{
+        path{
+          fill: $dark_green;
+        }
+        } 
+        } 
+    
     .menu {
-      position: fixed;
-      padding: 0;
-      display: block;
-      width: 100%;
-      height: 100vh;
+        position: fixed;
+        padding: 0;
+        display: block;
+        width: 100%;
+        height: 100vh;
 
       .menu_link {
         width: 100%;
         font-size: 2.2rem;
         padding: 5% 0;
       }
+
       a {
         display: block;
         text-align: center;
       }
+
       .mobile-cross {
         display: initial;
         position: absolute;
         width: 15%;
         right: 5%;
         top: 2%;
-
         img {
           width: 100%;
         }
-      }
+        }
+
       #log-in-link {
         margin-top: 20%;
         grid-column: 1;
-      }
+        }  
+
       svg {
         display: block;
         width: 30%;
         height: auto;
         margin-left: 5%;
-      }
-    }
+        }
+      } 
+      /* end of menu */
+
     .process_infos {
-      grid-template-columns:none;
-      grid-template-rows: 30% 30% 30% 10%;
-      grid-row-gap: 5%;
-      grid-gap: 0%;
-      width: 70vw;
-      height:70vh;
+      grid-template-columns:100%;
+      grid-template-rows: 28% 28% 28% 12%;
+      grid-row-gap: 0%;
+      margin-bottom:0;
+      bottom:0;
+      width: 100vw;
+      height:80vh;
+      .steps{
+        width:40%;
+      }
+      #step1{
+        justify-self: start;
+        margin-left:10%;
+      }
+      #step2{
+        justify-self: end;
+        margin-right:10%;
+      }
+      #step3{
+        justify-self: start;
+        margin-left:10%;
+      }
       .getstarted{
         width:100%;
         height:100%;
+        grid-column: 1/-1;
+        grid-row: 4/-1;
+        align-self: end;
+        margin: -5%;
       }
     }
   }
+
+  /* END OF HEADER */ 
+
+  /* MODAL MOBILE STILE */ 
+
   .modal {
     display: block;
     width: 100vw;
     height: 100vh;
+    border-radius:0px;
     overflow-y: scroll;
-    .login-form {
-      width: 100%;
-      padding-top: 20%;
+    padding:0;
 
-      float: none;
+    h2{
+      display:none;
     }
-    .register-form {
+
+    .soMe-account{
+      grid-template-columns: 3fr 1fr 1fr;
+      grid-row: 7/8;
+      a{
+        place-self:center;
+      }
+    }
+
+    .register-form, .login-form{
+      float:none;
       width: 100%;
-      padding-top: 20%;
-      float: none;
+      height:85%;
+      grid-template-rows: 25px 25px 25px 25px 25px 85px 55px auto;
+      padding: 30% 10% 10% 10%;
+      grid-row: 7%;
     }
+
+    .register-form{
+      .submit-row{
+        grid-template-columns:none;
+        grid-template-rows: 1fr 1fr;
+        grid-row:8/-1;
+        .newsletter{
+          grid-row:1/2;
+          grid-column:1/-1;
+        }
+        .submit{
+          grid-row:2/3;
+          grid-column:1/-1;
+          p{
+            padding:6%;
+          }
+        }
+      }
+    }
+
+  /* SECOND PHASE REGISTERING AND PAYMENT */
     #main-register-form {
       display: none;
       .planttree-form {
-        width: 100%;
+        // width: 100%;
         float: none;
+      }
+      .first-donation-modal{
+        h2{
+          display:block;
+        }
+        width:100%;
+        padding: 30% 10% 10% 10%;
+        
+        .price{
+          p{
+            padding:23%;
+            height:fit-content;
+          }
+        }
+        .countries, .countries2{
+          h3{
+            padding:7%;
+            height:fit-content;
+          }
+        }
       }
       .credit-card-details {
         width: 100%;
+        height: 50%;
+        padding: 0% 10% 10% 10%;
+        grid-template-rows:  25px 25px 25px 25px 25px 50px;
+        grid-gap:6%;
         float: none;
+        .submit{
+          grid-row:6/7;
+        }
       }
     }
+
+    /* CONGRATULATION SCREEN */
     .congrats-part {
+      padding: 30% 10% 10% 10%;
+      height: 100%;
+   
+     
+     
       .congrats-part-title {
-        margin-bottom: 10%;
+        position:relative;
+        margin-bottom: 15%;
+        h1{
+          grid-column: 1/3;
+          justify-self: start;
+        }
+        p{
+          justify-self: start;
+        }
+        img{
+          position:absolute;
+        }
       }
+
       .first-badge {
-        margin-bottom: 5%;
+        grid-template-columns:none;
+        grid-gap:2%;
+        margin-bottom: 10%;
+        div{
+        p{
+          margin:0;
+        }
+      }
+        img{
+          grid-row:2/3;
+          justify-self:end;
+          width:60%;
+        }
       }
       .congrats-info {
-        margin-bottom: 10%;
+      text-align: left;
+        margin-bottom: 15%;
+        margin:0;
+        width:100%;
       }
+      
       #myForest-button {
-        padding: 2.5% 20%;
+        width:100%;
+        // padding: 2.5% 20%;
+        margin-right:0;
       }
+    
     }
     .mobile-bottom-modalMenu {
+    
+      position:absolute;
+      bottom:0;
+      width:100%;
+      height:12%;
+      background-color: $light_green;
       display: grid;
       grid-template-columns: 1fr 1fr;
       h2 {
+        padding:6%;
+        display:block;
         text-align: center;
       }
     }
   }
 
+  /* MAIN BODY FRONTPAGE */
+
   main {
     .content {
       display: block;
+      height:60%;
       .forest-image {
         height: 250px;
         margin: 10% 0;
@@ -156,11 +347,15 @@
       }
     }
     .forest-menu {
+      
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: none;
+      grid-template-rows: 1fr 1fr 1fr 1fr;
+      h2{
+        margin:10% 0;
+      }
       .forest-button {
-        height: 180px;
-
+        height: 100%;
         background-size: cover;
       }
     }
@@ -200,7 +395,58 @@
     display: none;
   }
 
-  ///MY FOREST PAGE
+  ///MY FOREST PAGE ///////*/
+
+
+.planttree-form{
+
+  .planttree-part{
+    padding-top:5%;
+    grid-template-rows: 25px 50px 25px 50px 50px  25px 50px;
+    grid-gap:4%;
+
+    .location{
+      grid-row:3/4;
+    }
+    
+    .countries{
+      grid-row-start: 4;
+      h3{
+        padding: 1.2rem 0;
+      }
+    }
+
+    .countries2{
+      grid-row-start: 5;
+      h3{
+        padding: 1.2rem 0;
+      }
+    }
+
+    .recurrent{
+      grid-template-columns: 70px 40px auto;
+    }
+
+    .price{
+      p{
+        padding: 1.2rem 0;
+      }
+    }
+
+    .newsletter{
+      grid-column: 1/-1;
+      grid-row:6/7;
+    }
+
+    .plant-submit{
+      grid-column:1/-1;
+      grid-row: 7/8;
+      justify-self:end;
+    }
+  }
+}
+/* END OF PLANTREE FORM */
+
 
   .myForestsMain {
     position: unset;
@@ -209,12 +455,33 @@
     padding: 5% 5%;
     .myForest {
       display: block;
-      height: 80vh;
+      height: 100%;
+      width:100%;
     }
     .my-forests-options {
       display: none;
-      height: 80vh;
+      height: 100%;
+      width:100%;
+      nav{
+        height:10%;
+        width:100%;
+        a{
+          padding:1.2rem 0 0.5rem 0;
+          place-self:center;
+          font-size:1.2rem;
+        }
+      }
     }
+    .credit-card-details{
+      grid-template-rows: auto auto 25px 25px 25px 25px  auto 55px;
+  .button-row{
+    grid-row:8/9;
+    .go-back-plant, .submit{
+      padding:1.5rem;
+    }
+  }
+    }
+
   }
   .mobile-bottom-menu {
     display: grid;
@@ -228,4 +495,10 @@
       padding: 10%;
     }
   }
+
+
+
+
+
+  /* END MEDIA QUERY*/ 
 }
