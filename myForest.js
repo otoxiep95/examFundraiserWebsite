@@ -30,7 +30,7 @@ let donationsPerCat = [
 ];
 
 //HIDE NAV IN MOBILE
-if (window.matchMedia("(min-width: 720px)").matches) {
+if (window.matchMedia("(min-width: 768px)").matches) {
   document.querySelector(".menu").classList.remove("hidden");
 } else {
   document.querySelector(".menu").classList.add("hidden");

@@ -97,7 +97,7 @@ function checkIfLoggedIn() {
 }
 
 function closeModal() {
-  if (window.matchMedia("(min-width: 720px)").matches) {
+  if (window.matchMedia("(min-width: 768px)").matches) {
     /* The viewport is at least 400 pixels wide */
   } else {
     document
@@ -405,10 +405,10 @@ function printLastDonations(lastFiveDonations) {
 }
 
 //HIDE NAV IN MOBILE
-if (window.matchMedia("(min-width: 720px)").matches) {
+if (window.matchMedia("(min-width: 768px)").matches) {
   document.querySelector(".menu").classList.remove("hidden");
 } else {
-  /* The viewport is less than 400 pixels wide */
+  /* The viewport is less than 768 pixels wide */
   document.querySelector(".menu").classList.add("hidden");
   document.querySelectorAll(".menu a").forEach(a => {
     a.addEventListener("click", e => {

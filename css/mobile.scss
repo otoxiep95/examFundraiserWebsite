@@ -60,6 +60,41 @@
   /* HEADER */
 
   header {
+    .burguerMenu {
+      width: 35px;
+      height: 30px;
+      margin: 15px 20px;
+      right: 0;
+      position: fixed;
+      cursor: pointer;
+      display: inline-block;
+      span {
+        background-color: #fff;
+        position: absolute;
+        border-radius: 2px;
+      }
+      span:nth-child(1) {
+        width: 100%;
+        height: 4px;
+        display: block;
+        top: 0px;
+        left: 0px;
+      }
+      span:nth-child(2) {
+        width: 100%;
+        height: 4px;
+        display: block;
+        top: 13px;
+        left: 0px;
+      }
+      span:nth-child(3) {
+        width: 100%;
+        height: 4px;
+        display: block;
+        bottom: 0px;
+        left: 0px;
+      }
+    }
     .burguerMenu-container {
       position: fixed;
       height: 10vh;
@@ -75,41 +110,6 @@
         height: 100%;
         margin: 0;
         margin-left: 5%;
-      }
-      .burguerMenu {
-        width: 35px;
-        height: 30px;
-        margin: 15px 20px;
-        right: 0;
-        position: fixed;
-        cursor: pointer;
-        display: inline-block;
-        span {
-          background-color: #fff;
-          position: absolute;
-          border-radius: 2px;
-        }
-        span:nth-child(1) {
-          width: 100%;
-          height: 4px;
-          display: block;
-          top: 0px;
-          left: 0px;
-        }
-        span:nth-child(2) {
-          width: 100%;
-          height: 4px;
-          display: block;
-          top: 13px;
-          left: 0px;
-        }
-        span:nth-child(3) {
-          width: 100%;
-          height: 4px;
-          display: block;
-          bottom: 0px;
-          left: 0px;
-        }
       }
     }
 
