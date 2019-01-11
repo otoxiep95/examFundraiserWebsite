@@ -16,82 +16,162 @@ let registerForm = document.querySelector("#main-register-form");
 let loginForm = document.querySelector(".login-form");
 let donateButtonsContent = document.querySelectorAll(".content button");
 
-//HIDE NAV IN MOBILE
-if (window.matchMedia("(min-width: 720px)").matches) {
-  document.querySelector(".menu").classList.remove("hidden");
-} else {
-  /* The viewport is less than 400 pixels wide */
-  document.querySelector(".menu").classList.add("hidden");
-  document.querySelectorAll(".menu a").forEach(a => {
-    a.addEventListener("click", e => {
-      document.querySelector(".menu").classList.add("hidden");
+function init() {
+  getDonationsData();
+  checkIfLoggedIn();
+}
+
+function getDonationsData() {
+  fetch(user_endpoint)
+    .then(res => res.json())
+    .then(data => {
+      //MAKE AN ARRAY OF DONATIONS ARRAY
+      let userdonations = data.map((user, index) => {
+        return user.donations;
+      });
+
+      // MAKE ARRAY OF DONATIONS
+      let donations = [].concat.apply([], userdonations);
+
+      //total amount of trees planted
+      let totalDonations = donations
+        // MAKE AN ARRAY OF TREE NUMBER
+        .map(d => {
+          return d.trees;
+        })
+        .reduce(add, 0);
+
+      // SUM TREE NUMBER
+      function add(a, b) {
+        return a + b;
+      }
+
+      printTotalDonations(totalDonations);
+
+      //last 5 donations
+      let lastFiveDonations = [];
+      lastFiveDonations = donations
+        .sort(function(a, b) {
+          return b.id - a.id;
+        })
+        .slice(0, 5);
+
+      printLastDonations(lastFiveDonations);
     });
+}
+
+function checkIfLoggedIn() {
+  if (userIdurl) {
+    // GIVE USER ID TO URL
+    document.querySelector("#myforest-link").href =
+      "myforest.html?id=" + userIdurl;
+    // DIRECT DONATE BUTTONS TO MY FOREST PAGE
+    donateButtonsContent.forEach(but => {
+      but.addEventListener("click", function() {
+        window.location = "myforest.html?id=" + userIdurl;
+      });
+    });
+    //IF USER LOGED IN DONT SHOW LOG IN LINK IN NAV
+    document.querySelector("#log-in-link").classList.add("hidden");
+    document.querySelector("#log-out-link").classList.remove("hidden");
+    document.querySelector("#myforest-link").classList.remove("hidden");
+  } else {
+    document.querySelector("#myforest-link").classList.add("hidden");
+
+    // DIRECT DONATE BUTTONS TO REGISTER/LOGIN MODAL
+    donateButtonsContent.forEach(but => {
+      but.addEventListener("click", openModal);
+    });
+
+    // DIRECT GET STARTED BUTTONS TO REGISTER/LOGIN MODAL
+    document.querySelector(".getstarted").addEventListener("click", openModal);
+
+    // DIRECT LOG IN TO REGISTER/LOGIN MODAL
+    document.querySelector("#log-in-link").addEventListener("click", openModal);
+
+    // CLOSE THE MODAL
+    document
+      .querySelector(".modal .cross")
+      .addEventListener("click", closeModal);
+  }
+}
+
+function closeModal() {
+  if (window.matchMedia("(min-width: 720px)").matches) {
+    /* The viewport is at least 400 pixels wide */
+  } else {
+    document
+      .querySelector(".mobile-bottom-modalMenu")
+      .classList.remove("hidden");
+  }
+  loginModal.classList.add("hidden");
+  document.querySelector(".register-form").classList.remove("hidden");
+  loginForm.classList.remove("hidden");
+  document.querySelector(".planttree-form").classList.add("hidden");
+  document.querySelector(".credit-card-details").classList.add("hidden");
+}
+
+function openModal() {
+  loginModal.classList.remove("hidden");
+  document.querySelector(".register-form").classList.remove("hidden");
+  loginForm.classList.remove("hidden");
+  document.querySelector(".planttree-form").classList.add("hidden");
+  document.querySelector(".credit-card-details").classList.add("hidden");
+
+  // CHECK IF USERNAME EMAIL AND PASSWORD TAKEN
+  registerForm.elements.iusername.addEventListener("blur", usernameTaken);
+  registerForm.elements.iemail.addEventListener("blur", emailTaken);
+  registerForm.elements.ipassword.addEventListener("blur", passwordValid);
+
+  // MODAL SECOND STEP
+  document
+    .querySelector(".next-step-button")
+    .addEventListener("click", function() {
+      // CHECK USER INFO BEFORE GOING DONATION FORM
+      if (userInfoValid()) {
+        modal2ndStep();
+      }
+    });
+
+  //SUBMIT LOGIN FORM
+  loginForm.addEventListener("submit", e => {
+    e.preventDefault();
+
+    verifyUser(
+      loginForm.elements.username.value,
+      loginForm.elements.password.value
+    );
   });
 }
 
-// IF USER LOGGED IN
-if (userIdurl) {
-  // GIVE USER ID TO URL
-  document.querySelector("#myforest-link").href =
-    "myforest.html?id=" + userIdurl;
-  // DIRECT DONATE BUTTONS TO MY FOREST PAGE
-  donateButtonsContent.forEach(but => {
-    but.addEventListener("click", function() {
-      window.location = "myforest.html?id=" + userIdurl;
-    });
-  });
-  //IF USER LOGED IN DONT SHOW LOG IN LINK IN NAV
-  document.querySelector("#log-in-link").classList.add("hidden");
-  document.querySelector("#log-out-link").classList.remove("hidden");
-  document.querySelector("#myforest-link").classList.remove("hidden");
-} else {
-  document.querySelector("#myforest-link").classList.add("hidden");
+function modal2ndStep() {
+  // SHOW / HIDE STEPS
+  document.querySelector(".mobile-bottom-modalMenu").classList.add("hidden");
+  document.querySelector(".register-form").classList.add("hidden");
+  document.querySelector(".login-form").classList.add("hidden");
+  document.querySelector(".planttree-form").classList.remove("hidden");
+  document.querySelector(".credit-card-details").classList.remove("hidden");
 
-  // DIRECT DONATE BUTTONS TO REGISTER/LOGIN MODAL
-  donateButtonsContent.forEach(but => {
-    but.addEventListener("click", function() {
-      loginModal.classList.remove("hidden");
-      document.querySelector(".register-form").classList.remove("hidden");
-      loginForm.classList.remove("hidden");
-      document.querySelector(".planttree-form").classList.add("hidden");
-      document.querySelector(".credit-card-details").classList.add("hidden");
-    });
+  //CHANGE PRICE REGARDING NUMBER OF TREES
+
+  document.querySelector(".plus").addEventListener("click", e => {
+    let treeNum = registerForm.elements.treenumber.value;
+    registerForm.elements.treenumber.stepUp(1);
+    document.querySelector(".price p").textContent = treeNum * 10 + "kr";
   });
 
-  // DIRECT GET STARTED BUTTONS TO REGISTER/LOGIN MODAL
-  document.querySelector(".getstarted").addEventListener("click", function() {
-    //open modal
-    loginModal.classList.remove("hidden");
-    document.querySelector(".register-form").classList.remove("hidden");
-    loginForm.classList.remove("hidden");
-    document.querySelector(".planttree-form").classList.add("hidden");
-    document.querySelector(".credit-card-details").classList.add("hidden");
-  });
-
-  // DIRECT LOG IN TO REGISTER/LOGIN MODAL
-  document.querySelector("#log-in-link").addEventListener("click", function() {
-    //open modal
-    loginModal.classList.remove("hidden");
-    document.querySelector(".register-form").classList.remove("hidden");
-    loginForm.classList.remove("hidden");
-    document.querySelector(".planttree-form").classList.add("hidden");
-    document.querySelector(".credit-card-details").classList.add("hidden");
-  });
-
-  // CLOSE THE MODAL
-  document.querySelector(".modal .cross").addEventListener("click", function() {
-    if (window.matchMedia("(min-width: 720px)").matches) {
-      /* The viewport is at least 400 pixels wide */
-    } else {
-      document
-        .querySelector(".mobile-bottom-modalMenu")
-        .classList.remove("hidden");
+  document.querySelector(".minus").addEventListener("click", e => {
+    let treeNum = registerForm.elements.treenumber.value;
+    if (registerForm.elements.treenumber.value > 1) {
+      registerForm.elements.treenumber.stepUp(-1);
+      document.querySelector(".price p").textContent = treeNum * 10 + "kr";
     }
-    loginModal.classList.add("hidden");
-    document.querySelector(".register-form").classList.remove("hidden");
-    loginForm.classList.remove("hidden");
-    document.querySelector(".planttree-form").classList.add("hidden");
-    document.querySelector(".credit-card-details").classList.add("hidden");
+  });
+
+  //SUBMIT REGISTER FORM
+  registerForm.addEventListener("submit", e => {
+    e.preventDefault();
+    registerSubmit();
   });
 }
 
@@ -113,23 +193,7 @@ function userInfoValid() {
   }
 }
 
-document
-  .querySelector(".next-step-button")
-  .addEventListener("click", function() {
-    // CHECK USER INFO BEFORE GOING DONATION FORM
-    if (userInfoValid()) {
-      document
-        .querySelector(".mobile-bottom-modalMenu")
-        .classList.add("hidden");
-      document.querySelector(".register-form").classList.add("hidden");
-      document.querySelector(".login-form").classList.add("hidden");
-      document.querySelector(".planttree-form").classList.remove("hidden");
-      document.querySelector(".credit-card-details").classList.remove("hidden");
-    }
-  });
-
-//SHOW ERROR MESSAGE IF USERNAME IS TAKEN
-registerForm.elements.iusername.addEventListener("blur", e => {
+function usernameTaken() {
   let username = registerForm.elements.iusername.value;
   let warningSigng = registerForm.elements.iusername.parentElement.querySelector(
     "span"
@@ -159,10 +223,9 @@ registerForm.elements.iusername.addEventListener("blur", e => {
         ).textContent = "";
       }
     });
-});
+}
 
-//SHOW ERROR MESSAGE IF EMAIL TAKEN OR INVALID
-registerForm.elements.iemail.addEventListener("blur", e => {
+function emailTaken() {
   let email = registerForm.elements.iemail.value;
   let warningSigng = registerForm.elements.iemail.parentElement.querySelector(
     "span"
@@ -200,10 +263,9 @@ registerForm.elements.iemail.addEventListener("blur", e => {
         ).textContent = "please type a valid semail";
       }
     });
-});
+}
 
-//SHOW ERROR MESSAGE IF PASSWORD INVALID
-registerForm.elements.ipassword.addEventListener("blur", e => {
+function passwordValid() {
   let warningSigng = registerForm.elements.iemail.parentElement.querySelector(
     "span"
   );
@@ -214,56 +276,7 @@ registerForm.elements.ipassword.addEventListener("blur", e => {
       "span"
     ).textContent = "password not valid";
   }
-});
-
-//CHANGE PRICE REGARDING NUMBER OF TREES
-document.querySelector(".plus").addEventListener("click", e => {
-  registerForm.elements.treenumber.stepUp(1);
-  let treeNum = registerForm.elements.treenumber.value;
-
-  document.querySelector(".price p").textContent = treeNum * 10 + "kr";
-});
-document.querySelector(".minus").addEventListener("click", e => {
-  if (registerForm.elements.treenumber.value > 1) {
-    registerForm.elements.treenumber.stepUp(-1);
-    let treeNum = registerForm.elements.treenumber.value;
-
-    document.querySelector(".price p").textContent = treeNum * 10 + "kr";
-  }
-});
-
-//SUBMIT REGISTER FORM
-registerForm.addEventListener("submit", e => {
-  // dont refresh the page
-  e.preventDefault();
-
-  const newUserData = {
-    firstname: registerForm.elements.ifirstname.value,
-    lastname: registerForm.elements.ilastname.value,
-    username: registerForm.elements.iusername.value,
-    email: registerForm.elements.iemail.value,
-    password: registerForm.elements.ipassword.value,
-    date: new Date().toDateString()
-  };
-  const firstDonationData = {
-    category: registerForm.elements.location.value,
-    trees: Number(registerForm.elements.treenumber.value),
-    date: new Date().toDateString()
-  };
-  createUser(newUserData, firstDonationData);
-  document.querySelector("#main-register-form").classList.add("hidden");
-  document.querySelector(".congrats-part").classList.remove("hidden");
-});
-
-//SUBMIT LOGIN FORM
-loginForm.addEventListener("submit", e => {
-  e.preventDefault();
-
-  verifyUser(
-    loginForm.elements.username.value,
-    loginForm.elements.password.value
-  );
-});
+}
 
 function verifyUser(username, password) {
   fetch(user_endpoint)
@@ -284,6 +297,25 @@ function verifyUser(username, password) {
         }
       });
     });
+}
+
+function registerSubmit() {
+  const newUserData = {
+    firstname: registerForm.elements.ifirstname.value,
+    lastname: registerForm.elements.ilastname.value,
+    username: registerForm.elements.iusername.value,
+    email: registerForm.elements.iemail.value,
+    password: registerForm.elements.ipassword.value,
+    date: new Date().toDateString()
+  };
+  const firstDonationData = {
+    category: registerForm.elements.location.value,
+    trees: Number(registerForm.elements.treenumber.value),
+    date: new Date().toDateString()
+  };
+  createUser(newUserData, firstDonationData);
+  document.querySelector("#main-register-form").classList.add("hidden");
+  document.querySelector(".congrats-part").classList.remove("hidden");
 }
 
 function createUser(newUserData, firstDonationData) {
@@ -314,6 +346,8 @@ function createUser(newUserData, firstDonationData) {
     });
 }
 
+/* MOBILE CODE */
+
 //CLICK BURGER MENU MOBILE
 document.querySelector(".burguerMenu").addEventListener("click", function() {
   document.querySelector(".menu").classList.remove("hidden");
@@ -335,45 +369,6 @@ document
     document.querySelector(".login-form").style.display = "none";
     document.querySelector("#main-register-form").style.display = "block";
   });
-
-// PRINT FIVE LAST DONATION AND TOTAL DONATIONS
-function init() {
-  fetch(user_endpoint)
-    .then(res => res.json())
-    .then(data => {
-      //MAKE AN ARRAY OF DONATIONS ARRAY
-      let userdonations = data.map((user, index) => {
-        return user.donations;
-      });
-      // MAKE ARRAY OF DONATIONS
-      let donations = [].concat.apply([], userdonations);
-
-      //total amount of trees planted
-      let totalDonations = donations
-        // MAKE AN ARRAY OF TREE NUMBER
-        .map(d => {
-          return d.trees;
-        })
-        .reduce(add, 0);
-
-      // SUM TREE NUMBER
-      function add(a, b) {
-        return a + b;
-      }
-
-      printTotalDonations(totalDonations);
-
-      //last 5 donations
-      let lastFiveDonations = [];
-      lastFiveDonations = donations
-        .sort(function(a, b) {
-          return b.id - a.id;
-        })
-        .slice(0, 5);
-
-      printLastDonations(lastFiveDonations);
-    });
-}
 
 function printTotalDonations(totalTrees) {
   document.querySelector(".total-planted span").textContent = totalTrees;
@@ -406,6 +401,19 @@ function printLastDonations(lastFiveDonations) {
     clone.querySelector(".donation-value .forest").textContent =
       donation.category;
     document.querySelector(".recentDonations").appendChild(clone);
+  });
+}
+
+//HIDE NAV IN MOBILE
+if (window.matchMedia("(min-width: 720px)").matches) {
+  document.querySelector(".menu").classList.remove("hidden");
+} else {
+  /* The viewport is less than 400 pixels wide */
+  document.querySelector(".menu").classList.add("hidden");
+  document.querySelectorAll(".menu a").forEach(a => {
+    a.addEventListener("click", e => {
+      document.querySelector(".menu").classList.add("hidden");
+    });
   });
 }
 
