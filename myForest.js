@@ -10,6 +10,25 @@ let endpoint =
 
 let donationForm = document.querySelector(".donation-form");
 let goBackButton = document.querySelector(".go-back-plant");
+let donationsPerCat = [
+  {
+    category: "Brazil",
+    trees: 0
+  },
+  {
+    category: "Tanzania",
+    trees: 0
+  },
+  {
+    category: "USA",
+    trees: 0
+  },
+  {
+    category: "Vietnam",
+    trees: 0
+  }
+];
+
 //HIDE NAV IN MOBILE
 if (window.matchMedia("(min-width: 720px)").matches) {
   document.querySelector(".menu").classList.remove("hidden");
@@ -29,37 +48,22 @@ document.querySelector("#why-menu-link").href =
 document.querySelector("#contact-menu-link").href =
   "index.html?id=" + userId + "#footer";
 
-document.querySelector("#plant-tree-link").addEventListener("click", e => {
-  e.target.classList.add("forest-selected");
-  document.querySelector("#my-info-link").classList.remove("forest-selected");
-  document.querySelector("#community-link").classList.remove("forest-selected");
-  document.querySelector(".planttree-form").classList.remove("hidden");
-  document.querySelector(".my-infos").classList.add("hidden");
-  document.querySelector(".the-community").classList.add("hidden");
-});
+let brazilGameLink = document.querySelector("#brazil");
+let tanzaniaGameLink = document.querySelector("#tanzania");
+let usaGameLink = document.querySelector("#usa");
+let vietnamGameLink = document.querySelector("#vietnam");
 
-document.querySelector("#my-info-link").addEventListener("click", e => {
-  e.target.classList.add("forest-selected");
-  document
-    .querySelector("#plant-tree-link")
-    .classList.remove("forest-selected");
-  document.querySelector("#community-link").classList.remove("forest-selected");
-  document.querySelector(".planttree-form").classList.add("hidden");
-  document.querySelector(".my-infos").classList.remove("hidden");
-  document.querySelector(".the-community").classList.add("hidden");
-});
+let plantTreeLink = document.querySelector("#plant-tree-link");
+let myInfoLink = document.querySelector("#my-info-link");
+let communityLink = document.querySelector("#community-link");
 
-document.querySelector("#community-link").addEventListener("click", e => {
-  e.target.classList.add("forest-selected");
-  document.querySelector("#my-info-link").classList.remove("forest-selected");
-  document
-    .querySelector("#plant-tree-link")
-    .classList.remove("forest-selected");
-  document.querySelector(".planttree-form").classList.add("hidden");
-  document.querySelector(".my-infos").classList.add("hidden");
-  document.querySelector(".the-community").classList.remove("hidden");
-});
+function init() {
+  fetchDonatios();
+  setGameLinks();
+  setOptionsLinks();
+}
 
+// PLUS AND MINUS IN THE FORM
 document.querySelector(".plus").addEventListener("click", e => {
   donationForm.elements.treenumber.stepUp(1);
   let treeNum = donationForm.elements.treenumber.value;
@@ -74,10 +78,14 @@ document.querySelector(".minus").addEventListener("click", e => {
     document.querySelector(".price p").textContent = treeNum * 10 + "kr";
   }
 });
+
+//GO BACK BUTTON
 goBackButton.addEventListener("click", e => {
   document.querySelector(".myforestCC").classList.add("hidden");
   document.querySelector(".planttree-part").classList.remove("hidden");
 });
+
+//SUBMIT FORM
 document
   .querySelector(".myforestCC .submit")
   .addEventListener("click", function() {
@@ -125,74 +133,71 @@ function postDonation(newDonation) {
     .then(d => {});
 }
 
-document.querySelector(".burguerMenu").addEventListener("click", function() {
-  document.querySelector(".menu").classList.remove("hidden");
-});
-document.querySelector(".mobile-cross").addEventListener("click", function() {
-  document.querySelector(".menu").classList.add("hidden");
-});
-document
-  .querySelector("#myForest-botttom")
-  .addEventListener("click", function() {
-    document.querySelector(".myForests").style.display = "block";
-    document.querySelector(".my-forests-options").style.display = "none";
-  });
-document.querySelector("#options-bottom").addEventListener("click", function() {
-  document.querySelector(".myForests").style.display = "none";
-  document.querySelector(".my-forests-options").style.display = "block";
-});
-
-function init() {
-  fetchDonatios();
-
+function setGameLinks() {
   document.querySelector("#brazil").addEventListener("click", e => {
     getGame(e.target.id);
     e.target.classList.add("forest-selected");
-    document.querySelector("#tanzania").classList.remove("forest-selected");
-    document.querySelector("#usa").classList.remove("forest-selected");
-    document.querySelector("#vietnam").classList.remove("forest-selected");
+
+    nonActive(tanzaniaGameLink, usaGameLink, vietnamGameLink);
   });
   document.querySelector("#tanzania").addEventListener("click", e => {
     getGame(e.target.id);
     e.target.classList.add("forest-selected");
-    document.querySelector("#brazil").classList.remove("forest-selected");
-    document.querySelector("#usa").classList.remove("forest-selected");
-    document.querySelector("#vietnam").classList.remove("forest-selected");
+
+    nonActive(brazilGameLink, usaGameLink, vietnamGameLink);
   });
   document.querySelector("#usa").addEventListener("click", e => {
     getGame(e.target.id);
     e.target.classList.add("forest-selected");
-    document.querySelector("#tanzania").classList.remove("forest-selected");
-    document.querySelector("#brazil").classList.remove("forest-selected");
-    document.querySelector("#vietnam").classList.remove("forest-selected");
+
+    nonActive(tanzaniaGameLink, brazilGameLink, vietnamGameLink);
   });
   document.querySelector("#vietnam").addEventListener("click", e => {
     getGame(e.target.id);
     e.target.classList.add("forest-selected");
-    document.querySelector("#tanzania").classList.remove("forest-selected");
-    document.querySelector("#usa").classList.remove("forest-selected");
-    document.querySelector("#brazil").classList.remove("forest-selected");
+
+    nonActive(brazilGameLink, tanzaniaGameLink, usaGameLink);
   });
 }
-let donationsPerCat = [
-  {
-    category: "Brazil",
-    trees: 0
-  },
-  {
-    category: "Tanzania",
-    trees: 0
-  },
-  {
-    category: "USA",
-    trees: 0
-  },
-  {
-    category: "Vietnam",
-    trees: 0
+
+function setOptionsLinks() {
+  plantTreeLink.addEventListener("click", e => {
+    e.target.classList.add("forest-selected");
+    nonActive(myInfoLink, communityLink);
+
+    document.querySelector(".planttree-form").classList.remove("hidden");
+    document.querySelector(".my-infos").classList.add("hidden");
+    document.querySelector(".the-community").classList.add("hidden");
+  });
+
+  myInfoLink.addEventListener("click", e => {
+    e.target.classList.add("forest-selected");
+
+    nonActive(plantTreeLink, communityLink);
+    document.querySelector(".planttree-form").classList.add("hidden");
+    document.querySelector(".my-infos").classList.remove("hidden");
+    document.querySelector(".the-community").classList.add("hidden");
+  });
+
+  communityLink.addEventListener("click", e => {
+    e.target.classList.add("forest-selected");
+
+    nonActive(plantTreeLink, myInfoLink);
+    document.querySelector(".planttree-form").classList.add("hidden");
+    document.querySelector(".my-infos").classList.add("hidden");
+    document.querySelector(".the-community").classList.remove("hidden");
+  });
+}
+
+function nonActive(link1, link2, link3) {
+  link1.classList.remove("forest-selected");
+  link2.classList.remove("forest-selected");
+  if (link3) {
+    link3.classList.remove("forest-selected");
   }
-];
-function fetchDonatios() {
+}
+
+function fetchDonatios(forest) {
   fetch(endpoint)
     .then(res => res.json())
     .then(data => {
@@ -211,9 +216,12 @@ function fetchDonatios() {
           ] += donation.trees;
         }
       });
+      let gameForest = "brazil";
+      if (forest) {
+        gameForest = forest;
+      }
 
-      let defaultForest = "brazil";
-      getGame(defaultForest);
+      getGame(gameForest);
     });
 }
 
@@ -258,5 +266,25 @@ function getGame(forest) {
     }
   });
 }
+
+//MOBILE
+
+document.querySelector(".burguerMenu").addEventListener("click", function() {
+  document.querySelector(".menu").classList.remove("hidden");
+});
+document.querySelector(".mobile-cross").addEventListener("click", function() {
+  document.querySelector(".menu").classList.add("hidden");
+});
+
+document
+  .querySelector("#myForest-botttom")
+  .addEventListener("click", function() {
+    document.querySelector(".myForests").style.display = "block";
+    document.querySelector(".my-forests-options").style.display = "none";
+  });
+document.querySelector("#options-bottom").addEventListener("click", function() {
+  document.querySelector(".myForests").style.display = "none";
+  document.querySelector(".my-forests-options").style.display = "block";
+});
 
 init();
