@@ -67,14 +67,13 @@ function init() {
 document.querySelector(".plus").addEventListener("click", e => {
   donationForm.elements.treenumber.stepUp(1);
   let treeNum = donationForm.elements.treenumber.value;
-
   document.querySelector(".price p").textContent = treeNum * 10 + "kr";
 });
+
 document.querySelector(".minus").addEventListener("click", e => {
   if (donationForm.elements.treenumber.value > 1) {
     donationForm.elements.treenumber.stepUp(-1);
     let treeNum = donationForm.elements.treenumber.value;
-
     document.querySelector(".price p").textContent = treeNum * 10 + "kr";
   }
 });
@@ -93,6 +92,7 @@ document
     document.querySelector(".planttree-part").classList.remove("hidden");
   });
 
+// SUBMIT DONATION
 donationForm.addEventListener("submit", e => {
   /* DONT REFRESH PAGE */
   e.preventDefault();
@@ -109,8 +109,8 @@ donationForm.addEventListener("submit", e => {
     donationForm.elements.location.value;
   document.querySelector(".purchase-price").textContent =
     Number(donationForm.elements.treenumber.value) * 10 + "kr";
-  goToPayment();
 
+  goToPayment();
   postDonation(donationObject);
 });
 

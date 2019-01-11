@@ -81,6 +81,8 @@ label {
   grid-template-columns: 90px 7px auto;
   @include text(1.8rem, white);
   input {
+    position: relative;
+
     grid-column: 3/-1;
     width: 100%;
     border-radius: 7px;
