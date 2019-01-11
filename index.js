@@ -1,8 +1,10 @@
 "use strict";
 
+// GET ID OF LOGGED IN USER
 let urlParams = new URLSearchParams(window.location.search);
-
 let userIdurl = urlParams.get("id");
+
+// MOCK API LINK FOR ALL USERS
 let user_endpoint =
   "https://5bfd357c827c3800139ae907.mockapi.io/treefund/user/";
 
@@ -13,6 +15,7 @@ let loginModal = document.querySelector(".modal");
 let registerForm = document.querySelector("#main-register-form");
 let loginForm = document.querySelector(".login-form");
 let donateButtonsContent = document.querySelectorAll(".content button");
+
 //HIDE NAV IN MOBILE
 if (window.matchMedia("(min-width: 720px)").matches) {
   document.querySelector(".menu").classList.remove("hidden");
@@ -26,22 +29,25 @@ if (window.matchMedia("(min-width: 720px)").matches) {
   });
 }
 
-//IF USER LOGED IN DONT SHOW LOG IN LINK IN NAV
+// IF USER LOGGED IN
 if (userIdurl) {
+  // GIVE USER ID TO URL
   document.querySelector("#myforest-link").href =
     "myforest.html?id=" + userIdurl;
+  // DIRECT DONATE BUTTONS TO MY FOREST PAGE
   donateButtonsContent.forEach(but => {
     but.addEventListener("click", function() {
       window.location = "myforest.html?id=" + userIdurl;
     });
   });
+  //IF USER LOGED IN DONT SHOW LOG IN LINK IN NAV
   document.querySelector("#log-in-link").classList.add("hidden");
   document.querySelector("#log-out-link").classList.remove("hidden");
   document.querySelector("#myforest-link").classList.remove("hidden");
 } else {
   document.querySelector("#myforest-link").classList.add("hidden");
 
-  //OPENING AND CLOSING OF MODAL FOR LOGIN AND REGISTER
+  // DIRECT DONATE BUTTONS TO REGISTER/LOGIN MODAL
   donateButtonsContent.forEach(but => {
     but.addEventListener("click", function() {
       loginModal.classList.remove("hidden");
@@ -52,6 +58,7 @@ if (userIdurl) {
     });
   });
 
+  // DIRECT GET STARTED BUTTONS TO REGISTER/LOGIN MODAL
   document.querySelector(".getstarted").addEventListener("click", function() {
     //open modal
     loginModal.classList.remove("hidden");
@@ -60,6 +67,8 @@ if (userIdurl) {
     document.querySelector(".planttree-form").classList.add("hidden");
     document.querySelector(".credit-card-details").classList.add("hidden");
   });
+
+  // DIRECT LOG IN TO REGISTER/LOGIN MODAL
   document.querySelector("#log-in-link").addEventListener("click", function() {
     //open modal
     loginModal.classList.remove("hidden");
@@ -68,6 +77,8 @@ if (userIdurl) {
     document.querySelector(".planttree-form").classList.add("hidden");
     document.querySelector(".credit-card-details").classList.add("hidden");
   });
+
+  // CLOSE THE MODAL
   document.querySelector(".modal .cross").addEventListener("click", function() {
     if (window.matchMedia("(min-width: 720px)").matches) {
       /* The viewport is at least 400 pixels wide */
@@ -84,9 +95,10 @@ if (userIdurl) {
   });
 }
 
-// CHECK INFO TO BEFORE GOING TO DONATION FORM FUNCTION
 function userInfoValid() {
+  // CHECK INFO FROM HTML INPUT
   let validity = registerForm.checkValidity();
+  // RETURNS IF USERNAME AND EMAIL TAKEN
   if (validity) {
     if (
       document
@@ -104,7 +116,7 @@ function userInfoValid() {
 document
   .querySelector(".next-step-button")
   .addEventListener("click", function() {
-    // CHECK INFO TO BEFORE GOING TO DONATION FORM
+    // CHECK USER INFO BEFORE GOING DONATION FORM
     if (userInfoValid()) {
       document
         .querySelector(".mobile-bottom-modalMenu")
@@ -116,12 +128,13 @@ document
     }
   });
 
-//SHOW ERROE MESSAGE IF USERNAME IS TAKEN
+//SHOW ERROR MESSAGE IF USERNAME IS TAKEN
 registerForm.elements.iusername.addEventListener("blur", e => {
   let username = registerForm.elements.iusername.value;
   let warningSigng = registerForm.elements.iusername.parentElement.querySelector(
     "span"
   );
+  // CHECK USERNAME IN DATABASE
   fetch(user_endpoint)
     .then(res => res.json())
     .then(data => {
@@ -131,6 +144,7 @@ registerForm.elements.iusername.addEventListener("blur", e => {
           userTaken = true;
         }
       });
+
       if (userTaken) {
         warningSigng.classList.add("wrong");
         warningSigng.classList.remove("validated");
@@ -146,6 +160,7 @@ registerForm.elements.iusername.addEventListener("blur", e => {
       }
     });
 });
+
 //SHOW ERROR MESSAGE IF EMAIL TAKEN OR INVALID
 registerForm.elements.iemail.addEventListener("blur", e => {
   let email = registerForm.elements.iemail.value;
@@ -162,6 +177,7 @@ registerForm.elements.iemail.addEventListener("blur", e => {
           emailTaken = true;
         }
       });
+
       if (registerForm.elements.iemail.checkValidity()) {
         if (emailTaken) {
           warningSigng.classList.add("wrong");
@@ -186,6 +202,7 @@ registerForm.elements.iemail.addEventListener("blur", e => {
     });
 });
 
+//SHOW ERROR MESSAGE IF PASSWORD INVALID
 registerForm.elements.ipassword.addEventListener("blur", e => {
   let warningSigng = registerForm.elements.iemail.parentElement.querySelector(
     "span"
@@ -199,7 +216,7 @@ registerForm.elements.ipassword.addEventListener("blur", e => {
   }
 });
 
-//CHANGE PRICE REGARDING NNUMBER OF TREES
+//CHANGE PRICE REGARDING NUMBER OF TREES
 document.querySelector(".plus").addEventListener("click", e => {
   registerForm.elements.treenumber.stepUp(1);
   let treeNum = registerForm.elements.treenumber.value;
@@ -217,6 +234,7 @@ document.querySelector(".minus").addEventListener("click", e => {
 
 //SUBMIT REGISTER FORM
 registerForm.addEventListener("submit", e => {
+  // dont refresh the page
   e.preventDefault();
 
   const newUserData = {
@@ -237,6 +255,7 @@ registerForm.addEventListener("submit", e => {
   document.querySelector(".congrats-part").classList.remove("hidden");
 });
 
+//SUBMIT LOGIN FORM
 loginForm.addEventListener("submit", e => {
   e.preventDefault();
 
@@ -251,7 +270,7 @@ function verifyUser(username, password) {
     .then(res => res.json())
     .then(data => {
       data.forEach(user => {
-        //verify if there is usernamer
+        //verify if there is username
         if (user.username === username) {
           //within this verify if the password matches
           if (user.password === password) {
@@ -295,12 +314,15 @@ function createUser(newUserData, firstDonationData) {
     });
 }
 
+//CLICK BURGER MENU MOBILE
 document.querySelector(".burguerMenu").addEventListener("click", function() {
   document.querySelector(".menu").classList.remove("hidden");
 });
 document.querySelector(".mobile-cross").addEventListener("click", function() {
   document.querySelector(".menu").classList.add("hidden");
 });
+
+// SWITCH REGISTER LOGIN MOBILE
 document
   .querySelector("#bottom-modal-login")
   .addEventListener("click", function() {
@@ -314,26 +336,31 @@ document
     document.querySelector("#main-register-form").style.display = "block";
   });
 
+// PRINT FIVE LAST DONATION AND TOTAL DONATIONS
 function init() {
   fetch(user_endpoint)
     .then(res => res.json())
     .then(data => {
+      //MAKE AN ARRAY OF DONATIONS ARRAY
       let userdonations = data.map((user, index) => {
         return user.donations;
       });
-
+      // MAKE ARRAY OF DONATIONS
       let donations = [].concat.apply([], userdonations);
 
       //total amount of trees planted
       let totalDonations = donations
+        // MAKE AN ARRAY OF TREE NUMBER
         .map(d => {
           return d.trees;
         })
         .reduce(add, 0);
 
+      // SUM TREE NUMBER
       function add(a, b) {
         return a + b;
       }
+
       printTotalDonations(totalDonations);
 
       //last 5 donations
