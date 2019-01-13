@@ -162,7 +162,8 @@ function setGameLinks() {
 
 function setOptionsLinks() {
   plantTreeLink.addEventListener("click", e => {
-    e.target.classList.add("forest-selected");
+    plantTreeLink.classList.add("forest-selected");
+
     nonActive(myInfoLink, communityLink);
 
     document.querySelector(".planttree-form").classList.remove("hidden");
@@ -171,7 +172,7 @@ function setOptionsLinks() {
   });
 
   myInfoLink.addEventListener("click", e => {
-    e.target.classList.add("forest-selected");
+    myInfoLink.classList.add("forest-selected");
 
     nonActive(plantTreeLink, communityLink);
     document.querySelector(".planttree-form").classList.add("hidden");
@@ -180,7 +181,7 @@ function setOptionsLinks() {
   });
 
   communityLink.addEventListener("click", e => {
-    e.target.classList.add("forest-selected");
+    communityLink.classList.add("forest-selected");
 
     nonActive(plantTreeLink, myInfoLink);
     document.querySelector(".planttree-form").classList.add("hidden");
@@ -281,13 +282,18 @@ document.querySelector(".mobile-cross").addEventListener("click", function() {
   document.querySelector(".menu").classList.add("hidden");
 });
 
-document
-  .querySelector("#myForest-botttom")
-  .addEventListener("click", function() {
-    document.querySelector(".myForests").style.display = "block";
-    document.querySelector(".my-forests-options").style.display = "none";
-  });
-document.querySelector("#options-bottom").addEventListener("click", function() {
+let myForestBottom = document.querySelector("#myForest-botttom");
+let optionsBottom = document.querySelector("#options-bottom");
+
+myForestBottom.addEventListener("click", function() {
+  myForestBottom.classList.add("bottom-selected");
+  optionsBottom.classList.remove("bottom-selected");
+  document.querySelector(".myForests").style.display = "block";
+  document.querySelector(".my-forests-options").style.display = "none";
+});
+optionsBottom.addEventListener("click", function() {
+  optionsBottom.classList.add("bottom-selected");
+  myForestBottom.classList.remove("bottom-selected");
   document.querySelector(".myForests").style.display = "none";
   document.querySelector(".my-forests-options").style.display = "block";
 });
