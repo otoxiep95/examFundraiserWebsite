@@ -1,4 +1,8 @@
 @media only screen and (max-width: 768px) {
+  :root {
+    font-size: 52.5%;
+  }
+
   /* colors: */
 
   $beige: #e0e4bd;
@@ -191,11 +195,11 @@
         margin-left: 10%;
       }
       .getstarted {
-        width: 100%;
-        height: 100%;
+        width: 90%;
+        height: 90%;
         grid-column: 1/-1;
         grid-row: 4/-1;
-        align-self: end;
+        align-self: center;
         margin: -5%;
       }
     }
@@ -392,6 +396,7 @@
     height: auto;
     h2 {
       margin-bottom: 10%;
+      text-align: left;
     }
     .recentDonation-post {
       height: 20vh;
@@ -413,6 +418,13 @@
     }
     .contact {
       grid-column: 3;
+      margin: 0;
+      h3 {
+        font-size: 2.5rem;
+      }
+      p {
+        font-size: 1rem;
+      }
     }
     .soMe-icons {
       grid-column: 2/3;
@@ -437,9 +449,14 @@
 
   ///MY FOREST PAGE ///////*/
 
+  .icon {
+    width: 35%;
+  }
+
   .planttree-form {
     .planttree-part {
-      padding-top: 5%;
+      // padding-top: 5%;
+      padding: 10% 2%;
       grid-template-rows: 25px 50px 25px 50px 50px 25px 50px;
       grid-gap: 4%;
 
@@ -449,6 +466,7 @@
 
       .countries {
         grid-row-start: 4;
+        height: 35px;
         h3 {
           padding: 1.2rem 0;
         }
@@ -456,6 +474,7 @@
 
       .countries2 {
         grid-row-start: 5;
+        height: 35px;
         h3 {
           padding: 1.2rem 0;
         }

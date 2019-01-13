@@ -87,7 +87,7 @@ svg {
   box-shadow: 5px 5px rgba(112, 81, 28, 0.6);
   h2 {
     @include text(2.1rem, white);
-    padding: 2%;
+    padding: 1rem;
   }
 }
 
@@ -491,17 +491,19 @@ footer {
   nav {
     grid-template-columns: 1fr 1fr 1fr;
     height: fit-content;
-    border-bottom: 2px solid white;
+    // border-bottom: 2px solid white;
 
     a {
       @include text(1.5rem, white);
       padding: 30px 0% 7px 0;
       text-align: center;
+      border-bottom: 2px solid white;
     }
   }
 }
 .forest-selected {
   color: $dark_green !important;
+  border-bottom: 4px solid white;
 }
 .options,
 .game {
