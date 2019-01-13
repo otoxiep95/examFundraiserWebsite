@@ -531,18 +531,19 @@ footer {
     background-position: bottom 0 center;
     background-attachment: local;
     background-repeat: no-repeat;
-    width: 20%;
-    height: 20%;
+    width: 100px;
+    height: 100px;
     right: 5%;
     top: 10%;
   }
+  .badge-level1 {
+    background-image: url("./img/badges/badge1.svg");
+  }
+  .badge-level2 {
+    background-image: url("./img/badges/infantSeedlingBadge.svg");
+  }
 }
-.badge-level1 {
-  background-image: url("img/badges/badge1.svg");
-}
-.badge-level2 {
-  background-image: url("img/badges/infantSeedlingBadge.svg");
-}
+
 .level0 {
   background-image: url("level0.svg");
 }

@@ -228,6 +228,9 @@ function fetchDonatios(forest) {
 function getGame(forest) {
   let forestClicked = forest;
 
+  let gameTree = document.querySelector(".game");
+  let badge = document.querySelector(".badge");
+
   donationsPerCat.forEach(forestDonations => {
     if (
       forestDonations.category.toUpperCase() === forestClicked.toUpperCase()
@@ -241,15 +244,17 @@ function getGame(forest) {
         document.querySelector(".game").classList.add("level2");
         document.querySelector(".game").classList.remove("level0");
         document.querySelector(".badge").classList.remove("hidden");
-        // document.querySelector(".badge img").src =
-        // "img/badges/infantSeedlingBadge.svg";
+
+        document.querySelector(".badge").classList.remove("badge-level1");
+        document.querySelector(".badge").classList.add("badge-level2");
       } else if (forestDonations.trees > 0 && forestDonations.trees < 20) {
         //first level
         document.querySelector(".game").classList.add("level1");
         document.querySelector(".game").classList.remove("level2");
         document.querySelector(".game").classList.remove("level0");
         document.querySelector(".badge").classList.remove("hidden");
-        // document.querySelector(".badge img").src = "img/badges/badge1.svg";
+        document.querySelector(".badge").classList.remove("badge-level2");
+        document.querySelector(".badge").classList.add("badge-level1");
       } else if (forestDonations.trees == 0) {
         //no trees planted
         document.querySelector(".game").classList.remove("level1");
