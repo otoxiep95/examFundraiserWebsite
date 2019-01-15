@@ -14,6 +14,7 @@ let recentDonationTemplate = document.querySelector(".recentDonations-template")
 let loginModal = document.querySelector(".modal");
 let registerForm = document.querySelector("#main-register-form");
 let loginForm = document.querySelector(".login-form");
+let step0 = document.querySelector("#modal-step0");
 let donateButtonsContent = document.querySelectorAll(".content button");
 
 function init() {
@@ -112,11 +113,18 @@ function closeModal() {
 }
 
 function openModal() {
-  loginModal.classList.remove("hidden");
-  document.querySelector(".register-form").classList.remove("hidden");
-  loginForm.classList.remove("hidden");
-  document.querySelector(".planttree-form").classList.add("hidden");
-  document.querySelector(".credit-card-details").classList.add("hidden");
+  if (window.matchMedia("(min-width: 768px)").matches) {
+    loginModal.classList.remove("hidden");
+    registerForm.classList.remove("hidden");
+    loginForm.classList.remove("hidden");
+    document.querySelector(".planttree-form").classList.add("hidden");
+    document.querySelector(".credit-card-details").classList.add("hidden");
+  } else {
+    loginModal.classList.remove("hidden");
+    step0.classList.remove("hidden");
+    loginForm.classList.add("hidden");
+    registerForm.classList.add("hidden");
+  }
 
   // CHECK IF USERNAME EMAIL AND PASSWORD TAKEN
   registerForm.elements.iusername.addEventListener("blur", usernameTaken);
@@ -360,14 +368,22 @@ document.querySelector(".mobile-cross").addEventListener("click", function() {
 document
   .querySelector("#bottom-modal-login")
   .addEventListener("click", function() {
-    document.querySelector(".login-form").style.display = "grid";
-    document.querySelector("#main-register-form").style.display = "none";
+    step0.classList.add("hidden");
+    loginForm.classList.remove("hidden");
+    // loginForm.style.display = "grid";
+    document.querySelector("#main-register-form").classList.add("hidden");
+    document.querySelector(".mobile-bottom-modalMenu").classList.add("hidden");
+    document.querySelector(".modal-timeline").classList.remove("hidden");
   });
 document
   .querySelector("#bottom-modal-register")
   .addEventListener("click", function() {
-    document.querySelector(".login-form").style.display = "none";
+    step0.classList.add("hidden");
+    registerForm.classList.remove("hidden");
+    loginForm.classList.add("hidden");
     document.querySelector("#main-register-form").style.display = "block";
+    document.querySelector(".mobile-bottom-modalMenu").classList.add("hidden");
+    document.querySelector(".modal-timeline").classList.remove("hidden");
   });
 
 function printTotalDonations(totalTrees) {

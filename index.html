@@ -463,6 +463,14 @@
         <div class="modal hidden">
           <img class="cross" src="img/icons/cross-19.svg" alt="cross" />
 
+          <div id="modal-step0" class="hidden">
+            <h2>PLANT A TREE !</h2>
+            <p>
+              Create an account and make your first donation to access on your
+              profile & discover all our features !
+            </p>
+          </div>
+
           <form class="login-form">
             <h2>
               LOG IN TO MY FOREST: <br />
@@ -485,29 +493,30 @@
 
           <form id="main-register-form">
             <div class="register-form">
-              <h2>
+              <h2 class="titleDesktopModal">
                 YOU DON'T HAVE AN ACCOUNT ? <br />
                 GET STARTED & PLANT YOUR FIRST TREE!
               </h2>
+              <h2 class="titleMobileModal">CREATE YOUR ACCOUNT:</h2>
               <label>
-                FIRST NAME: <input type="text" name="ifirstname" required />
+                First name: <input type="text" name="ifirstname" required />
                 <span class="hidden">X</span> <span class="validated"></span>
               </label>
               <label for="">
-                LAST NAME: <input type="text" name="ilastname" required />
+                Last name: <input type="text" name="ilastname" required />
                 <span class="hidden">X</span><span class="validated"></span>
               </label>
               <label id="username-lable" for="">
-                USERNAME: <input type="text" name="iusername" required />
+                Username: <input type="text" name="iusername" required />
                 <span class=""></span>
               </label>
               <label id="email-lable" for=""
-                >EMAIL: <input type="email" name="iemail" required/><span
+                >Email: <input type="email" name="iemail" required/><span
                   class=""
                 ></span
               ></label>
               <label for=""
-                >PASSWORD*:
+                >Password*:
                 <input
                   type="password"
                   name="ipassword"
@@ -516,33 +525,29 @@
                   required/><span class="validated"></span
               ></label>
               <span class="terms"
-                >* Must contain at least 1 number, one uppercase, 1 lowercase, 8
+                >* Must contain at least 1 number, 1 uppercase, 1 lowercase, 8
                 characters</span
               >
 
               <div class="soMe-account">
-                <p>OR USE ANOTHER ACCOUNT:</p>
+                <h2>OR CONNECT WITH:</h2>
 
                 <a><img src="img/icons/soMe-17.svg" alt="fb"/></a>
                 <a><img src="img/icons/soMe-18.svg"/></a>
               </div>
 
-              <!-- <p class="terms">
-                This page is protected by reCAPTCHA, and subject to Google’s
-                Privacy Policy and <a>Terms of Service.</a>By signing up you
-                agree to Treat a tree's <a>Terms of Service.</a>
-              </p> -->
+              <label class="newsletter">
+                Sign up to the newsletter:
+                <input type="checkbox" name="newsletter" checked />
+                <span class="checkbox"></span>
+              </label>
 
-              <div class="submit-row">
-                <label class="newsletter">
-                  Sign up to the newsletter:
-                  <input type="checkbox" name="newsletter" checked />
-                  <span class="checkbox"></span>
-                </label>
-
-                <div class="submit next-step-button" value="NEXT">
-                  <p>REGISTER</p>
-                </div>
+              <div class="submit next-step-button" value="NEXT">
+                <p>REGISTER</p>
+              </div>
+              <div class="already">
+                <h3>ALREADY HAVE AN ACCOUNT ?</h3>
+                <a>LOG IN</a>
               </div>
             </div>
 
@@ -666,9 +671,14 @@
             </div>
             <a id="myForest-button">GO TO MY FOREST</a>
           </div>
+          <div class="modal-timeline hidden">
+            <div class="timeline-1"></div>
+            <div class="timeline-2"></div>
+            <div class="timeline-3"></div>
+          </div>
           <div class="mobile-bottom-modalMenu">
-            <div id="bottom-modal-login"><h2>Login</h2></div>
-            <div id="bottom-modal-register"><h2>Register</h2></div>
+            <div id="bottom-modal-login"><h2>LOG IN</h2></div>
+            <div id="bottom-modal-register"><h2>REGISTER</h2></div>
           </div>
         </div>
         <div class="recentDonations"><h2>RECENT DONATIONS</h2></div>

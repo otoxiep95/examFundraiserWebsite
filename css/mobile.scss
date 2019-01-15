@@ -209,6 +209,20 @@
 
   /* MODAL MOBILE STILE */
 
+  .modal-timeline {
+    position: absolute;
+    bottom: 2rem;
+    width: 100%;
+    height: 3px;
+    z-index: 30;
+    background-color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    .timeline-1 {
+      background-color: $orange;
+    }
+  }
+
   .modal {
     display: block;
     width: 100vw;
@@ -216,10 +230,7 @@
     border-radius: 0px;
     overflow-y: scroll;
     padding: 0;
-
-    h2 {
-      display: none;
-    }
+    background-color: $dark_green;
 
     .soMe-account {
       grid-template-columns: 3fr 1fr 1fr;
@@ -229,32 +240,76 @@
       }
     }
 
+    .titleDesktopModal {
+      display: none;
+    }
+
+    .titleMobileModal {
+      display: block;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
     .register-form,
     .login-form {
       float: none;
       width: 100%;
-      height: 85%;
-      grid-template-rows: 25px 25px 25px 25px 25px 85px 55px auto;
-      padding: 30% 10% 10% 10%;
+      height: 100%;
+      grid-template-rows: 2fr 1fr 1fr 1fr 1fr 1fr 1fr 1.5fr auto 3fr auto 1.5fr 1.5fr;
+      padding: 20% 10% 10% 10%;
       grid-row: 7%;
     }
 
     .register-form {
-      .submit-row {
-        grid-template-columns: none;
-        grid-template-rows: 1fr 1fr;
-        grid-row: 8/-1;
-        .newsletter {
-          grid-row: 1/2;
-          grid-column: 1/-1;
+      background-color: #83caad;
+      .soMe-account {
+        grid-row: 10/11;
+      }
+
+      .submit {
+        position: relative;
+        grid-row: 12/13;
+        p {
+          position: absolute;
+          width: 100%;
+          text-align: center;
+          font-size: 1.8rem;
+          top: 50%;
+          transform: translateY(-50%);
         }
-        .submit {
-          grid-row: 2/3;
-          grid-column: 1/-1;
-          p {
-            padding: 6%;
-          }
+      }
+
+      .already {
+        grid-row: 13/14;
+        align-self: end;
+        height: fit-content;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        h3 {
+          height: fit-content;
+          align-self: end;
+          justify-self: end;
+          grid-column: 1/2;
+          font-size: 1.5rem;
+          font-weight: 300;
         }
+        a {
+          margin-left: 1rem;
+        }
+      }
+
+      .newsletter {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 6fr 1fr;
+        grid-row: 8/9;
+        justify-self: start;
+        .checkbox {
+          justify-self: end;
+        }
+      }
+      .terms {
+        font-size: 1.4rem;
       }
     }
 
@@ -352,14 +407,28 @@
       bottom: 0;
       width: 100%;
       height: 12%;
-      background-color: $yellow_green;
-      border-top: white 1px solid;
+      border-top: white 2px solid;
       display: grid;
       grid-template-columns: 1fr 1fr;
+      #bottom-modal-login {
+        background-color: #a8d29a;
+        position: relative;
+      }
+      #bottom-modal-register {
+        background-color: #83caad;
+        position: relative;
+      }
       h2 {
+        position: absolute;
+        font-family: Oswald;
+        font-weight: 400;
+        font-size: 2.1rem;
         padding: 6%;
         display: block;
         text-align: center;
+        width: 100%;
+        top: 50%;
+        transform: translateY(-50%);
       }
     }
   }

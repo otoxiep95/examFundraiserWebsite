@@ -164,9 +164,14 @@ label {
     grid-row: 8/9;
     width: 100%;
     height: 100%;
+    padding: 2rem;
+    background-color: #a8d29a;
+    border-radius: 10px;
     display: grid;
-    grid-template-columns: 200px 50px 50px auto;
-    p {
+    // grid-template-columns: 200px 50px 50px auto;
+    grid-template-columns: 2fr 1fr 1fr auto;
+    h2 {
+      font-size: 2.7rem;
       grid-column: 1/2;
       align-self: center;
     }
@@ -519,7 +524,7 @@ label {
     height: 90%;
     background-color: $dark_green;
     padding: 3% 7%;
-    border-radius: 3%;
+    border-radius: 3px;
     @include text(1.5rem, white);
     align-self: center;
     justify-self: center;
