@@ -476,10 +476,16 @@ footer {
     border-radius: 10px;
     text-align: center;
     background-color: $dark_green;
+    box-shadow: 5px 10px 5px rgba($black_green, 0.6);
     z-index: 10;
     h1 {
       @include title(3rem, white);
       margin-top: 10%;
+      margin-bottom: 5%;
+    }
+    .continue-but {
+      @include button(200px, 50px);
+      @include text(2rem, white);
     }
   }
 }

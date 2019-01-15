@@ -138,6 +138,11 @@ function showThankMsg(forest) {
   thanksmsg.classList.add("show");
   thanksmsg.classList.remove("hidden");
   thanksmsg.querySelector("span").textContent = forest;
+  thanksmsg.querySelector("button").addEventListener("click", e => {
+    console.log("alo");
+    thanksmsg.classList.add("hidden");
+    thanksmsg.classList.remove("show");
+  });
 }
 
 function setGameLinks() {
