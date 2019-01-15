@@ -472,6 +472,44 @@ footer {
   a:active {
     color: $orange;
   }
+  .thank-modal {
+    position: absolute;
+    width: 50%;
+    height: 30%;
+    top: 15%;
+    left: 25%;
+    border-radius: 10px;
+    text-align: center;
+    background-color: $dark_green;
+    box-shadow: 5px 10px 5px rgba($black_green, 0.6);
+    z-index: 10;
+    h1 {
+      @include title(3rem, white);
+      margin-top: 10%;
+      margin-bottom: 5%;
+    }
+    .continue-but {
+      @include button(200px, 50px);
+      @include text(2rem, white);
+    }
+  }
+}
+
+.show {
+  animation: showUp 0.3s forwards ease-in;
+}
+
+@keyframes showUp {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-10px);
+  }
 }
 
 .myForests {
@@ -538,8 +576,8 @@ footer {
     background-position: bottom 0 center;
     background-attachment: local;
     background-repeat: no-repeat;
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     right: 5%;
     top: 10%;
   }
@@ -548,6 +586,18 @@ footer {
   }
   .badge-level2 {
     background-image: url("./img/badges/infantSeedlingBadge.svg");
+  }
+  .badge-level3 {
+    background-image: url("./img/badges/juniorSapling.svg");
+  }
+  .badge-level4 {
+    background-image: url("./img/badges/youngTree.svg");
+  }
+  .badge-level5 {
+    background-image: url("./img/badges/matureTree.svg");
+  }
+  .badge-level6 {
+    background-image: url("./img/badges/ancientTree.svg");
   }
 }
 
@@ -559,6 +609,18 @@ footer {
 }
 .level2 {
   background-image: url("infantSeedlingbg.svg");
+}
+.level3 {
+  background-image: url("juniorSapling.svg");
+}
+.level4 {
+  background-image: url("youngTree.svg");
+}
+.level5 {
+  background-image: url("matureTree.svg");
+}
+.level6 {
+  background-image: url("ancientTree.svg");
 }
 
 .infos-game {
