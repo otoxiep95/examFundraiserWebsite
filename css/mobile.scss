@@ -321,11 +321,15 @@
         float: none;
       }
       .first-donation-modal {
+        background-color: #83caad;
+        grid-template-rows: 2fr 2fr 2fr 2fr 1fr 2fr 2fr 2fr 0.5fr;
         h2 {
           display: block;
+          font-size: 3rem;
+          text-align: center;
         }
         width: 100%;
-        padding: 30% 10% 10% 10%;
+        padding: 20% 10% 10% 10%;
 
         .price {
           p {
@@ -340,11 +344,26 @@
             height: fit-content;
           }
         }
+        .plantModal {
+          display: block;
+          grid-row: 8/-1;
+          grid-column: 1/-1;
+          position: relative;
+          p {
+            width: 100%;
+            text-align: center;
+            font-size: 1.8rem;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+        }
       }
       .credit-card-details {
+        background-color: #83caad;
         width: 100%;
-        height: 50%;
-        padding: 0% 10% 10% 10%;
+        height: 100%;
+        padding: 20% 10% 10% 10%;
         grid-template-rows: 25px 25px 25px 25px 25px 50px;
         grid-gap: 6%;
         float: none;
@@ -356,7 +375,8 @@
 
     /* CONGRATULATION SCREEN */
     .congrats-part {
-      padding: 30% 10% 10% 10%;
+      background-color: #83caad;
+      padding: 20% 10% 10% 10%;
       height: 100%;
 
       .congrats-part-title {

@@ -104,12 +104,14 @@ function closeModal() {
     document
       .querySelector(".mobile-bottom-modalMenu")
       .classList.remove("hidden");
+    document.querySelector(".modal-timeline").classList.add("hidden");
   }
   loginModal.classList.add("hidden");
   document.querySelector(".register-form").classList.remove("hidden");
   loginForm.classList.remove("hidden");
   document.querySelector(".planttree-form").classList.add("hidden");
   document.querySelector(".credit-card-details").classList.add("hidden");
+  document.querySelector(".congrats-part").classList.add("hidden");
 }
 
 function openModal() {
@@ -154,11 +156,22 @@ function openModal() {
 
 function modal2ndStep() {
   // SHOW / HIDE STEPS
-  document.querySelector(".mobile-bottom-modalMenu").classList.add("hidden");
+  if (window.matchMedia("(min-width: 768px)").matches) {
+    document.querySelector(".mobile-bottom-modalMenu").classList.add("hidden");
+    document.querySelector(".register-form").classList.add("hidden");
+    document.querySelector(".login-form").classList.add("hidden");
+    document.querySelector(".planttree-form").classList.remove("hidden");
+    document.querySelector(".credit-card-details").classList.remove("hidden");
+  }
   document.querySelector(".register-form").classList.add("hidden");
-  document.querySelector(".login-form").classList.add("hidden");
   document.querySelector(".planttree-form").classList.remove("hidden");
-  document.querySelector(".credit-card-details").classList.remove("hidden");
+  document.querySelector(".timeline-2").style.backgroundColor = "orange";
+
+  document.querySelector(".plantModal").addEventListener("click", function() {
+    document.querySelector(".planttree-form").classList.add("hidden");
+    document.querySelector(".credit-card-details").classList.remove("hidden");
+    document.querySelector(".timeline-3").style.backgroundColor = "orange";
+  });
 
   //CHANGE PRICE REGARDING NUMBER OF TREES
 
@@ -324,6 +337,8 @@ function registerSubmit() {
   createUser(newUserData, firstDonationData);
   document.querySelector("#main-register-form").classList.add("hidden");
   document.querySelector(".congrats-part").classList.remove("hidden");
+  document.querySelector(".modal-timeline").classList.add("hidden");
+  document.querySelector(".cross").classList.add("hidden");
 }
 
 function createUser(newUserData, firstDonationData) {
