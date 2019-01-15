@@ -290,10 +290,18 @@ label {
       .countries {
         grid-row: 6/7;
         height: 45px;
+        h3 {
+          top: 50%;
+          transform: translateY(-50%);
+        }
       }
       .countries2 {
         grid-row: 7/8;
         height: 45px;
+        h3 {
+          top: 50%;
+          transform: translateY(-50%);
+        }
       }
     }
   }
@@ -392,8 +400,10 @@ label {
     position: absolute;
     z-index: 10;
     width: 100%;
-    padding: 4%;
+    // padding: 4%;
     text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
     font-size: 1.8rem;
   }
 }

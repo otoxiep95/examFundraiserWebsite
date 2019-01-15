@@ -421,6 +421,11 @@ footer {
 
 /* /////////// PROFILE PAGE ////////////*/
 
+.icon {
+  width: 20%;
+  display: none;
+}
+
 #myForestsHeader {
   height: 10vh;
   background: none;
@@ -505,43 +510,6 @@ footer {
 .forest-selected {
   color: $dark_green !important;
   border-bottom: 2px solid $dark_green !important;
-}
-
-// #myForest-botttom,
-// #options-Bottom {
-//   border-top: 2px solid white;
-// }
-
-.mobile-bottom-menu {
-  border-top: 2px solid white;
-  #myForest-botttom {
-    position: relative;
-    .icon {
-      width: 25%;
-      position: absolute;
-      margin: auto;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-    }
-  }
-  #options-bottom {
-    position: relative;
-    .icon {
-      width: 25%;
-      position: absolute;
-      margin: auto;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-    }
-  }
-}
-
-.bottom-selected {
-  border-top: 2px solid white !important;
 }
 
 .options,

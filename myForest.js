@@ -275,25 +275,61 @@ function getGame(forest) {
 
 //MOBILE
 
-document.querySelector(".burguerMenu").addEventListener("click", function() {
-  document.querySelector(".menu").classList.remove("hidden");
-});
-document.querySelector(".mobile-cross").addEventListener("click", function() {
-  document.querySelector(".menu").classList.add("hidden");
-});
+// document.querySelector(".burguerMenu").addEventListener("click", function() {
+//   document.querySelector(".menu").classList.remove("hidden");
+// });
+// document.querySelector(".mobile-cross").addEventListener("click", function() {
+//   document.querySelector(".menu").classList.add("hidden");
+// });
 
-let myForestBottom = document.querySelector("#myForest-botttom");
-let optionsBottom = document.querySelector("#options-bottom");
+let myForestBottom = document.querySelector("#myForest-bottom");
+let badgeBottom = document.querySelector("#badge-bottom");
+let donateBottom = document.querySelector("#donate-bottom");
+let friendBottom = document.querySelector("#friend-bottom");
+let communityBottom = document.querySelector("#community-bottom");
+
+function bottomSelected(link) {
+  link.classList.add("bottom-selected");
+}
+
+function bottomUnselected(link1, link2, link3, link4) {
+  link1.classList.remove("bottom-selected");
+  link2.classList.remove("bottom-selected");
+  link3.classList.remove("bottom-selected");
+  link4.classList.remove("bottom-selected");
+}
 
 myForestBottom.addEventListener("click", function() {
-  myForestBottom.classList.add("bottom-selected");
-  optionsBottom.classList.remove("bottom-selected");
+  bottomSelected(myForestBottom);
+  bottomUnselected(badgeBottom, donateBottom, friendBottom, communityBottom);
   document.querySelector(".myForests").style.display = "block";
   document.querySelector(".my-forests-options").style.display = "none";
 });
-optionsBottom.addEventListener("click", function() {
-  optionsBottom.classList.add("bottom-selected");
-  myForestBottom.classList.remove("bottom-selected");
+
+badgeBottom.addEventListener("click", function() {
+  bottomSelected(badgeBottom);
+  bottomUnselected(communityBottom, friendBottom, myForestBottom, donateBottom);
+  document.querySelector(".myForests").style.display = "none";
+  document.querySelector(".my-forests-options").style.display = "block";
+});
+
+donateBottom.addEventListener("click", function() {
+  bottomSelected(donateBottom);
+  bottomUnselected(myForestBottom, badgeBottom, friendBottom, communityBottom);
+  document.querySelector(".myForests").style.display = "none";
+  document.querySelector(".my-forests-options").style.display = "block";
+});
+
+friendBottom.addEventListener("click", function() {
+  bottomSelected(friendBottom);
+  bottomUnselected(myForestBottom, badgeBottom, donateBottom, communityBottom);
+  document.querySelector(".myForests").style.display = "none";
+  document.querySelector(".my-forests-options").style.display = "block";
+});
+
+communityBottom.addEventListener("click", function() {
+  bottomSelected(communityBottom);
+  bottomUnselected(myForestBottom, badgeBottom, friendBottom, donateBottom);
   document.querySelector(".myForests").style.display = "none";
   document.querySelector(".my-forests-options").style.display = "block";
 });

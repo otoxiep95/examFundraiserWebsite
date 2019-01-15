@@ -449,16 +449,48 @@
 
   ///MY FOREST PAGE ///////*/
 
-  .icon {
-    width: 35%;
+  /* HEADER */
+
+  #myForestsHeader {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    height: 13vh;
+    padding: 0 5%;
+    .menu_link {
+      @include text(1.5rem, white);
+      align-self: center;
+    }
+    :nth-child(4) {
+      justify-self: end;
+    }
+    h2 {
+      @include title(3.1rem, white);
+      place-self: center;
+    }
   }
 
+  /* GENERAL */
+
+  .myForests {
+    nav {
+      a {
+        padding: 15px 0 7px 0;
+        font-size: 1.8rem;
+      }
+    }
+  }
+
+  /* FORM */
+
   .planttree-form {
+    height: 100%;
     .planttree-part {
       // padding-top: 5%;
       padding: 10% 2%;
-      grid-template-rows: 25px 50px 25px 50px 50px 25px 50px;
+      // grid-template-rows: 25px 50px 25px 50px 50px 25px 50px;
+      grid-template-rows: 1fr 2fr 1fr 2fr 2fr 1fr 2fr;
       grid-gap: 4%;
+      // grid-row-gap: 2%;
 
       .location {
         grid-row: 3/4;
@@ -466,7 +498,9 @@
 
       .countries {
         grid-row-start: 4;
-        height: 35px;
+        height: 100%;
+        width: 100%;
+        align-self: end;
         h3 {
           padding: 1.2rem 0;
         }
@@ -474,7 +508,9 @@
 
       .countries2 {
         grid-row-start: 5;
-        height: 35px;
+        height: 100%;
+        width: 100%;
+        align-self: start;
         h3 {
           padding: 1.2rem 0;
         }
@@ -507,8 +543,8 @@
   .myForestsMain {
     position: unset;
     display: block;
-    height: 80vh;
-    padding: 5% 5%;
+    height: 77vh;
+    padding: 2% 5% 5% 5%;
     .myForest {
       display: block;
       height: 100%;
@@ -546,17 +582,46 @@
       }
     }
   }
+
+  /* BOTTOM MENU */
+
   .mobile-bottom-menu {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     width: 100%;
     height: 10vh;
-    background-color: #11514f;
-    h2 {
-      @include title(2rem, white);
-      text-align: center;
-      padding: 10%;
+    background-color: $black_green;
+    background-blend-mode: multiply;
+    opacity: 0.9;
+    .bottom-link {
+      position: relative;
     }
+  }
+
+  .icon {
+    display: block;
+    width: 45%;
+    margin: auto;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  .my-forests-options {
+    nav {
+      display: none;
+    }
+    .options {
+      margin-top: 0;
+      padding-top: 5%;
+    }
+  }
+
+  .bottom-selected {
+    border-top: 2px solid white !important;
   }
 
   /* END MEDIA QUERY*/
