@@ -86,11 +86,13 @@ goBackButton.addEventListener("click", e => {
 
 //SUBMIT FORM
 document
-  .querySelector(".myforestCC .submit")
-  .addEventListener("click", function() {
-    document.querySelector(".myforestCC").classList.add("hidden");
-    document.querySelector(".planttree-part").classList.remove("hidden");
-  });
+  .querySelector(".planttree-part .plant-submit")
+  .addEventListener("click", goToPayment);
+
+function goToPayment() {
+  document.querySelector(".myforestCC").classList.remove("hidden");
+  document.querySelector(".planttree-part").classList.add("hidden");
+}
 
 // SUBMIT DONATION
 donationForm.addEventListener("submit", e => {
@@ -110,14 +112,10 @@ donationForm.addEventListener("submit", e => {
   document.querySelector(".purchase-price").textContent =
     Number(donationForm.elements.treenumber.value) * 10 + "kr";
 
-  goToPayment();
+  document.querySelector(".myforestCC").classList.add("hidden");
+  document.querySelector(".planttree-part").classList.remove("hidden");
   postDonation(donationObject);
 });
-
-function goToPayment() {
-  document.querySelector(".myforestCC").classList.remove("hidden");
-  document.querySelector(".planttree-part").classList.add("hidden");
-}
 
 /* POST THE DONATION TO THE DATABASE */
 function postDonation(newDonation) {
@@ -130,7 +128,16 @@ function postDonation(newDonation) {
     }
   })
     .then(res => res.json())
-    .then(d => {});
+    .then(d => {
+      fetchDonatios(d.category.toLowerCase());
+      showThankMsg(d.category);
+    });
+}
+function showThankMsg(forest) {
+  let thanksmsg = document.querySelector(".thank-modal");
+  thanksmsg.classList.add("show");
+  thanksmsg.classList.remove("hidden");
+  thanksmsg.querySelector("span").textContent = forest;
 }
 
 function setGameLinks() {
@@ -157,6 +164,41 @@ function setGameLinks() {
     e.target.classList.add("forest-selected");
 
     nonActive(brazilGameLink, tanzaniaGameLink, usaGameLink);
+  });
+
+  //Radio buttons Select forest game
+  let radioButtons = donationForm.location;
+  console.log(radioButtons);
+  radioButtons.forEach(but => {
+    but.addEventListener("click", e => {
+      let forest = e.target.value.toLowerCase();
+      switch (forest) {
+        case "brazil":
+          console.log("brazil");
+          getGame(forest);
+          brazilGameLink.classList.add("forest-selected");
+          nonActive(tanzaniaGameLink, usaGameLink, vietnamGameLink);
+          break;
+        case "tanzania":
+          console.log("tan");
+          getGame(forest);
+          tanzaniaGameLink.classList.add("forest-selected");
+          nonActive(brazilGameLink, usaGameLink, vietnamGameLink);
+          break;
+        case "usa":
+          console.log("usa");
+          getGame(forest);
+          usaGameLink.classList.add("forest-selected");
+          nonActive(brazilGameLink, tanzaniaGameLink, vietnamGameLink);
+          break;
+        case "vietnam":
+          console.log("nam");
+          getGame(forest);
+          vietnamGameLink.classList.add("forest-selected");
+          nonActive(brazilGameLink, usaGameLink, tanzaniaGameLink);
+          break;
+      }
+    });
   });
 }
 
@@ -199,6 +241,26 @@ function nonActive(link1, link2, link3) {
 }
 
 function fetchDonatios(forest) {
+  console.log(forest);
+  //clear array before fetching
+  donationsPerCat = [
+    {
+      category: "Brazil",
+      trees: 0
+    },
+    {
+      category: "Tanzania",
+      trees: 0
+    },
+    {
+      category: "USA",
+      trees: 0
+    },
+    {
+      category: "Vietnam",
+      trees: 0
+    }
+  ];
   fetch(endpoint)
     .then(res => res.json())
     .then(data => {
@@ -231,6 +293,16 @@ function getGame(forest) {
 
   let gameTree = document.querySelector(".game");
   let badge = document.querySelector(".badge");
+  let nextBadge = "";
+  let level0 = 0;
+  let level1 = 1;
+  let level2 = 25;
+  let level3 = 50;
+  let level4 = 100;
+  let level5 = 200;
+  let level6 = 400;
+  let currentLv = 0;
+  let nextLv = 0;
 
   donationsPerCat.forEach(forestDonations => {
     if (
@@ -238,35 +310,157 @@ function getGame(forest) {
     ) {
       document.querySelector(".current-trees").textContent =
         forestDonations.trees + " TREES PLANTED !";
-      if (forestDonations.trees >= 20) {
-        //second level
 
-        document.querySelector(".game").classList.remove("level1");
-        document.querySelector(".game").classList.add("level2");
-        document.querySelector(".game").classList.remove("level0");
-        document.querySelector(".badge").classList.remove("hidden");
+      switch (true) {
+        case forestDonations.trees == level0:
+          console.log("no trees");
+          currentLv = level0;
+          nextLv = level1;
+          gameTree.classList.remove("level1");
+          gameTree.classList.remove("level2");
+          gameTree.classList.remove("level3");
+          gameTree.classList.remove("level4");
+          gameTree.classList.remove("level5");
+          gameTree.classList.remove("level6");
+          gameTree.classList.add("level0");
+          badge.classList.add("hidden");
+          nextBadge = "BABY SPROUT";
+          break;
+        case forestDonations.trees >= level1 && forestDonations.trees < level2:
+          console.log("baby sprout");
+          currentLv = level1;
+          nextLv = level2;
+          gameTree.classList.remove("level0");
+          gameTree.classList.remove("level2");
+          gameTree.classList.remove("level3");
+          gameTree.classList.remove("level4");
+          gameTree.classList.remove("level5");
+          gameTree.classList.remove("level6");
+          gameTree.classList.add("level1");
 
-        document.querySelector(".badge").classList.remove("badge-level1");
-        document.querySelector(".badge").classList.add("badge-level2");
-      } else if (forestDonations.trees > 0 && forestDonations.trees < 20) {
-        //first level
-        document.querySelector(".game").classList.add("level1");
-        document.querySelector(".game").classList.remove("level2");
-        document.querySelector(".game").classList.remove("level0");
-        document.querySelector(".badge").classList.remove("hidden");
-        document.querySelector(".badge").classList.remove("badge-level2");
-        document.querySelector(".badge").classList.add("badge-level1");
-      } else if (forestDonations.trees == 0) {
-        //no trees planted
-        document.querySelector(".game").classList.remove("level1");
-        document.querySelector(".game").classList.remove("level2");
-        document.querySelector(".game").classList.add("level0");
-        document.querySelector(".badge").classList.add("hidden");
+          badge.classList.remove("hidden");
+          badge.classList.remove("badge-level2");
+          badge.classList.remove("badge-level3");
+          badge.classList.remove("badge-level4");
+          badge.classList.remove("badge-level5");
+          badge.classList.remove("badge-level6");
+          badge.classList.add("badge-level1");
+          nextBadge = "INFANT SEEDLING";
+          break;
+        case forestDonations.trees >= level2 && forestDonations.trees < level3:
+          console.log("infant seedling");
+          currentLv = level2;
+          nextLv = level3;
+          gameTree.classList.remove("level0");
+          gameTree.classList.remove("level1");
+          gameTree.classList.remove("level3");
+          gameTree.classList.remove("level4");
+          gameTree.classList.remove("level5");
+          gameTree.classList.remove("level6");
+          gameTree.classList.add("level2");
+
+          badge.classList.remove("hidden");
+          badge.classList.remove("badge-level1");
+          badge.classList.remove("badge-level3");
+          badge.classList.remove("badge-level4");
+          badge.classList.remove("badge-level5");
+          badge.classList.remove("badge-level6");
+          badge.classList.add("badge-level2");
+          nextBadge = "JUNIOR SAPLING";
+          break;
+        case forestDonations.trees >= level3 && forestDonations.trees < level4:
+          console.log("Junior Sapling");
+          currentLv = level3;
+          nextLv = level4;
+          gameTree.classList.remove("level0");
+          gameTree.classList.remove("level1");
+          gameTree.classList.remove("level2");
+          gameTree.classList.remove("level4");
+          gameTree.classList.remove("level5");
+          gameTree.classList.remove("level6");
+          gameTree.classList.add("level3");
+
+          badge.classList.remove("hidden");
+          badge.classList.remove("badge-level1");
+          badge.classList.remove("badge-level2");
+          badge.classList.remove("badge-level4");
+          badge.classList.remove("badge-level5");
+          badge.classList.remove("badge-level6");
+          badge.classList.add("badge-level3");
+          nextBadge = "YOUNG TREE";
+          break;
+        case forestDonations.trees >= level4 && forestDonations.trees < level5:
+          console.log("Young Tree");
+          currentLv = level4;
+          nextLv = level5;
+          gameTree.classList.remove("level0");
+          gameTree.classList.remove("level1");
+          gameTree.classList.remove("level2");
+          gameTree.classList.remove("level3");
+          gameTree.classList.remove("level5");
+          gameTree.classList.remove("level6");
+          gameTree.classList.add("level4");
+          badge.classList.remove("hidden");
+          badge.classList.remove("badge-level1");
+          badge.classList.remove("badge-level2");
+          badge.classList.remove("badge-level3");
+          badge.classList.remove("badge-level5");
+          badge.classList.remove("badge-level6");
+          badge.classList.add("badge-level4");
+          nextBadge = "MATURE TREE";
+          break;
+        case forestDonations.trees >= level5 && forestDonations.trees < level6:
+          console.log("Mature Tree");
+          currentLv = level5;
+          nextLv = level6;
+          gameTree.classList.remove("level0");
+          gameTree.classList.remove("level1");
+          gameTree.classList.remove("level2");
+          gameTree.classList.remove("level3");
+          gameTree.classList.remove("level4");
+          gameTree.classList.remove("level6");
+          gameTree.classList.add("level5");
+          badge.classList.remove("hidden");
+          badge.classList.remove("badge-level1");
+          badge.classList.remove("badge-level2");
+          badge.classList.remove("badge-level3");
+          badge.classList.remove("badge-level4");
+          badge.classList.remove("badge-level6");
+          badge.classList.add("badge-level5");
+          nextBadge = "ANCIENT TREE";
+          break;
+        case forestDonations.trees >= level6:
+          console.log("Ancient tree");
+          currentLv = level6;
+          nextLv = 800;
+          gameTree.classList.remove("level0");
+          gameTree.classList.remove("level1");
+          gameTree.classList.remove("level2");
+          gameTree.classList.remove("level3");
+          gameTree.classList.remove("level4");
+          gameTree.classList.remove("level5");
+          gameTree.classList.add("level6");
+          badge.classList.remove("hidden");
+          badge.classList.remove("badge-level1");
+          badge.classList.remove("badge-level2");
+          badge.classList.remove("badge-level3");
+          badge.classList.remove("badge-level4");
+          badge.classList.remove("badge-level5");
+          badge.classList.add("badge-level6");
+          break;
       }
-      let calcWidth = (100 * forestDonations.trees) / 20;
+
+      document.querySelector(".trees-left-level-up .trees-left").textContent =
+        nextLv - forestDonations.trees;
+
+      document.querySelector(".next-level").textContent = nextBadge;
+
+      let calcWidth =
+        (100 * (forestDonations.trees - currentLv)) / (nextLv - currentLv);
       if (calcWidth > 100) {
         calcWidth = 100;
       }
+
       document.querySelector(".level").style.transition = "width 1s ease";
       document.querySelector(".level").style.width = calcWidth + "%";
     }

@@ -65,6 +65,10 @@ function checkIfLoggedIn() {
     // GIVE USER ID TO URL
     document.querySelector("#myforest-link").href =
       "myforest.html?id=" + userIdurl;
+    //GIVE LINK MYFOREST TO PLANT A TREE BUTTON
+    document.querySelector(".getstarted").addEventListener("click", function() {
+      window.location = "myforest.html?id=" + userIdurl;
+    });
     // DIRECT DONATE BUTTONS TO MY FOREST PAGE
     donateButtonsContent.forEach(but => {
       but.addEventListener("click", function() {
@@ -122,6 +126,22 @@ function openModal() {
   registerForm.elements.iusername.addEventListener("blur", usernameTaken);
   registerForm.elements.iemail.addEventListener("blur", emailTaken);
   registerForm.elements.ipassword.addEventListener("blur", passwordValid);
+
+  registerForm.elements.iusername.addEventListener("focus", e => {
+    registerForm.elements.iusername.parentElement.querySelector(
+      "span"
+    ).textContent = "";
+  });
+  registerForm.elements.iemail.addEventListener("focus", e => {
+    registerForm.elements.iemail.parentElement.querySelector(
+      "span"
+    ).textContent = "";
+  });
+  registerForm.elements.ipassword.addEventListener("focus", e => {
+    registerForm.elements.ipassword.parentElement.querySelector(
+      "span"
+    ).textContent = "";
+  });
 
   // MODAL SECOND STEP
   document
@@ -275,6 +295,11 @@ function passwordValid() {
     registerForm.elements.ipassword.parentElement.querySelector(
       "span"
     ).textContent = "password not valid";
+  } else {
+    warningSigng.classList.remove("wrong");
+    registerForm.elements.ipassword.parentElement.querySelector(
+      "span"
+    ).textContent = "";
   }
 }
 
