@@ -136,7 +136,8 @@
           <div class="infos-game">
             <p class="current-trees">5 TREES PLANTED !</p>
             <p class="trees-left-level-up">
-              20 TREES LEFT TO BECOME AN INFANT SEEDLING !
+              <span class="trees-left"></span> TREES LEFT TO BECOME AN
+              <span class="next-level"></span> !
             </p>
 
             <div class="level-container"><div class="level"></div></div>
@@ -215,12 +216,7 @@
                 <input type="checkbox" name="newsletter" checked />
                 <span class="checkbox"></span>
               </label>
-              <input
-                class="plant-submit"
-                type="submit"
-                name="plant-submit"
-                value="PLANT !"
-              />
+              <div class="plant-submit">DONATE</div>
             </div>
 
             <div class="myforestCC credit-card-details hidden">
@@ -254,7 +250,12 @@
               <label>Name:<input type="text"/></label>
               <div class="button-row">
                 <div class="go-back-plant">GO BACK</div>
-                <div class="submit">DONATE</div>
+                <input
+                  class="submit"
+                  type="submit"
+                  name="plant-submit"
+                  value="PLANT !"
+                />
               </div>
             </div>
           </form>
